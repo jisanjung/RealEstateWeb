@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Utilities
 {
-    class RestClient
+    public static class RestClient
     {
+
+        //jason gotta do jason things
     }
 }
