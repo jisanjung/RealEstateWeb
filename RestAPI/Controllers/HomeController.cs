@@ -47,5 +47,34 @@ namespace RestAPI.Controllers
             }
             return homes;
         }
+        [HttpGet("{home_id}")]
+        public Home GetHome(int home_id)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetHome";
+
+            SqlParameter input = new SqlParameter("@home_id", home_id);
+            objCommand.Parameters.Add(input);
+
+            DataSet ds = connection.GetDataSet(objCommand);
+            DataTable dt = ds.Tables[0];
+
+            Home h = new Home();
+            h.HomeId = int.Parse(dt.Rows[0]["home_id"].ToString());
+            h.SellerEmail = dt.Rows[0]["seller_email"].ToString();
+            h.Price = float.Parse(dt.Rows[0]["price"].ToString());
+            h.Address = dt.Rows[0]["address"].ToString();
+            h.ZipCode = int.Parse(dt.Rows[0]["zip_code"].ToString());
+            h.PropertyType = dt.Rows[0]["property_type"].ToString();
+            h.HouseSize = int.Parse(dt.Rows[0]["house_size"].ToString());
+            h.NumberBed = int.Parse(dt.Rows[0]["number_bed"].ToString());
+            h.NumberBath = int.Parse(dt.Rows[0]["number_bath"].ToString());
+            h.OtherAmenities = dt.Rows[0]["other_amenities"].ToString();
+            h.Rating = int.Parse(dt.Rows[0]["rating"].ToString());
+            h.Status = dt.Rows[0]["status"].ToString();
+
+            return h;
+        }
     }
 }
