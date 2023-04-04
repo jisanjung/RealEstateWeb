@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeClassLibrary
+namespace HomeClassLibrary1
 {
     public class Class1
     {
