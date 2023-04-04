@@ -67,9 +67,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAccountCreation.aspx" />
+    <Content Include="frmDashboard.aspx" />
+    <Content Include="frmHomeDetails.aspx" />
+    <Content Include="frmMain.aspx" />
+    <Content Include="frmPage.aspx" />
+    <Content Include="frmSearch.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAccountCreation.aspx.cs">
+      <DependentUpon>frmAccountCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAccountCreation.aspx.designer.cs">
+      <DependentUpon>frmAccountCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDashboard.aspx.cs">
+      <DependentUpon>frmDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDashboard.aspx.designer.cs">
+      <DependentUpon>frmDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmHomeDetails.aspx.cs">
+      <DependentUpon>frmHomeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmHomeDetails.aspx.designer.cs">
+      <DependentUpon>frmHomeDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.aspx.cs">
+      <DependentUpon>frmMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMain.aspx.designer.cs">
+      <DependentUpon>frmMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPage.aspx.cs">
+      <DependentUpon>frmPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPage.aspx.designer.cs">
+      <DependentUpon>frmPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearch.aspx.cs">
+      <DependentUpon>frmSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSearch.aspx.designer.cs">
+      <DependentUpon>frmSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +128,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{84e2f6e4-6770-4806-bb0b-d184f8c2f65f}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
