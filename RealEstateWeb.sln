@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Util
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPI", "RestAPI\RestAPI.csproj", "{997D2FF4-3FAC-4A8E-8355-308FA28759AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeLibrary", "HomeLibrary\HomeLibrary.csproj", "{781275DA-BA5F-4443-BA51-4CF29EF2D66F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{997D2FF4-3FAC-4A8E-8355-308FA28759AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{997D2FF4-3FAC-4A8E-8355-308FA28759AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{997D2FF4-3FAC-4A8E-8355-308FA28759AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{781275DA-BA5F-4443-BA51-4CF29EF2D66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{781275DA-BA5F-4443-BA51-4CF29EF2D66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{781275DA-BA5F-4443-BA51-4CF29EF2D66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{781275DA-BA5F-4443-BA51-4CF29EF2D66F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
