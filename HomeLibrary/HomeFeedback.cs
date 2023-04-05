@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities
+namespace HomeLibrary
 {
     public class HomeFeedback
     {
         int _feedback_id, _home_id, _rating;
         string _price_feedback, _location_feedback, _overall_feedback;
-        
+
         public HomeFeedback() { }
 
         public HomeFeedback(int feedback_id, int home_id, int rating, string price_feedback, string location_feedback, string overall_feedback)
@@ -30,9 +30,9 @@ namespace Utilities
             set { _feedback_id = value; }
         }
         public int HomeId
-        { 
-            get { return _home_id; } 
-            set { _home_id = value; } 
+        {
+            get { return _home_id; }
+            set { _home_id = value; }
         }
         public int Rating
         {

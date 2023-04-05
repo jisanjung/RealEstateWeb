@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities
+namespace HomeLibrary
 {
     public class HomeOffer
     {
@@ -41,7 +41,7 @@ namespace Utilities
         }
         public bool SellHomeFirst
         {
-            get { return _sell_home_first;}
+            get { return _sell_home_first; }
             set
             {
                 _sell_home_first = value;
@@ -73,7 +73,7 @@ namespace Utilities
         }
         public string MoveInDate
         {
-            get { return _move_in_date;}
+            get { return _move_in_date; }
             set
             {
                 _move_in_date = value;
@@ -100,7 +100,7 @@ namespace Utilities
             get { return _offer_amount; }
             set { _offer_amount = value; }
         }
-        
+
         //functions
     }
 }

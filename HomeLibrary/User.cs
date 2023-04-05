@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities
+namespace HomeLibrary
 {
     public class User
     {
@@ -14,8 +14,8 @@ namespace Utilities
         //constructors
         public User() { }
 
-        public User(bool is_verified, string email, string fullName, 
-                    string password, string type, string address, string securityAnswerOne, 
+        public User(bool is_verified, string email, string fullName,
+                    string password, string type, string address, string securityAnswerOne,
                     string securityAnswerTwo, string securityAnswerThree)
         {
             _is_verified = is_verified;
