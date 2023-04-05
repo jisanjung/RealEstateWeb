@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Util
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAPI", "RestAPI\RestAPI.csproj", "{3B2D9754-77C7-45E8-9699-160B387D7188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeClassLibrary1", "HomeClassLibrary1\HomeClassLibrary1.csproj", "{3079A6C6-37E5-47A8-BA74-04BA61E50997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeLibrary", "HomeLibrary\HomeLibrary.csproj", "{742E8121-5CD4-4526-A393-A3502E44717D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{3B2D9754-77C7-45E8-9699-160B387D7188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B2D9754-77C7-45E8-9699-160B387D7188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B2D9754-77C7-45E8-9699-160B387D7188}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3079A6C6-37E5-47A8-BA74-04BA61E50997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3079A6C6-37E5-47A8-BA74-04BA61E50997}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3079A6C6-37E5-47A8-BA74-04BA61E50997}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3079A6C6-37E5-47A8-BA74-04BA61E50997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742E8121-5CD4-4526-A393-A3502E44717D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742E8121-5CD4-4526-A393-A3502E44717D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742E8121-5CD4-4526-A393-A3502E44717D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742E8121-5CD4-4526-A393-A3502E44717D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

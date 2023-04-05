@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HomeClassLibrary1\HomeClassLibrary1.csproj" />
+    <ProjectReference Include="..\HomeLibrary\HomeLibrary.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
