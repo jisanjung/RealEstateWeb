@@ -42,5 +42,28 @@ namespace RestAPI.Controllers
             }
             return homeShowings;
         }
+        [HttpGet("{showing_id}")]
+        public HomeShowing GetHomeShowing(int showing_id)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetHomeShowing";
+
+            SqlParameter showingIdParam = new SqlParameter("@showing_id", showing_id);
+            objCommand.Parameters.Add(showingIdParam);
+
+            DataSet ds = connection.GetDataSet(objCommand);
+            DataTable dt = ds.Tables[0];
+
+            HomeShowing hs = new HomeShowing();
+            hs.ShowingId = int.Parse(dt.Rows[0]["showing_id"].ToString());
+            hs.HomeId = int.Parse(dt.Rows[0]["home_id"].ToString());
+            hs.BuyerEmail = dt.Rows[0]["buyer_email"].ToString();
+            hs.SellerEmail = dt.Rows[0]["seller_email"].ToString();
+            hs.Date = dt.Rows[0]["show_date"].ToString();
+            hs.Time = dt.Rows[0]["show_time"].ToString();
+
+            return hs;
+        }
     }
 }
