@@ -192,5 +192,21 @@ namespace RestAPI.Controllers
             status = connection.DoUpdate(objCommand);
             return status;
         }
+        [HttpDelete("Remove/{home_id}")]
+        public int RemoveHome(int home_id)
+        {
+            int status;
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_RemoveHome";
+
+            SqlParameter homeIdParam = new SqlParameter("@home_id", home_id);
+            homeIdParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(homeIdParam);
+
+            status = connection.DoUpdate(objCommand);
+            return status;
+        }
     }
 }
