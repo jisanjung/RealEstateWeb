@@ -20,6 +20,7 @@ namespace RealEstateWeb.FeedbackService {
     using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Data;
     
     
     /// <remarks/>
@@ -106,10 +107,10 @@ namespace RealEstateWeb.FeedbackService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllFeedbackForHome", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public HomeFeedback[] GetAllFeedbackForHome(int home_id) {
+        public System.Data.DataSet GetAllFeedbackForHome(int home_id) {
             object[] results = this.Invoke("GetAllFeedbackForHome", new object[] {
                         home_id});
-            return ((HomeFeedback[])(results[0]));
+            return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
@@ -149,87 +150,6 @@ namespace RealEstateWeb.FeedbackService {
                 return true;
             }
             return false;
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class HomeFeedback {
-        
-        private int feedbackIdField;
-        
-        private int homeIdField;
-        
-        private int ratingField;
-        
-        private string priceFeedbackField;
-        
-        private string locationFeedbackField;
-        
-        private string overallFeedbackField;
-        
-        /// <remarks/>
-        public int FeedbackId {
-            get {
-                return this.feedbackIdField;
-            }
-            set {
-                this.feedbackIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int HomeId {
-            get {
-                return this.homeIdField;
-            }
-            set {
-                this.homeIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Rating {
-            get {
-                return this.ratingField;
-            }
-            set {
-                this.ratingField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PriceFeedback {
-            get {
-                return this.priceFeedbackField;
-            }
-            set {
-                this.priceFeedbackField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LocationFeedback {
-            get {
-                return this.locationFeedbackField;
-            }
-            set {
-                this.locationFeedbackField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OverallFeedback {
-            get {
-                return this.overallFeedbackField;
-            }
-            set {
-                this.overallFeedbackField = value;
-            }
         }
     }
     
@@ -277,10 +197,10 @@ namespace RealEstateWeb.FeedbackService {
         }
         
         /// <remarks/>
-        public HomeFeedback[] Result {
+        public System.Data.DataSet Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((HomeFeedback[])(this.results[0]));
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }

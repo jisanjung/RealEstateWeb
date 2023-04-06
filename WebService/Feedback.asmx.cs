@@ -29,27 +29,18 @@ namespace WebService
             return "Hello World";
         }
         [WebMethod]
-        public List<HomeFeedback> GetAllFeedbackForHome(int home_id)
+        public DataSet GetAllFeedbackForHome(int home_id)
         {
             SqlCommand objCommand = new SqlCommand();
             List<HomeFeedback> feedback = new List<HomeFeedback>();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "TP_GetAllFeedbackForHome";
 
+            SqlParameter homeIdParam = new SqlParameter("@home_id", home_id);
+            objCommand.Parameters.Add(homeIdParam);
+
             DataSet ds = connection.GetDataSet(objCommand);
-            DataTable dt = ds.Tables[0];
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                HomeFeedback hf = new HomeFeedback();
-                hf.FeedbackId = int.Parse(dt.Rows[i]["feedback_id"].ToString());
-                hf.HomeId = int.Parse(dt.Rows[i]["home_id"].ToString());
-                hf.PriceFeedback = dt.Rows[i]["price_feedback"].ToString();
-                hf.LocationFeedback = dt.Rows[i]["location_feedback"].ToString();
-                hf.OverallFeedback = dt.Rows[i]["overall_feedback"].ToString();
-                hf.Rating = int.Parse(dt.Rows[i]["rating"].ToString());
-                feedback.Add(hf);
-            }
-            return feedback;
+            return ds;
         }
     }
 }
