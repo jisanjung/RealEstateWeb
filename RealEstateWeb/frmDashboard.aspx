@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmDashboard.aspx.cs" Inherits="RealEstateWeb.frmDashboard" %>
+<%@ Register Src="~/Navbar.ascx" TagPrefix="uc" TagName="Navbar" %>
 
 <!DOCTYPE html>
 
@@ -8,6 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <uc:Navbar runat="server" id="navbar"/>
         <div>
         </div>
     </form>

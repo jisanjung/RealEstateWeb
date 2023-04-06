@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmAccountCreation.aspx.cs" Inherits="RealEstateWeb.frmAccountCreation" %>
+<%@ Register Src="~/Navbar.ascx" TagPrefix="uc" TagName="Navbar" %>
 
 <!DOCTYPE html>
 
@@ -8,9 +9,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <uc:Navbar runat="server" id="navbar"/>
         <div>
             <h1>Homes R Us</h1>
-
         </div>
     
     <div class="login">
