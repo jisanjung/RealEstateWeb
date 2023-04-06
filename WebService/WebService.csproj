@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{063A30DA-1ABA-4157-9279-85FC65F053F5}</ProjectGuid>
+    <ProjectGuid>{507EA658-F37C-4754-99A0-45083BA1F30C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RealEstateWeb</RootNamespace>
-    <AssemblyName>RealEstateWeb</AssemblyName>
+    <RootNamespace>WebService</RootNamespace>
+    <AssemblyName>WebService</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -67,81 +67,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="frmAccountCreation.aspx" />
-    <Content Include="frmDashboard.aspx" />
-    <Content Include="frmHomeDetails.aspx" />
-    <Content Include="frmMain.aspx" />
-    <Content Include="frmPage.aspx" />
-    <Content Include="frmSearch.aspx" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\FeedbackService\Feedback.disco" />
+    <Content Include="Feedback.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAccountCreation.aspx.cs">
-      <DependentUpon>frmAccountCreation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmAccountCreation.aspx.designer.cs">
-      <DependentUpon>frmAccountCreation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmDashboard.aspx.cs">
-      <DependentUpon>frmDashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmDashboard.aspx.designer.cs">
-      <DependentUpon>frmDashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmHomeDetails.aspx.cs">
-      <DependentUpon>frmHomeDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmHomeDetails.aspx.designer.cs">
-      <DependentUpon>frmHomeDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmMain.aspx.cs">
-      <DependentUpon>frmMain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmMain.aspx.designer.cs">
-      <DependentUpon>frmMain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmPage.aspx.cs">
-      <DependentUpon>frmPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmPage.aspx.designer.cs">
-      <DependentUpon>frmPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmSearch.aspx.cs">
-      <DependentUpon>frmSearch.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmSearch.aspx.designer.cs">
-      <DependentUpon>frmSearch.aspx</DependentUpon>
+    <Compile Include="Feedback.asmx.cs">
+      <DependentUpon>Feedback.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\FeedbackService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Web References\FeedbackService\Feedback.wsdl" />
-    <Content Include="Web References\FeedbackService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -159,25 +96,6 @@
       <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:51514/Feedback.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\FeedbackService\</RelPath>
-      <UpdateFromURL>http://localhost:51514/Feedback.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>RealEstateWeb_FeedbackService_Feedback</CachedSettingsPropName>
-    </WebReferenceUrl>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -191,9 +109,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58587</DevelopmentServerPort>
+          <DevelopmentServerPort>51551</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58587/</IISUrl>
+          <IISUrl>http://localhost:51514/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateWeb", "RealEstate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{84E2F6E4-6770-4806-BB0B-D184F8C2F65F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPI", "RestAPI\RestAPI.csproj", "{997D2FF4-3FAC-4A8E-8355-308FA28759AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAPI", "RestAPI\RestAPI.csproj", "{997D2FF4-3FAC-4A8E-8355-308FA28759AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeLibrary", "HomeLibrary\HomeLibrary.csproj", "{781275DA-BA5F-4443-BA51-4CF29EF2D66F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\WebService.csproj", "{507EA658-F37C-4754-99A0-45083BA1F30C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{781275DA-BA5F-4443-BA51-4CF29EF2D66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{781275DA-BA5F-4443-BA51-4CF29EF2D66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{781275DA-BA5F-4443-BA51-4CF29EF2D66F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507EA658-F37C-4754-99A0-45083BA1F30C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507EA658-F37C-4754-99A0-45083BA1F30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507EA658-F37C-4754-99A0-45083BA1F30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507EA658-F37C-4754-99A0-45083BA1F30C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
