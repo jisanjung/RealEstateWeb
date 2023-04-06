@@ -65,5 +65,36 @@ namespace RestAPI.Controllers
 
             return hs;
         }
+        [HttpPost("Add")]
+        public int AddHomeShowing([FromBody]HomeShowing hs)
+        {
+            int status;
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_AddHomeShowing";
+
+            SqlParameter homeIdParam = new SqlParameter("@home_id", hs.HomeId);
+            homeIdParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(homeIdParam);
+
+            SqlParameter buyerEmailParam = new SqlParameter("@buyer_email", hs.BuyerEmail);
+            buyerEmailParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(buyerEmailParam);
+
+            SqlParameter sellerEmailParam = new SqlParameter("@seller_email", hs.SellerEmail);
+            sellerEmailParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(sellerEmailParam);
+
+            SqlParameter showDateParam = new SqlParameter("@show_date", hs.Date);
+            showDateParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(showDateParam);
+
+            SqlParameter showTimeParam = new SqlParameter("@show_time", hs.Time);
+            showTimeParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(showTimeParam);
+
+            status = connection.DoUpdate(objCommand);
+            return status;
+        }
     }
 }
