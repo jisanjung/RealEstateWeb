@@ -76,5 +76,61 @@ namespace RestAPI.Controllers
 
             return h;
         }
+        [HttpPost("Add")]
+        public int AddHome([FromBody]Home home)
+        {
+            int status;
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_AddHome";
+
+            SqlParameter sellerEmailParam = new SqlParameter("@seller_email", home.SellerEmail);
+            sellerEmailParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(sellerEmailParam);
+
+            SqlParameter priceParam = new SqlParameter("@price", home.Price);
+            priceParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(priceParam);
+
+            SqlParameter addressParam = new SqlParameter("@address", home.Address);
+            addressParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(addressParam);
+
+            SqlParameter zipCodeParam = new SqlParameter("@zip_code", home.ZipCode);
+            zipCodeParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(zipCodeParam);
+
+            SqlParameter propertyTypeParam = new SqlParameter("@property_type", home.PropertyType);
+            propertyTypeParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(propertyTypeParam);
+
+            SqlParameter houseSizeParam = new SqlParameter("@house_size", home.HouseSize);
+            houseSizeParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(houseSizeParam);
+
+            SqlParameter numberBedParam = new SqlParameter("@number_bed", home.NumberBed);
+            numberBedParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(numberBedParam);
+
+            SqlParameter numberBathParam = new SqlParameter("@number_bath", home.NumberBath);
+            numberBathParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(numberBathParam);
+
+            SqlParameter otherAmenitiesParam = new SqlParameter("@other_amenities", home.OtherAmenities);
+            otherAmenitiesParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(otherAmenitiesParam);
+
+            SqlParameter ratingParam = new SqlParameter("@rating", home.Rating);
+            ratingParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(ratingParam);
+
+            SqlParameter statusParam = new SqlParameter("@status", home.Status);
+            statusParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(statusParam);
+
+            status = connection.DoUpdate(objCommand);
+            return status;
+        }
     }
 }
