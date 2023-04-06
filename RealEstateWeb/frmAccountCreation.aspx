@@ -16,14 +16,12 @@
     
     <div class="login">
         email
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtEmailLogin" runat="server"></asp:TextBox><br />
         password
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtPasswordLogin" runat="server"></asp:TextBox><br />
         <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" /><br />
     </div>
     <div class="signup">
-        username
-        <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox><br />
         email
         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
         password
@@ -31,7 +29,16 @@
         current address
         <asp:TextBox ID="txtCurrAddress" runat="server"></asp:TextBox><br />
         Full name
-        <asp:TextBox ID="txtFullName" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtFullName" runat="server"></asp:TextBox>
+        <br />
+        What kind of user are you?<br />
+        <asp:DropDownList ID="ddlType" runat="server">
+            <asp:ListItem></asp:ListItem>
+            <asp:ListItem Value="Agent"></asp:ListItem>
+            <asp:ListItem Value="Buyer"></asp:ListItem>
+            <asp:ListItem Value="Seller"></asp:ListItem>
+        </asp:DropDownList>
+        <br />
         <h4>Security Question 1: What is your mother's maiden name?</h4>
         <asp:TextBox ID="txtSecureQuestion1" runat="server"></asp:TextBox><br />
         <h4>Security Question 2: What University did/do you attend?</h4>
