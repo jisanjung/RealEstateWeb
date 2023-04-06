@@ -72,5 +72,53 @@ namespace RestAPI.Controllers
 
             return ho;
         }
+        [HttpPost("Add")]
+        public int AddHomeOffer([FromBody]HomeOffer ho)
+        {
+            int status;
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_AddHomeOffer";
+
+            SqlParameter homeIdParam = new SqlParameter("@home_id", ho.HomeId);
+            homeIdParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(homeIdParam);
+
+            SqlParameter saleTypeParam = new SqlParameter("@sale_type", ho.SaleType);
+            saleTypeParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(saleTypeParam);
+
+            SqlParameter contingenciesParam = new SqlParameter("@contingencies", ho.Contingencies);
+            contingenciesParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(contingenciesParam);
+
+            SqlParameter offerAmountParam = new SqlParameter("@offer_amount", ho.OfferAmount);
+            offerAmountParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(offerAmountParam);
+
+            SqlParameter moveinDateParam = new SqlParameter("@movein_date", ho.MoveInDate);
+            moveinDateParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(moveinDateParam);
+
+            SqlParameter sellHomeFirstParam = new SqlParameter("@sell_home_first", ho.SellHomeFirst);
+            sellHomeFirstParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(sellHomeFirstParam);
+
+            SqlParameter buyerEmailParam = new SqlParameter("@buyer_email", ho.BuyerEmail);
+            buyerEmailParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(buyerEmailParam);
+
+            SqlParameter sellerEmailParam = new SqlParameter("@seller_email", ho.SellerEmail);
+            sellerEmailParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(sellerEmailParam);
+
+            SqlParameter acceptedParam = new SqlParameter("@accepted", ho.Accepted);
+            acceptedParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(acceptedParam);
+
+            status = connection.DoUpdate(objCommand);
+            return status;
+        }
     }
 }
