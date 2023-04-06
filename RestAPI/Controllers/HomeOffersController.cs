@@ -45,5 +45,32 @@ namespace RestAPI.Controllers
             }
             return homeOffers;
         }
+        [HttpGet("{offer_id}")]
+        public HomeOffer GetHomeOffer(int offer_id)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetHomeOffer";
+
+            SqlParameter offerIdParam = new SqlParameter("@offer_id", offer_id);
+            objCommand.Parameters.Add(offerIdParam);
+
+            DataSet ds = connection.GetDataSet(objCommand);
+            DataTable dt = ds.Tables[0];
+
+            HomeOffer ho = new HomeOffer();
+            ho.HomeOfferId = int.Parse(dt.Rows[0]["offer_id"].ToString());
+            ho.HomeId = int.Parse(dt.Rows[0]["home_id"].ToString());
+            ho.SaleType = dt.Rows[0]["sale_type"].ToString();
+            ho.Contingencies = dt.Rows[0]["contingencies"].ToString();
+            ho.OfferAmount = float.Parse(dt.Rows[0]["offer_amount"].ToString());
+            ho.MoveInDate = dt.Rows[0]["movein_date"].ToString();
+            ho.SellHomeFirst = bool.Parse(dt.Rows[0]["sell_home_first"].ToString());
+            ho.BuyerEmail = dt.Rows[0]["buyer_email"].ToString();
+            ho.SellerEmail = dt.Rows[0]["seller_email"].ToString();
+            ho.Accepted = bool.Parse(dt.Rows[0]["accepted"].ToString());
+
+            return ho;
+        }
     }
 }
