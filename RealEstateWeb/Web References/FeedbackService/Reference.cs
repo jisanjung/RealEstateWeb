@@ -34,6 +34,8 @@ namespace RealEstateWeb.FeedbackService {
         
         private System.Threading.SendOrPostCallback GetAllFeedbackForHomeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddFeedbackOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -77,6 +79,9 @@ namespace RealEstateWeb.FeedbackService {
         
         /// <remarks/>
         public event GetAllFeedbackForHomeCompletedEventHandler GetAllFeedbackForHomeCompleted;
+        
+        /// <remarks/>
+        public event AddFeedbackCompletedEventHandler AddFeedbackCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -131,6 +136,43 @@ namespace RealEstateWeb.FeedbackService {
             if ((this.GetAllFeedbackForHomeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetAllFeedbackForHomeCompleted(this, new GetAllFeedbackForHomeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddFeedback", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int AddFeedback(int home_id, string price_feedback, string location_feedback, string overall_feedback, int rating) {
+            object[] results = this.Invoke("AddFeedback", new object[] {
+                        home_id,
+                        price_feedback,
+                        location_feedback,
+                        overall_feedback,
+                        rating});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddFeedbackAsync(int home_id, string price_feedback, string location_feedback, string overall_feedback, int rating) {
+            this.AddFeedbackAsync(home_id, price_feedback, location_feedback, overall_feedback, rating, null);
+        }
+        
+        /// <remarks/>
+        public void AddFeedbackAsync(int home_id, string price_feedback, string location_feedback, string overall_feedback, int rating, object userState) {
+            if ((this.AddFeedbackOperationCompleted == null)) {
+                this.AddFeedbackOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddFeedbackOperationCompleted);
+            }
+            this.InvokeAsync("AddFeedback", new object[] {
+                        home_id,
+                        price_feedback,
+                        location_feedback,
+                        overall_feedback,
+                        rating}, this.AddFeedbackOperationCompleted, userState);
+        }
+        
+        private void OnAddFeedbackOperationCompleted(object arg) {
+            if ((this.AddFeedbackCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddFeedbackCompleted(this, new AddFeedbackCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -201,6 +243,32 @@ namespace RealEstateWeb.FeedbackService {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void AddFeedbackCompletedEventHandler(object sender, AddFeedbackCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddFeedbackCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddFeedbackCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
             }
         }
     }

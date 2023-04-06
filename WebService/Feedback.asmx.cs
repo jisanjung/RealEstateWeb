@@ -32,7 +32,6 @@ namespace WebService
         public DataSet GetAllFeedbackForHome(int home_id)
         {
             SqlCommand objCommand = new SqlCommand();
-            List<HomeFeedback> feedback = new List<HomeFeedback>();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "TP_GetAllFeedbackForHome";
 
@@ -41,6 +40,38 @@ namespace WebService
 
             DataSet ds = connection.GetDataSet(objCommand);
             return ds;
+        }
+        [WebMethod]
+        public int AddFeedback(int home_id, string price_feedback, string location_feedback, string overall_feedback, int rating)
+        {
+            int status;
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_AddHomeFeedback";
+
+            SqlParameter homeIdParam = new SqlParameter("@home_id", home_id);
+            homeIdParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(homeIdParam);
+
+            SqlParameter priceFeedbackParam = new SqlParameter("@price_feedback", price_feedback);
+            priceFeedbackParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(priceFeedbackParam);
+
+            SqlParameter locationFeedbackParam = new SqlParameter("@location_feedback", location_feedback);
+            locationFeedbackParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(locationFeedbackParam);
+
+            SqlParameter overallFeedbackParam = new SqlParameter("@overall_feedback", overall_feedback);
+            overallFeedbackParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(overallFeedbackParam);
+
+            SqlParameter ratingParam = new SqlParameter("@rating", rating);
+            ratingParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(ratingParam);
+
+            status = connection.DoUpdate(objCommand);
+            return status;
         }
     }
 }
