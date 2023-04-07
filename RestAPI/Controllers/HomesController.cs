@@ -44,7 +44,7 @@ namespace RestAPI.Controllers
                 h.Rating = int.Parse(dt.Rows[i]["rating"].ToString());
                 h.Status = dt.Rows[i]["status"].ToString();
                 h.YearBuilt = int.Parse(dt.Rows[i]["year_built"].ToString());
-                h.Rooms = (List<Room>)dt.Rows[i]["rooms"];
+                h.Rooms = (!DBNull.Value.Equals(dt.Rows[i]["rooms"])) ? (List<Room>)dt.Rows[i]["rooms"] : new List<Room>();
                 h.HVAC = dt.Rows[i]["hvac"].ToString();
                 h.Garage = dt.Rows[i]["garage"].ToString();
                 h.Utilities = dt.Rows[i]["utilities"].ToString();

@@ -73,13 +73,7 @@ namespace RealEstateWeb
 
         protected void btnSubmitHome_Click(object sender, EventArgs e)
         {
-            int sum = 0;
-            List<Room> rooms = (List<Room>)ViewState["rooms"];
-            foreach (Room r in rooms)
-            {
-                sum += (r.Length * r.Width);
-            }
-            Response.Write($"house size: {sum}sqft");
+            
         }
     }
 }
