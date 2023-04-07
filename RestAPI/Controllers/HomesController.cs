@@ -64,6 +64,7 @@ namespace RestAPI.Controllers
                 h.Utilities = dt.Rows[i]["utilities"].ToString();
                 h.Img = dt.Rows[i]["img"].ToString();
                 h.ImgCaption = dt.Rows[i]["img_caption"].ToString();
+                h.Description = dt.Rows[i]["description"].ToString();
                 homes.Add(h);
             }
             return homes;
@@ -114,6 +115,7 @@ namespace RestAPI.Controllers
             h.Utilities = dt.Rows[0]["utilities"].ToString();
             h.Img = dt.Rows[0]["img"].ToString();
             h.ImgCaption = dt.Rows[0]["img_caption"].ToString();
+            h.Description = dt.Rows[0]["description"].ToString();
 
             return h;
         }
@@ -204,6 +206,10 @@ namespace RestAPI.Controllers
             SqlParameter statusParam = new SqlParameter("@status", home.Status);
             statusParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(statusParam);
+
+            SqlParameter descriptionParam = new SqlParameter("@description", home.Description);
+            descriptionParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(descriptionParam);
 
             status = connection.DoUpdate(objCommand);
             return status;
@@ -300,6 +306,10 @@ namespace RestAPI.Controllers
             SqlParameter statusParam = new SqlParameter("@status", home.Status);
             statusParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(statusParam);
+
+            SqlParameter descriptionParam = new SqlParameter("@description", home.Description);
+            descriptionParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(descriptionParam);
 
             status = connection.DoUpdate(objCommand);
             return status;

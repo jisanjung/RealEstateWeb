@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
+            <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
             <div>
                 <h1>Post a Home For Sale</h1>
             </div>
@@ -108,7 +109,7 @@
                 </div>
                 <div>
                     <label>Description About the Home</label>
-                    <textarea id="taHomeDescription" cols="20" rows="5" placeholder="Comment about this home"></textarea>
+                    <textarea id="taHomeDescription" cols="20" rows="5" placeholder="Comment about this home" runat="server"></textarea>
                     <label>Asking Price</label>
                     <asp:TextBox ID="txtPrice" runat="server" placeholder="Set the Starter Price"></asp:TextBox>
                 </div>

@@ -92,10 +92,10 @@ namespace RealEstateWeb
             
             if (status < 1)
             {
-                Response.Write("insert failed");
+                this.lblAlert.Text = "There was a problem posting this home...";
             } else
             {
-                Response.Write("insert success");
+                this.lblAlert.Text = "Home posted successfully!";
             }
         }
 
@@ -142,6 +142,7 @@ namespace RealEstateWeb
             home.Img = this.fuHomeImg.FileName;
             home.ImgCaption = this.txtImgCaption.Text;
             home.Status = "sale";
+            home.Description = this.taHomeDescription.Value;
 
             return home;
         }
