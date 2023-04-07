@@ -69,31 +69,41 @@
                 </div>
                 <div>
                     <p>Rooms</p>
-                    <label>Bedrooms (<asp:Label ID="lblBedroomCount" runat="server" Text="0"></asp:Label>)</label>
-                    <asp:LinkButton ID="linkbtnAddBedroom" runat="server">Add a Bedroom</asp:LinkButton>
-                    <div id="divBedroomDimensions" runat="server">
+                    <div>
+                        <label>Bedrooms (<asp:Label ID="lblBedroomCount" runat="server" Text="0"></asp:Label>)</label>
+                        <asp:LinkButton ID="linkbtnAddBedroom" runat="server" OnClick="linkbtnAddBedroom_Click">Add a Bedroom</asp:LinkButton>
+                    </div>
+                    <asp:Label ID="lblBedrooms" runat="server" Text=""></asp:Label>
+                    <div id="divBedroomDimensions" runat="server" visible="false">
                         <p>Bedroom Dimensions</p>
                         <asp:TextBox ID="txtBedroomLength" runat="server" placeholder="Bedroom Length"></asp:TextBox>
                         <span>by</span>
                         <asp:TextBox ID="txtBedroomWidth" runat="server" placeholder="Bedroom Width"></asp:TextBox>
-                        <asp:Button ID="btnAddBedroom" runat="server" Text="Add" />
+                        <asp:Button ID="btnAddBedroom" runat="server" Text="Add" OnClick="btnAddBedroom_Click" />
                     </div>
-                    <label>Bathrooms (<asp:Label ID="lblBRCount" runat="server" Text="0"></asp:Label>)</label>
-                    <asp:LinkButton ID="linkbtnAddBR" runat="server">Add a Bathroom</asp:LinkButton>
-                    <div id="divBRDimensions" runat="server">
+                    <div>
+                        <label>Bathrooms (<asp:Label ID="lblBRCount" runat="server" Text="0"></asp:Label>)</label>
+                        <asp:LinkButton ID="linkbtnAddBR" runat="server" OnClick="linkbtnAddBR_Click">Add a Bathroom</asp:LinkButton>
+                    </div>
+                    <asp:Label ID="lblBathrooms" runat="server" Text=""></asp:Label>
+                    <div id="divBRDimensions" runat="server" visible="false">
                         <p>Bathroom Dimensions</p>
                         <asp:TextBox ID="txtBRLength" runat="server" placeholder="Bathroom Length"></asp:TextBox>
                         <span>by</span>
                         <asp:TextBox ID="txtBRWidth" runat="server" placeholder="Bathroom Width"></asp:TextBox>
-                        <asp:Button ID="btnAddBR" runat="server" Text="Add" />
+                        <asp:Button ID="btnAddBR" runat="server" Text="Add" OnClick="btnAddBR_Click" />
                     </div>
-                    <label>Other Rooms</label>
-                    <asp:LinkButton ID="linkbtnAddOtherRoom" runat="server">Add another Room</asp:LinkButton>
-                    <div id="divOtherRoomDimensions" runat="server">
+                    <div>
+                        <label>Other Rooms (<asp:Label ID="lblOtherRoomsCount" runat="server" Text="0"></asp:Label>)</label>
+                        <asp:LinkButton ID="linkbtnAddOtherRoom" runat="server" OnClick="linkbtnAddOtherRoom_Click">Add another Room</asp:LinkButton>
+                    </div>
+                    <asp:Label ID="lblOtherRooms" runat="server" Text=""></asp:Label>
+                    <div id="divOtherRoomDimensions" runat="server" visible="false">
                         <p>Room Dimensions</p>
+                        <asp:TextBox ID="txtRoomName" runat="server" placeholder="What kind of room is this"></asp:TextBox>
                         <asp:TextBox ID="txtOtherRoomLength" runat="server" placeholder="Room Length"></asp:TextBox>
                         <asp:TextBox ID="txtOtherRoomWidth" runat="server" placeholder="Room Width"></asp:TextBox>
-                        <asp:Button ID="btnAddOtherRoom" runat="server" Text="Add" />
+                        <asp:Button ID="btnAddOtherRoom" runat="server" Text="Add" OnClick="btnAddOtherRoom_Click" />
                     </div>
                 </div>
                 <div>
@@ -123,7 +133,7 @@
                 </div>
             </div>
         </div>
-        <asp:Button ID="btnSubmitHome" runat="server" Text="Add Home for Sale" />
+        <asp:Button ID="btnSubmitHome" runat="server" Text="Add Home for Sale" OnClick="btnSubmitHome_Click" />
     </form>
 </body>
 </html>

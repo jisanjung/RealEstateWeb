@@ -141,6 +141,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.LinkButton linkbtnAddBedroom;
 
         /// <summary>
+        /// lblBedrooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBedrooms;
+
+        /// <summary>
         /// divBedroomDimensions control.
         /// </summary>
         /// <remarks>
@@ -195,6 +204,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.LinkButton linkbtnAddBR;
 
         /// <summary>
+        /// lblBathrooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBathrooms;
+
+        /// <summary>
         /// divBRDimensions control.
         /// </summary>
         /// <remarks>
@@ -231,6 +249,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.Button btnAddBR;
 
         /// <summary>
+        /// lblOtherRoomsCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOtherRoomsCount;
+
+        /// <summary>
         /// linkbtnAddOtherRoom control.
         /// </summary>
         /// <remarks>
@@ -240,6 +267,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.LinkButton linkbtnAddOtherRoom;
 
         /// <summary>
+        /// lblOtherRooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOtherRooms;
+
+        /// <summary>
         /// divOtherRoomDimensions control.
         /// </summary>
         /// <remarks>
@@ -247,6 +283,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOtherRoomDimensions;
+
+        /// <summary>
+        /// txtRoomName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRoomName;
 
         /// <summary>
         /// txtOtherRoomLength control.
