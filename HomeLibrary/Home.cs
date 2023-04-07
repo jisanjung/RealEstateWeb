@@ -9,15 +9,16 @@ namespace HomeLibrary
 {
     public class Home
     {
-        int _home_id, _zip_code, _house_size;
+        int _home_id, _zip_code, _house_size, _year_built;
         float _price, _number_bed, _number_bath, _rating;
-        string _seller_email, _address, _property_type, _other_amenities, _status;
+        string _seller_email, _address, _property_type, _other_amenities, _status, _hvac, _garage, _utilities, _img, _img_caption;
+        private List<Room> _rooms = new List<Room>();
 
         public Home() { }
 
         public Home(int home_id, int zip_code, int house_size, float price,
                     float number_bed, float number_bath, float rating, string seller_email,
-                    string address, string property_type, string other_amenities, string status)
+                    string address, string property_type, string other_amenities, string status, int year_built, List<Room> rooms, string hvac, string garage, string utilities, string img, string img_caption)
         {
             _home_id = home_id;
             _zip_code = zip_code;
@@ -31,6 +32,13 @@ namespace HomeLibrary
             _property_type = property_type;
             _other_amenities = other_amenities;
             _status = status;
+            _year_built = year_built;
+            _rooms = rooms;
+            _hvac = hvac;
+            _garage = garage;
+            _utilities = utilities;
+            _img = img;
+            _img_caption = img_caption;
         }
 
         //properties
@@ -48,6 +56,11 @@ namespace HomeLibrary
         {
             get { return _house_size; }
             set { _house_size = value; }
+        }
+        public int YearBuilt
+        {
+            get { return _year_built; }
+            set { _year_built = value; }
         }
         public float Price
         {
@@ -72,6 +85,11 @@ namespace HomeLibrary
             {
                 _number_bath = value;
             }
+        }
+        public List<Room> Rooms
+        {
+            get { return this._rooms; }
+            set { this._rooms = value; }
         }
         public float Rating
         {
@@ -111,6 +129,46 @@ namespace HomeLibrary
             set
             {
                 _other_amenities = value;
+            }
+        }
+        public string HVAC
+        {
+            get { return _hvac; }
+            set
+            {
+                _hvac = value;
+            }
+        }
+        public string Garage
+        {
+            get { return _garage; }
+            set
+            {
+                _garage = value;
+            }
+        }
+        public string Utilities
+        {
+            get { return _utilities; }
+            set
+            {
+                _utilities = value;
+            }
+        }
+        public string Img
+        {
+            get { return _img; }
+            set
+            {
+                _img = value;
+            }
+        }
+        public string ImgCaption
+        {
+            get { return _img_caption; }
+            set
+            {
+                _img_caption = value;
             }
         }
         public string Status

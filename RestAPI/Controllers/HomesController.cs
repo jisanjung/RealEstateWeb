@@ -43,6 +43,13 @@ namespace RestAPI.Controllers
                 h.OtherAmenities = dt.Rows[i]["other_amenities"].ToString();
                 h.Rating = int.Parse(dt.Rows[i]["rating"].ToString());
                 h.Status = dt.Rows[i]["status"].ToString();
+                h.YearBuilt = int.Parse(dt.Rows[i]["year_built"].ToString());
+                h.Rooms = (List<Room>)dt.Rows[i]["rooms"];
+                h.HVAC = dt.Rows[i]["hvac"].ToString();
+                h.Garage = dt.Rows[i]["garage"].ToString();
+                h.Utilities = dt.Rows[i]["utilities"].ToString();
+                h.Img = dt.Rows[i]["img"].ToString();
+                h.ImgCaption = dt.Rows[i]["img_caption"].ToString();
                 homes.Add(h);
             }
             return homes;
@@ -73,6 +80,13 @@ namespace RestAPI.Controllers
             h.OtherAmenities = dt.Rows[0]["other_amenities"].ToString();
             h.Rating = int.Parse(dt.Rows[0]["rating"].ToString());
             h.Status = dt.Rows[0]["status"].ToString();
+            h.YearBuilt = int.Parse(dt.Rows[0]["year_built"].ToString());
+            h.Rooms = (List<Room>)dt.Rows[0]["rooms"];
+            h.HVAC = dt.Rows[0]["hvac"].ToString();
+            h.Garage = dt.Rows[0]["garage"].ToString();
+            h.Utilities = dt.Rows[0]["utilities"].ToString();
+            h.Img = dt.Rows[0]["img"].ToString();
+            h.ImgCaption = dt.Rows[0]["img_caption"].ToString();
 
             return h;
         }
@@ -101,6 +115,10 @@ namespace RestAPI.Controllers
             zipCodeParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(zipCodeParam);
 
+            SqlParameter yearBuiltParam = new SqlParameter("@year_built", home.YearBuilt);
+            yearBuiltParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(yearBuiltParam);
+
             SqlParameter propertyTypeParam = new SqlParameter("@property_type", home.PropertyType);
             propertyTypeParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(propertyTypeParam);
@@ -117,9 +135,33 @@ namespace RestAPI.Controllers
             numberBathParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(numberBathParam);
 
+            SqlParameter roomsParam = new SqlParameter("@rooms", home.Rooms);
+            roomsParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(roomsParam);
+
+            SqlParameter hvacParam = new SqlParameter("@hvac", home.HVAC);
+            hvacParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(hvacParam);
+
+            SqlParameter garageParam = new SqlParameter("@garage", home.Garage);
+            garageParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(garageParam);
+
+            SqlParameter utilitiesParam = new SqlParameter("@utilities", home.Utilities);
+            utilitiesParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(utilitiesParam);
+
             SqlParameter otherAmenitiesParam = new SqlParameter("@other_amenities", home.OtherAmenities);
             otherAmenitiesParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(otherAmenitiesParam);
+
+            SqlParameter imgParam = new SqlParameter("@img", home.Img);
+            imgParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(imgParam);
+
+            SqlParameter imgCaptionParam = new SqlParameter("@img_caption", home.ImgCaption);
+            imgCaptionParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(imgCaptionParam);
 
             SqlParameter ratingParam = new SqlParameter("@rating", home.Rating);
             ratingParam.Direction = ParameterDirection.Input;
@@ -161,6 +203,10 @@ namespace RestAPI.Controllers
             zipCodeParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(zipCodeParam);
 
+            SqlParameter yearBuiltParam = new SqlParameter("@year_built", home.YearBuilt);
+            yearBuiltParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(yearBuiltParam);
+
             SqlParameter propertyTypeParam = new SqlParameter("@property_type", home.PropertyType);
             propertyTypeParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(propertyTypeParam);
@@ -177,9 +223,33 @@ namespace RestAPI.Controllers
             numberBathParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(numberBathParam);
 
+            SqlParameter roomsParam = new SqlParameter("@rooms", home.Rooms);
+            roomsParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(roomsParam);
+
+            SqlParameter hvacParam = new SqlParameter("@hvac", home.HVAC);
+            hvacParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(hvacParam);
+
+            SqlParameter garageParam = new SqlParameter("@garage", home.Garage);
+            garageParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(garageParam);
+
+            SqlParameter utilitiesParam = new SqlParameter("@utilities", home.Utilities);
+            utilitiesParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(utilitiesParam);
+
             SqlParameter otherAmenitiesParam = new SqlParameter("@other_amenities", home.OtherAmenities);
             otherAmenitiesParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(otherAmenitiesParam);
+
+            SqlParameter imgParam = new SqlParameter("@img", home.Img);
+            imgParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(imgParam);
+
+            SqlParameter imgCaptionParam = new SqlParameter("@img_caption", home.ImgCaption);
+            imgCaptionParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(imgCaptionParam);
 
             SqlParameter ratingParam = new SqlParameter("@rating", home.Rating);
             ratingParam.Direction = ParameterDirection.Input;
