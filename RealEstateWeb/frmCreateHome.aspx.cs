@@ -82,11 +82,9 @@ namespace RealEstateWeb
         {
             // make a home
             Home home = this.makeHomeFromInput();
-
             // serialize into json string
             JavaScriptSerializer js = new JavaScriptSerializer();
             String jsonHome = js.Serialize(home);
-
             // insert into db
             int status = int.Parse(RestClient.Post("http://localhost:60855/api/homes/Add", jsonHome));
             
@@ -139,7 +137,14 @@ namespace RealEstateWeb
             amenities = amenities.Substring(0, amenities.Length - 2);
 
             home.OtherAmenities = amenities;
-            home.Img = this.fuHomeImg.FileName;
+
+            // add image local folder
+            if (this.fuHomeImg.HasFile)
+            {
+                string filename = this.fuHomeImg.FileName;
+                this.fuHomeImg.PostedFile.SaveAs(Server.MapPath($"~/Storage/{filename}"));
+                home.Img = this.fuHomeImg.FileName;
+            }
             home.ImgCaption = this.txtImgCaption.Text;
             home.Status = "sale";
             home.Description = this.taHomeDescription.Value;
