@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 
 using Utilities;
 using HomeLibrary;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace RestAPI.Controllers
 {
@@ -44,7 +46,19 @@ namespace RestAPI.Controllers
                 h.Rating = int.Parse(dt.Rows[i]["rating"].ToString());
                 h.Status = dt.Rows[i]["status"].ToString();
                 h.YearBuilt = int.Parse(dt.Rows[i]["year_built"].ToString());
-                h.Rooms = (!DBNull.Value.Equals(dt.Rows[i]["rooms"])) ? (List<Room>)dt.Rows[i]["rooms"] : new List<Room>();
+
+                if (connection.GetField("rooms", i) != System.DBNull.Value)
+                {
+                    Byte[] byteArray = (Byte[])connection.GetField("rooms", i);
+                    BinaryFormatter deSerializer = new BinaryFormatter();
+                    MemoryStream memStream = new MemoryStream(byteArray);
+                    List<Room> rooms = (List<Room>)deSerializer.Deserialize(memStream);
+                    h.Rooms = rooms;
+                } else
+                {
+                    h.Rooms = new List<Room>();
+                }
+
                 h.HVAC = dt.Rows[i]["hvac"].ToString();
                 h.Garage = dt.Rows[i]["garage"].ToString();
                 h.Utilities = dt.Rows[i]["utilities"].ToString();
@@ -81,7 +95,20 @@ namespace RestAPI.Controllers
             h.Rating = int.Parse(dt.Rows[0]["rating"].ToString());
             h.Status = dt.Rows[0]["status"].ToString();
             h.YearBuilt = int.Parse(dt.Rows[0]["year_built"].ToString());
-            h.Rooms = (List<Room>)dt.Rows[0]["rooms"];
+
+            if (connection.GetField("rooms", 0) != System.DBNull.Value)
+            {
+                Byte[] byteArray = (Byte[])connection.GetField("rooms", 0);
+                BinaryFormatter deSerializer = new BinaryFormatter();
+                MemoryStream memStream = new MemoryStream(byteArray);
+                List<Room> rooms = (List<Room>)deSerializer.Deserialize(memStream);
+                h.Rooms = rooms;
+            }
+            else
+            {
+                h.Rooms = new List<Room>();
+            }
+
             h.HVAC = dt.Rows[0]["hvac"].ToString();
             h.Garage = dt.Rows[0]["garage"].ToString();
             h.Utilities = dt.Rows[0]["utilities"].ToString();
@@ -135,7 +162,14 @@ namespace RestAPI.Controllers
             numberBathParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(numberBathParam);
 
-            SqlParameter roomsParam = new SqlParameter("@rooms", home.Rooms);
+            // serialize list of rooms before adding as a parameter
+            BinaryFormatter serializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream();
+            Byte[] byteArray;
+            serializer.Serialize(memStream, home.Rooms);
+            byteArray = memStream.ToArray();
+
+            SqlParameter roomsParam = new SqlParameter("@rooms", byteArray);
             roomsParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(roomsParam);
 
@@ -223,7 +257,15 @@ namespace RestAPI.Controllers
             numberBathParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(numberBathParam);
 
-            SqlParameter roomsParam = new SqlParameter("@rooms", home.Rooms);
+
+            // serialize list of rooms before adding as a parameter
+            BinaryFormatter serializer = new BinaryFormatter();
+            MemoryStream memStream = new MemoryStream();
+            Byte[] byteArray;
+            serializer.Serialize(memStream, home.Rooms);
+            byteArray = memStream.ToArray();
+
+            SqlParameter roomsParam = new SqlParameter("@rooms", byteArray);
             roomsParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(roomsParam);
 
