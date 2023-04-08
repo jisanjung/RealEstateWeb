@@ -65,7 +65,15 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <uc:HomeCard runat="server" id="homeCard" Address='<%# DataBinder.Eval(Container.DataItem, "Address")%>'/>
+                            <uc:HomeCard runat="server" id="homeCard" 
+                                Address='<%# DataBinder.Eval(Container.DataItem, "Address")%>' 
+                                Price='<%# DataBinder.Eval(Container.DataItem, "Price")%>' 
+                                HouseSize='<%# DataBinder.Eval(Container.DataItem, "HouseSize")%>' 
+                                NumberBeds='<%# DataBinder.Eval(Container.DataItem, "NumberBed")%>' 
+                                NumberBaths='<%# DataBinder.Eval(Container.DataItem, "NumberBath")%>' 
+                                Img='<%# DataBinder.Eval(Container.DataItem, "Img")%>'
+                                ZipCode='<%# DataBinder.Eval(Container.DataItem, "ZipCode")%>'
+                            />
                         </td>
                     </tr>
                 </ItemTemplate>
