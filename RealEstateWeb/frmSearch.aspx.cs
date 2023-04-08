@@ -18,27 +18,11 @@ namespace RealEstateWeb
         {
             if (!IsPostBack)
             {
-                List<Home> homes = new List<Home>();
-                Home h1 = new Home();
-                h1.Address = "522 Lansdale Ave";
-                h1.Price = 23000;
-                h1.HouseSize = 657;
-                h1.NumberBed = 2;
-                h1.NumberBath = 1;
-                h1.ZipCode = 19446;
-                h1.Img = "2023-02-13 20.44.09.jpg";
-                Home h2 = new Home();
-                h2.Address = "805 Freedom Cir";
-                h2.Price = 4000000;
-                h2.HouseSize = 1203;
-                h2.NumberBed = 4;
-                h2.NumberBath = 2;
-                h2.ZipCode = 90210;
-                h2.Img = "2023-02-13 20.44.09.jpg";
-                homes.Add(h1);
-                homes.Add(h2);
+                string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
-                this.rptHomeResults.DataSource = homes;
+                this.rptHomeResults.DataSource = allHomes;
                 this.rptHomeResults.DataBind();
             }
         }
