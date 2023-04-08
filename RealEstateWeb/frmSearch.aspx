@@ -18,9 +18,8 @@
             </div>
             <div>
                 <label>Price Range</label>
-                <asp:TextBox ID="txtPriceStarting" runat="server" placeholder="Starting Amount"></asp:TextBox> 
-                <span>to</span>
-                <asp:TextBox ID="txtEndingPrice" runat="server" placeholder="Ending Amount"></asp:TextBox>
+                <asp:TextBox ID="txtPriceRange" runat="server" placeholder="Enter Target Price"></asp:TextBox> 
+                <span>(and under)</span>
             </div>
             <div>
                 <label>Property Type</label>
@@ -54,7 +53,7 @@
                     <asp:ListItem>Bar</asp:ListItem>
                 </asp:CheckBoxList>
             </div>
-            <asp:Button ID="btnSearch" runat="server" Text="Search" />
+            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
         </div>
         <div class="homeResults">
         </div>
