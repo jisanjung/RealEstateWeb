@@ -105,31 +105,7 @@ namespace RealEstateWeb
             else
             {
                 this.lblAlert.Text = "Home posted successfully!";
-
-                if (Request.Cookies["userType"] != null && Request.Cookies["userType"].Value.CompareTo("agent") == 0)
-                {
-                    User seller = new User();
-                    seller.Email = this.txtSellerEmail.Text;
-                    seller.Password = this.sellerPassword.Value;
-                    seller.FullName = this.txtSellerName.Text;
-                    seller.Address = this.txtAddress.Text;
-                    seller.Type = "seller";
-                    seller.SecurityAnswerOne = "N/A";
-                    seller.SecurityAnswerTwo = "N/A";
-                    seller.SecurityAnswerThree = "N/A";
-                    seller.IsVerified = false;
-
-                    int insertSellerStatus = DBOperations.AddUser(seller);
-
-                    if (insertSellerStatus < 1)
-                    {
-                        Response.Write("error inserting user");
-                    }
-                    else
-                    {
-                        Response.Write("insert user success");
-                    }
-                }
+                this.createSellerAccount();
             }
         }
 
@@ -186,6 +162,32 @@ namespace RealEstateWeb
             home.Description = this.taHomeDescription.Value;
 
             return home;
+        }
+        private void createSellerAccount() {
+            if (Request.Cookies["userType"] != null && Request.Cookies["userType"].Value.CompareTo("agent") == 0)
+            {
+                User seller = new User();
+                seller.Email = this.txtSellerEmail.Text;
+                seller.Password = this.sellerPassword.Value;
+                seller.FullName = this.txtSellerName.Text;
+                seller.Address = this.txtAddress.Text;
+                seller.Type = "seller";
+                seller.SecurityAnswerOne = "N/A";
+                seller.SecurityAnswerTwo = "N/A";
+                seller.SecurityAnswerThree = "N/A";
+                seller.IsVerified = false;
+
+                int insertSellerStatus = DBOperations.AddUser(seller);
+
+                if (insertSellerStatus < 1)
+                {
+                    Response.Write("error inserting user");
+                }
+                else
+                {
+                    Response.Write("insert user success");
+                }
+            }
         }
     }
 }
