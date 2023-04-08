@@ -24,6 +24,7 @@
             <div>
                 <label>Property Type</label>
                 <asp:DropDownList ID="ddlPropertyType" runat="server">
+                    <asp:ListItem>Any</asp:ListItem>
                     <asp:ListItem>Single Family</asp:ListItem>
                     <asp:ListItem>Multi Family</asp:ListItem>
                     <asp:ListItem>Condo</asp:ListItem>
