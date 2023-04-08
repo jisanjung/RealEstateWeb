@@ -24,67 +24,76 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// navbar control.
+        /// txtZipCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RealEstateWeb.Navbar navbar;
+        protected global::System.Web.UI.WebControls.TextBox txtZipCode;
 
         /// <summary>
-        /// txtLocation control.
+        /// txtPriceStarting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocation;
+        protected global::System.Web.UI.WebControls.TextBox txtPriceStarting;
 
         /// <summary>
-        /// txtMinPrice control.
+        /// txtEndingPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMinPrice;
+        protected global::System.Web.UI.WebControls.TextBox txtEndingPrice;
 
         /// <summary>
-        /// txtMaxPrice control.
+        /// ddlPropertyType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaxPrice;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPropertyType;
 
         /// <summary>
-        /// txtPropType control.
+        /// txtHomeSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPropType;
+        protected global::System.Web.UI.WebControls.TextBox txtHomeSize;
 
         /// <summary>
-        /// txtBeds control.
+        /// txtMinBedrooms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBeds;
+        protected global::System.Web.UI.WebControls.TextBox txtMinBedrooms;
 
         /// <summary>
-        /// txtBaths control.
+        /// txtMinBathrooms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBaths;
+        protected global::System.Web.UI.WebControls.TextBox txtMinBathrooms;
+
+        /// <summary>
+        /// cblAmenities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblAmenities;
 
         /// <summary>
         /// btnSearch control.
