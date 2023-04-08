@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="frmAccountCreation.aspx" />
+    <Content Include="frmCreateHome.aspx" />
     <Content Include="frmDashboard.aspx" />
     <Content Include="frmHomeDetails.aspx" />
     <Content Include="frmMain.aspx" />
@@ -89,6 +90,13 @@
     </Compile>
     <Compile Include="frmAccountCreation.aspx.designer.cs">
       <DependentUpon>frmAccountCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreateHome.aspx.cs">
+      <DependentUpon>frmCreateHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCreateHome.aspx.designer.cs">
+      <DependentUpon>frmCreateHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmDashboard.aspx.cs">
       <DependentUpon>frmDashboard.aspx</DependentUpon>
@@ -193,6 +201,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RealEstateWeb_FeedbackService_Feedback</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Storage\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
