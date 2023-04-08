@@ -16,7 +16,19 @@ namespace RealEstateWeb
         DBConnect connection = new DBConnect();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                List<Home> homes = new List<Home>();
+                Home h1 = new Home();
+                h1.Address = "522 Lansdale Ave";
+                Home h2 = new Home();
+                h2.Address = "805 Freedom Cir";
+                homes.Add(h1);
+                homes.Add(h2);
+
+                this.rptHomeResults.DataSource = homes;
+                this.rptHomeResults.DataBind();
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

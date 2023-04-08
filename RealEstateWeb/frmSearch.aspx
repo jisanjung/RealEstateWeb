@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmSearch.aspx.cs" Inherits="RealEstateWeb.frmSearch" %>
 <%@ Register Src="~/Navbar.ascx" TagPrefix="uc" TagName="Navbar" %>
+<%@ Register Src="~/HomeCard.ascx" TagPrefix="uc" TagName="HomeCard" %>
 
 <!DOCTYPE html>
 
@@ -56,7 +57,19 @@
             </div>
             <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
         </div>
-        <div class="homeResults">
+        <div id="homeResults">
+            <table>
+
+            </table>
+            <asp:Repeater ID="rptHomeResults" runat="server">
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <uc:HomeCard runat="server" id="homeCard" Address='<%# DataBinder.Eval(Container.DataItem, "Address")%>'/>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
 
     </form>

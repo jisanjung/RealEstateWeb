@@ -9,9 +9,10 @@ namespace RealEstateWeb
 {
     public partial class HomeCard : System.Web.UI.UserControl
     {
+        public string Address { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.lblAddress.Text = Address;
         }
     }
 }
