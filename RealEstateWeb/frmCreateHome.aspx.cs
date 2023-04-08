@@ -18,12 +18,22 @@ namespace RealEstateWeb
     public partial class frmCreateHome : System.Web.UI.Page
     {
         DBConnect connection = new DBConnect();
+        SqlCommand objCommand = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 List<Room> rooms = new List<Room>();
                 ViewState["rooms"] = rooms;
+            }
+
+            HttpCookie cookie = new HttpCookie("userType");
+            cookie.Value = "agent";
+            Response.Cookies.Add(cookie);
+            // display seller account creation if user type is agent
+            if (Request.Cookies["userType"] != null && Request.Cookies["userType"].Value.CompareTo("agent") == 0)
+            {
+                this.divCreateSellerAcc.Visible = true;
             }
         }
 
@@ -87,13 +97,39 @@ namespace RealEstateWeb
             String jsonHome = js.Serialize(home);
             // insert into db
             int status = int.Parse(RestClient.Post("http://localhost:60855/api/homes/Add", jsonHome));
-            
+
             if (status < 1)
             {
                 this.lblAlert.Text = "There was a problem posting this home...";
-            } else
+            }
+            else
             {
                 this.lblAlert.Text = "Home posted successfully!";
+
+                if (Request.Cookies["userType"] != null && Request.Cookies["userType"].Value.CompareTo("agent") == 0)
+                {
+                    User seller = new User();
+                    seller.Email = this.txtSellerEmail.Text;
+                    seller.Password = this.sellerPassword.Value;
+                    seller.FullName = this.txtSellerName.Text;
+                    seller.Address = this.txtAddress.Text;
+                    seller.Type = "seller";
+                    seller.SecurityAnswerOne = "N/A";
+                    seller.SecurityAnswerTwo = "N/A";
+                    seller.SecurityAnswerThree = "N/A";
+                    seller.IsVerified = false;
+
+                    int insertSellerStatus = DBOperations.AddUser(seller);
+
+                    if (insertSellerStatus < 1)
+                    {
+                        Response.Write("error inserting user");
+                    }
+                    else
+                    {
+                        Response.Write("insert user success");
+                    }
+                }
             }
         }
 
