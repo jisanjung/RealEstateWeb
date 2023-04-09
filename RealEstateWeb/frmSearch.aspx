@@ -56,7 +56,35 @@
             </div>
             <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
         </div>
-        <div class="homeResults">
+        <div id="homeResults">
+            <table>
+                <asp:Repeater ID="rptHomeResults" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <div>
+                                    <asp:Image ID="imgHome" runat="server" ImageUrl='<%#"~/Storage/"+Eval("Img") %>'  Width="200" Height="200"/>
+                                 </div>
+                                <div>
+                                    <asp:Label ID="lblPrice" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Price")%>'></asp:Label>
+                                </div>
+                                <div>
+                                    <asp:Label ID="lblHouseSize" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "HouseSize")%>'></asp:Label>
+                                    <span> | </span>
+                                    <asp:Label ID="lblNumberBed" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "NumberBed")%>'></asp:Label>
+                                    <span> | </span>
+                                    <asp:Label ID="lblNumberBath" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "NumberBath")%>'></asp:Label>
+                                </div>
+                                <div>
+                                    <asp:Label ID="lblAddress" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Address")%>'></asp:Label>
+                                    <span> </span>
+                                    <asp:Label ID="lblZipCode" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ZipCode")%>'></asp:Label>
+                                </div>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </table>
         </div>
 
     </form>
