@@ -18,8 +18,18 @@
         email
         <asp:TextBox ID="txtEmailLogin" runat="server"></asp:TextBox><br />
         password
-        <asp:TextBox ID="txtPasswordLogin" runat="server"></asp:TextBox><br />
-        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" /><br />
+        <asp:TextBox ID="txtPasswordLogin" runat="server"></asp:TextBox>
+        <br />
+        <asp:CheckBox ID="chkRememberLogin" runat="server" Text="Remember Me" />
+        <br />
+        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
+        <br />
+        <br />
+        <br />
+        <asp:TextBox ID="txtForgotPassword" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnForgotPassword" runat="server" OnClick="btnForgotPassword_Click" Text="Forgot Password" />
+        <br />
     </div>
     <div class="signup">
         email
@@ -44,11 +54,15 @@
         <h4>Security Question 2: What University did/do you attend?</h4>
         <asp:TextBox ID="txtSecureQuestion2" runat="server"></asp:TextBox><br />
         <h4>Security Question 3: What is your favorite food?</h4>
-        <asp:TextBox ID="txtSecureQuestion3" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtSecureQuestion3" runat="server"></asp:TextBox>
+        <br />
+        <br />
+        <asp:CheckBox ID="chkRememberSignup" runat="server" Text="Remember Me" />
+        <br />
         <asp:Button ID="btnSignup" runat="server" Text="Sign up" OnClick="btnSignup_Click" />        
     </div>
     <div class="verification">
-        We have emailed you a code, please input to verify your account:<br />
+        <br />
         <asp:TextBox ID="txtVerification" runat="server"></asp:TextBox>
         <asp:Button ID="btnVerify" runat="server" Text="Verify" OnClick="btnVerify_Click" />
     </div>
