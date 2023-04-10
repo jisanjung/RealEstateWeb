@@ -33,6 +33,12 @@ namespace RealEstateWeb
             List<Home> filteredHomes = this.filterHomes();
             this.displayHomes(filteredHomes);
         }
+        protected void btn_ViewHome(object sender, CommandEventArgs e)
+        {
+            int rowClicked = int.Parse(e.CommandArgument.ToString());
+            Label lblHomeId = (Label)rptHomeResults.Items[rowClicked].FindControl("lblHomeId");
+            Response.Write(lblHomeId.Text);
+        }
         private void displayHomes(List<Home> homes)
         {
             this.rptHomeResults.DataSource = homes;

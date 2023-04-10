@@ -62,6 +62,7 @@
                     <ItemTemplate>
                         <tr>
                             <td>
+                                <asp:Label ID="lblHomeId" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "HomeId")%>'></asp:Label>
                                 <div>
                                     <asp:Image ID="imgHome" runat="server" ImageUrl='<%#"~/Storage/"+Eval("Img") %>'  Width="200" Height="200"/>
                                  </div>
@@ -80,6 +81,7 @@
                                     <span> </span>
                                     <asp:Label ID="lblZipCode" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ZipCode")%>'></asp:Label>
                                 </div>
+                                <asp:Button ID="btnViewHome" runat="server" Text="View" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_ViewHome"/>
                             </td>
                         </tr>
                     </ItemTemplate>
