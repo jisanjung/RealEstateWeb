@@ -42,5 +42,27 @@ namespace HomeLibrary
             int status = connection.DoUpdate(objCommand);
             return status;
         }
+        public static User GetUser(string email)
+        {
+            DBConnect connection = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            User user = new User();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetUser";
+
+            SqlParameter emailParam = new SqlParameter("@email", email);
+            objCommand.Parameters.Add(emailParam);
+
+            DataSet ds = connection.GetDataSet(objCommand);
+            DataTable dt = ds.Tables[0];
+
+            user.Email = dt.Rows[0]["email"].ToString();
+            user.FullName = dt.Rows[0]["fullname"].ToString();
+            user.Type = dt.Rows[0]["user_type"].ToString();
+            user.Address = dt.Rows[0]["home_address"].ToString();
+
+            return user;
+        }
     }
 }

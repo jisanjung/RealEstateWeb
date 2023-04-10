@@ -101,7 +101,7 @@ namespace RealEstateWeb
             h1.Garage = "None";
             h1.Utilities = "Public Water";
             h1.Description = "this is a comfy home";
-            h1.SellerEmail = "json.eth@gmail.com";
+            h1.SellerEmail = "json.jung@temple.edu";
             Home h2 = new Home();
             h2.Address = "805 freedom cir";
             h2.Price = 81000;
@@ -168,7 +168,10 @@ namespace RealEstateWeb
             this.lblHomeProfileGarage.Text = $"{selectedHome.Garage}";
             this.lblHomeProfileUtilities.Text = $"{selectedHome.Utilities}";
             this.lblHomeProfileDescription.Text = $"{selectedHome.Description}";
-            this.lblHomeProfileDescription.Text = $"{selectedHome.SellerEmail}";
+
+            User seller = DBOperations.GetUser(selectedHome.SellerEmail);
+
+            this.lblHomeProfileDescription.Text = $"{seller.FullName} ({seller.Email})</br>{seller.Address}";
         }
     }
 }
