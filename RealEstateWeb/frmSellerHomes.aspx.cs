@@ -17,7 +17,7 @@ namespace RealEstateWeb
         {
 
             // List<Home> sellerHomes = this.staticallyGenerateHomes();
-            List<Home> sellerHomes = DBOperations.GetSellerHomes("joe@gmail.com");
+            List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
 
             if (!IsPostBack)
             {
@@ -133,6 +133,13 @@ namespace RealEstateWeb
             editedHome.Status = this.txtChangeStatus.Text;
             editedHome.Description = this.taChangeDescription.Value;
 
+            if (this.fuChangeImage.HasFile)
+            {
+                string filename = this.fuChangeImage.FileName;
+                this.fuChangeImage.PostedFile.SaveAs(Server.MapPath($"~/Storage/{filename}"));
+                editedHome.Img = this.fuChangeImage.FileName;
+            }
+
             String jsonHome = js.Serialize(editedHome);
             int status = int.Parse(RestClient.Put("http://localhost:60855/api/homes/Edit", jsonHome));
             
@@ -143,7 +150,7 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Saved successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("joe@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
@@ -161,7 +168,7 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Deleted successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("joe@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
