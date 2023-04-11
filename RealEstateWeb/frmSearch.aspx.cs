@@ -102,6 +102,7 @@ namespace RealEstateWeb
             h1.Utilities = "Public Water";
             h1.Description = "this is a comfy home";
             h1.SellerEmail = "json.jung@temple.edu";
+            h1.CompanyName = "N/A";
             Home h2 = new Home();
             h2.Address = "805 freedom cir";
             h2.Price = 81000;
@@ -119,6 +120,7 @@ namespace RealEstateWeb
             h2.Utilities = "Well Water";
             h2.Description = "this is an aight home";
             h2.SellerEmail = "hong@gmail.com";
+            h2.CompanyName = "N/A";
             Home h3 = new Home();
             h3.Address = "901 shelby dr";
             h3.Price = 1000000;
@@ -136,6 +138,7 @@ namespace RealEstateWeb
             h3.Utilities = "Well Water";
             h3.Description = "this is a great home";
             h3.SellerEmail = "bob@gmail.com";
+            h3.CompanyName = "Brother Technologies";
 
             allHomes.Add(h1);
             allHomes.Add(h2);
@@ -171,7 +174,7 @@ namespace RealEstateWeb
 
             User seller = DBOperations.GetUser(selectedHome.SellerEmail);
 
-            this.lblHomeProfileDescription.Text = $"{seller.FullName} ({seller.Email})</br>{seller.Address}";
+            this.lblHomeProfileDescription.Text = $"{seller.FullName} ({seller.Email})</br>{seller.Address}<div><span>Real Estate Company: </span>{selectedHome.CompanyName}</div>";
         }
     }
 }
