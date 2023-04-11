@@ -28,6 +28,7 @@
                 <textarea id="taChangeDescription" cols="20" rows="5" runat="server" placeholder="Change the description of this house"></textarea>
             </div>
             <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+            <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click"/>
         </div>
         <div>
             <h1>Manage Your Homes</h1>

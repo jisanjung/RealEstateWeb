@@ -66,6 +66,7 @@ namespace RestAPI.Controllers
                 h.ImgCaption = dt.Rows[i]["img_caption"].ToString();
                 h.Description = dt.Rows[i]["description"].ToString();
                 h.CompanyName = dt.Rows[i]["company_name"].ToString();
+                h.AgentEmail = dt.Rows[i]["agent_email"].ToString();
                 homes.Add(h);
             }
             return homes;
@@ -118,6 +119,7 @@ namespace RestAPI.Controllers
             h.ImgCaption = dt.Rows[0]["img_caption"].ToString();
             h.Description = dt.Rows[0]["description"].ToString();
             h.CompanyName = dt.Rows[0]["company_name"].ToString();
+            h.AgentEmail = dt.Rows[0]["agent_email"].ToString();
 
             return h;
         }
@@ -216,6 +218,10 @@ namespace RestAPI.Controllers
             SqlParameter companyNameParam = new SqlParameter("@company_name", home.CompanyName);
             companyNameParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(companyNameParam);
+
+            SqlParameter agentEmailParam = new SqlParameter("@agent_email", home.AgentEmail);
+            agentEmailParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(agentEmailParam);
 
             status = connection.DoUpdate(objCommand);
             return status;
@@ -320,6 +326,10 @@ namespace RestAPI.Controllers
             SqlParameter companyNameParam = new SqlParameter("@company_name", home.CompanyName);
             companyNameParam.Direction = ParameterDirection.Input;
             objCommand.Parameters.Add(companyNameParam);
+
+            SqlParameter agentEmailParam = new SqlParameter("@agent_email", home.AgentEmail);
+            agentEmailParam.Direction = ParameterDirection.Input;
+            objCommand.Parameters.Add(agentEmailParam);
 
             status = connection.DoUpdate(objCommand);
             return status;

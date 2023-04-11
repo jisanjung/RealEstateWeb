@@ -17,7 +17,7 @@ namespace RealEstateWeb
         {
 
             // List<Home> sellerHomes = this.staticallyGenerateHomes();
-            List<Home> sellerHomes = DBOperations.GetSellerHomes("jjjung13@gmail.com");
+            List<Home> sellerHomes = DBOperations.GetSellerHomes("joe@gmail.com");
 
             if (!IsPostBack)
             {
@@ -143,7 +143,25 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Saved successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("jjjung13@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("joe@gmail.com");
+                this.displayHomes(sellerHomes);
+                this.divEditHome.Visible = false;
+            }
+        }
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            int homeId = int.Parse(this.lblSelectedId.Text);
+            int status = int.Parse(RestClient.Delete("http://localhost:60855/api/homes/Remove/" + homeId));
+
+            if (status < 1)
+            {
+                this.lblAlert.Text = "Could not delete home...";
+            }
+            else
+            {
+                this.lblAlert.Text = "Deleted successfully";
+
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("joe@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
