@@ -1,12 +1,8 @@
-﻿using System;
+﻿using HomeLibrary;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Script.Serialization;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using HomeLibrary;
 using Utilities;
 
 namespace RealEstateWeb
@@ -159,6 +155,7 @@ namespace RealEstateWeb
                 }
             }
             this.imgHomeProfile.Src = $"~/Storage/{selectedHome.Img}";
+            this.lblHomeProfileHomeId.Text = selectedHome.HomeId.ToString();
             this.lblHomeProfilePrice.Text = selectedHome.Price.ToString("c");
             this.lblHomeProfileBeds.Text = $"{selectedHome.NumberBed} beds";
             this.lblHomeProfileBaths.Text = $"{selectedHome.NumberBath} bathrooms";
@@ -174,7 +171,41 @@ namespace RealEstateWeb
 
             User seller = DBOperations.GetUser(selectedHome.SellerEmail);
 
-            this.lblHomeProfileDescription.Text = $"{seller.FullName} ({seller.Email})</br>{seller.Address}<div><span>Real Estate Company: </span>{selectedHome.CompanyName}</div>";
+            this.lblHomeProfileAgentEmail.Text = seller.Email;
+            this.lblHomeProfileAgentInfo.Text = $" ({seller.FullName})</br>{seller.Address}<div><span>Real Estate Company: </span>{selectedHome.CompanyName}</div>";
+        }
+
+        protected void btnRequestShowing_Click(object sender, EventArgs e)
+        {
+            this.divCreateShowing.Visible = true;
+        }
+
+        protected void btnSubmitShowing_Click(object sender, EventArgs e)
+        {
+            int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
+            string agentEmail = this.lblHomeProfileAgentEmail.Text;
+            string buyerEmail = "kevin@gmail.com";
+            string showDate = this.txtShowingDate.Text;
+            string showTime = this.txtShowingTime.Text;
+
+            HomeShowing showingRequest = new HomeShowing();
+            showingRequest.HomeId = homeId;
+            showingRequest.SellerEmail = agentEmail;
+            showingRequest.BuyerEmail = buyerEmail;
+            showingRequest.Date = showDate;
+            showingRequest.Time = showTime;
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            String jsonShowingRequest = js.Serialize(showingRequest);
+
+            int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeshowing/Add", jsonShowingRequest));
+            if (status < 1)
+            {
+                this.lblAlert.Text = "There was a problem submitting your request...";
+            } else
+            {
+                this.lblAlert.Text = "Home Showing Request Submitted!";
+            }
         }
     }
 }
