@@ -11,14 +11,14 @@ namespace HomeLibrary
     {
         int _home_id, _zip_code, _house_size, _year_built;
         float _price, _number_bed, _number_bath, _rating;
-        string _seller_email, _address, _property_type, _other_amenities, _status, _hvac, _garage, _utilities, _img, _img_caption, _description, _company_name;
+        string _seller_email, _address, _property_type, _other_amenities, _status, _hvac, _garage, _utilities, _img, _img_caption, _description, _company_name, _agent_email;
         private List<Room> _rooms = new List<Room>();
 
         public Home() { }
 
         public Home(int home_id, int zip_code, int house_size, float price,
                     float number_bed, float number_bath, float rating, string seller_email,
-                    string address, string property_type, string other_amenities, string status, int year_built, List<Room> rooms, string hvac, string garage, string utilities, string img, string img_caption, string description, string company_name)
+                    string address, string property_type, string other_amenities, string status, int year_built, List<Room> rooms, string hvac, string garage, string utilities, string img, string img_caption, string description, string company_name, string agent_email)
         {
             _home_id = home_id;
             _zip_code = zip_code;
@@ -41,6 +41,7 @@ namespace HomeLibrary
             _img_caption = img_caption;
             _description = description;
             _company_name = company_name;
+            _agent_email = agent_email;
         }
 
         //properties
@@ -193,6 +194,11 @@ namespace HomeLibrary
         {
             get { return this._company_name; }
             set { this._company_name = value; }
+        }
+        public string AgentEmail
+        {
+            get { return this._agent_email; }
+            set { this._agent_email = value; }
         }
 
         //functions

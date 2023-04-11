@@ -94,20 +94,21 @@ namespace RealEstateWeb
             // make a home
             Home home = this.makeHomeFromInput();
             // serialize into json string
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            String jsonHome = js.Serialize(home);
-            // insert into db
-            int status = int.Parse(RestClient.Post("http://localhost:60855/api/homes/Add", jsonHome));
+            //JavaScriptSerializer js = new JavaScriptSerializer();
+            //String jsonHome = js.Serialize(home);
+            //// insert into db
+            //int status = int.Parse(RestClient.Post("http://localhost:60855/api/homes/Add", jsonHome));
 
-            if (status < 1)
-            {
-                this.lblAlert.Text = "There was a problem posting this home...";
-            }
-            else
-            {
-                this.lblAlert.Text = "Home posted successfully!";
-                this.createSellerAccount();
-            }
+            //if (status < 1)
+            //{
+            //    this.lblAlert.Text = "There was a problem posting this home...";
+            //}
+            //else
+            //{
+            //    this.lblAlert.Text = "Home posted successfully!";
+            //    this.createSellerAccount();
+            //}
+            Response.Write(home.AgentEmail);
         }
 
         private Home makeHomeFromInput()
@@ -162,6 +163,7 @@ namespace RealEstateWeb
             home.Status = "Sale";
             home.Description = this.taHomeDescription.Value;
             home.CompanyName = String.IsNullOrEmpty(this.txtCompanyName.Text) ? "N/A" : this.txtCompanyName.Text;
+            home.AgentEmail = String.IsNullOrEmpty(this.txtAgentEmail.Text) ? this.txtSellerEmail.Text : this.txtAgentEmail.Text;
 
             return home;
         }
