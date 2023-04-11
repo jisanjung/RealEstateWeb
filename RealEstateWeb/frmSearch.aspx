@@ -9,7 +9,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="lblAlert" runat="server"></asp:Label>
+        </div>
         <div id="divHomeProfile" runat="server" visible="false">
+            <div>
+                <asp:Label ID="lblHomeProfileHomeId" runat="server"></asp:Label>
+            </div>
             <div>
                 <img id="imgHomeProfile" runat="server" style="max-width: 200px;"/>
             </div>
@@ -27,7 +33,18 @@
                 <asp:Label ID="lblHomeProfileAddress" runat="server"></asp:Label>
             </div>
             <div>
-                <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" />
+                <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" OnClick="btnRequestShowing_Click" />
+            </div>
+            <div id="divCreateShowing" runat="server" visible="false">
+                <div>
+                    <label>Home Showing Date</label>
+                    <asp:TextBox ID="txtShowingDate" runat="server" placeholder="Enter desired date"></asp:TextBox>
+                </div>
+                <div>
+                    <label>Home Showing Time</label>
+                    <asp:TextBox ID="txtShowingTime" runat="server" placeholder="Enter desired time"></asp:TextBox>
+                </div>
+                <asp:Button ID="btnSubmitShowing" runat="server" Text="Submit Showing Request" OnClick="btnSubmitShowing_Click" />
             </div>
             <div>
                 <div>
@@ -53,6 +70,7 @@
                 </div>
             </div>
             <div>
+                <asp:Label ID="lblHomeProfileAgentEmail" runat="server"></asp:Label>
                 <asp:Label ID="lblHomeProfileAgentInfo" runat="server"></asp:Label>
             </div>
         </div>
