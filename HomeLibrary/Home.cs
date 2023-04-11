@@ -11,14 +11,14 @@ namespace HomeLibrary
     {
         int _home_id, _zip_code, _house_size, _year_built;
         float _price, _number_bed, _number_bath, _rating;
-        string _seller_email, _address, _property_type, _other_amenities, _status, _hvac, _garage, _utilities, _img, _img_caption, _description;
+        string _seller_email, _address, _property_type, _other_amenities, _status, _hvac, _garage, _utilities, _img, _img_caption, _description, _company_name;
         private List<Room> _rooms = new List<Room>();
 
         public Home() { }
 
         public Home(int home_id, int zip_code, int house_size, float price,
                     float number_bed, float number_bath, float rating, string seller_email,
-                    string address, string property_type, string other_amenities, string status, int year_built, List<Room> rooms, string hvac, string garage, string utilities, string img, string img_caption, string description)
+                    string address, string property_type, string other_amenities, string status, int year_built, List<Room> rooms, string hvac, string garage, string utilities, string img, string img_caption, string description, string company_name)
         {
             _home_id = home_id;
             _zip_code = zip_code;
@@ -40,6 +40,7 @@ namespace HomeLibrary
             _img = img;
             _img_caption = img_caption;
             _description = description;
+            _company_name = company_name;
         }
 
         //properties
@@ -187,6 +188,11 @@ namespace HomeLibrary
             {
                 _description = value;
             }
+        }
+        public string CompanyName
+        {
+            get { return this._company_name; }
+            set { this._company_name = value; }
         }
 
         //functions

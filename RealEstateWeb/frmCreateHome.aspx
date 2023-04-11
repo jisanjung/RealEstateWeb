@@ -123,6 +123,12 @@
                     <p>About the Seller / Homeowner</p>
                     <label>Seller / Homeowner Email</label>
                     <asp:TextBox ID="txtSellerEmail" runat="server" placeholder="Enter Seller's Email"></asp:TextBox>
+                    <div id="divAgentInfo" runat="server" visible="false">
+                        <label>Real Estate Agent Info</label>
+                        <asp:TextBox ID="txtAgentEmail" runat="server" placeholder="Enter Real Estate Agent Email"></asp:TextBox>
+                        <label>Real Estate Company Name</label>
+                        <asp:TextBox ID="txtCompanyName" runat="server" placeholder="Enter Company Name"></asp:TextBox>
+                    </div>
                     <div id="divCreateSellerAcc" runat="server" visible="false">
                         <label>Password</label>
                         <input id="sellerPassword" type="password" runat="server" placeholder="Enter a Password for the Seller"/>

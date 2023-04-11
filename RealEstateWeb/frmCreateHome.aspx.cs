@@ -34,6 +34,7 @@ namespace RealEstateWeb
             if (Request.Cookies["userType"] != null && Request.Cookies["userType"].Value.CompareTo("agent") == 0)
             {
                 this.divCreateSellerAcc.Visible = true;
+                this.divAgentInfo.Visible = true;
             }
         }
 
@@ -160,6 +161,7 @@ namespace RealEstateWeb
             home.ImgCaption = this.txtImgCaption.Text;
             home.Status = "sale";
             home.Description = this.taHomeDescription.Value;
+            home.CompanyName = String.IsNullOrEmpty(this.txtCompanyName.Text) ? "N/A" : this.txtCompanyName.Text;
 
             return home;
         }
