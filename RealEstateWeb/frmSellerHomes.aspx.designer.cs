@@ -78,6 +78,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlTextArea taChangeDescription;
 
         /// <summary>
+        /// fuChangeImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuChangeImage;
+
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
