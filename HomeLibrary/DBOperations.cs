@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.SqlClient;
 
 using Utilities;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace HomeLibrary
 {
@@ -63,6 +65,62 @@ namespace HomeLibrary
             user.Address = dt.Rows[0]["home_address"].ToString();
 
             return user;
+        }
+        public static List<Home> GetSellerHomes(string email)
+        {
+            DBConnect connection = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            List<Home> sellerHomes = new List<Home>();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetSellerHomes";
+
+            SqlParameter emailParam = new SqlParameter("@email", email);
+            objCommand.Parameters.Add(emailParam);
+
+            DataSet ds = connection.GetDataSet(objCommand);
+            DataTable dt = ds.Tables[0];
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Home h = new Home();
+                h.HomeId = int.Parse(dt.Rows[i]["home_id"].ToString());
+                h.SellerEmail = dt.Rows[i]["seller_email"].ToString();
+                h.Price = float.Parse(dt.Rows[i]["price"].ToString());
+                h.Address = dt.Rows[i]["address"].ToString();
+                h.ZipCode = int.Parse(dt.Rows[i]["zip_code"].ToString());
+                h.PropertyType = dt.Rows[i]["property_type"].ToString();
+                h.HouseSize = int.Parse(dt.Rows[i]["house_size"].ToString());
+                h.NumberBed = int.Parse(dt.Rows[i]["number_bed"].ToString());
+                h.NumberBath = int.Parse(dt.Rows[i]["number_bath"].ToString());
+                h.OtherAmenities = dt.Rows[i]["other_amenities"].ToString();
+                h.Rating = int.Parse(dt.Rows[i]["rating"].ToString());
+                h.Status = dt.Rows[i]["status"].ToString();
+                h.YearBuilt = int.Parse(dt.Rows[i]["year_built"].ToString());
+
+                if (connection.GetField("rooms", i) != System.DBNull.Value)
+                {
+                    Byte[] byteArray = (Byte[])connection.GetField("rooms", i);
+                    BinaryFormatter deSerializer = new BinaryFormatter();
+                    MemoryStream memStream = new MemoryStream(byteArray);
+                    List<Room> rooms = (List<Room>)deSerializer.Deserialize(memStream);
+                    h.Rooms = rooms;
+                }
+                else
+                {
+                    h.Rooms = new List<Room>();
+                }
+
+                h.HVAC = dt.Rows[i]["hvac"].ToString();
+                h.Garage = dt.Rows[i]["garage"].ToString();
+                h.Utilities = dt.Rows[i]["utilities"].ToString();
+                h.Img = dt.Rows[i]["img"].ToString();
+                h.ImgCaption = dt.Rows[i]["img_caption"].ToString();
+                h.Description = dt.Rows[i]["description"].ToString();
+                h.CompanyName = dt.Rows[i]["company_name"].ToString();
+                sellerHomes.Add(h);
+            }
+            return sellerHomes;
         }
     }
 }
