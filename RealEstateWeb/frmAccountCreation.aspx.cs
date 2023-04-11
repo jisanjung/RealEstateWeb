@@ -24,12 +24,12 @@ namespace RealEstateWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void btnSignup_Click(object sender, EventArgs e)
         {
-            if(    !string.IsNullOrEmpty(txtEmail.Text)
+            if (!string.IsNullOrEmpty(txtEmail.Text)
                 && !string.IsNullOrEmpty(txtPassword.Text)
                 && !string.IsNullOrEmpty(txtFullName.Text)
                 && !string.IsNullOrEmpty(txtCurrAddress.Text)
@@ -43,15 +43,15 @@ namespace RealEstateWeb
                 String strTO = txtEmail.Text;
                 String strFROM = "homesrus@temple.edu";
                 String strSubject = "Verify Account";
-                
+
                 try
                 {
                     rand = RandomNumber.randInt();
                     lblError.Text = "Verification code has been sent. Check your Email.";
                     objEmail.SendMail(strTO, strFROM, strSubject, rand.ToString());
                 }
-                catch (Exception ex) 
-                { 
+                catch (Exception ex)
+                {
                     lblError.Text = ex.Message;
                 }
             }
@@ -108,15 +108,15 @@ namespace RealEstateWeb
 
             if (!string.IsNullOrEmpty(txtEmailLogin.Text) && !string.IsNullOrEmpty(txtPasswordLogin.Text))
             {
-                
+
                 SqlParameter emailParam = ExtraUtil.CreateParamVarChar(txtEmailLogin.Text, "email", 100);
                 SqlParameter passwordParam = ExtraUtil.CreateParamVarChar(txtPasswordLogin.Text, "password", 100);
 
                 objCommand.Parameters.Add(emailParam);
                 objCommand.Parameters.Add(passwordParam);
-                
+
                 DataSet myds = objDB.GetDataSetUsingCmdObj(objCommand);
-                
+
                 try
                 {
                     string dbReturnedEmail = myds.Tables[0].Rows[0][1].ToString();
@@ -137,9 +137,9 @@ namespace RealEstateWeb
                         Response.Cookies.Add(myCookie);
                         Response.Redirect("frmDashboard.aspx");
 
-                        
+
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -158,27 +158,97 @@ namespace RealEstateWeb
         protected void btnForgotPassword_Click(object sender, EventArgs e)
         {
             objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_Forgot";
-
-            SqlParameter emailParam = ExtraUtil.CreateParamVarChar(txtForgotPassword.Text, "email", 100);
+            DataSet myds;
+            SqlParameter answerParam = ExtraUtil.CreateParamVarChar(txtForgotAnswer.Text, "answer", 100);
+            objCommand.Parameters.Add(answerParam);
+            SqlParameter emailParam = ExtraUtil.CreateParamVarChar(txtForgotEmail.Text, "email", 100);
             objCommand.Parameters.Add(emailParam);
-            DataSet myds = objDB.GetDataSetUsingCmdObj(objCommand);
-
-            Email objEmail = new Email();
-            String strTO = txtEmail.Text;
-            String strFROM = "homesrus@temple.edu";
-            String strSubject = "Homes R Us - Forgot password";
+            bool flag = true;
+            string mydstring;
 
             try
             {
-                string body = "your password is: " + myds.Tables[0].Rows[0][0].ToString();
-                lblError.Text = "Verification code has been sent. Check your Email.";
-                objEmail.SendMail(strTO, strFROM, strSubject, body);
+                if(resultInt == 1) //maidenname
+                {
+                    objCommand.CommandText = "TP_QuestionOne";
+                    
+                    myds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                    if (!myds.Tables[0].Rows[0][0].ToString().Equals(txtForgotAnswer.Text))
+                    {
+                        flag = false;
+                        
+                    }
+                    objCommand.Parameters.Clear();
+                    System.Diagnostics.Debug.WriteLine(myds.Tables[0].Rows[0][0].ToString());
+                    mydstring = myds.Tables[0].Rows[0][0].ToString();
+                }
+                else if(resultInt == 2) //university
+                {
+                    objCommand.CommandText = "TP_QuestionTwo";
+                    myds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                    if (!myds.Tables[0].Rows[0][0].ToString().Equals(txtForgotAnswer.Text))
+                    {
+                        flag = false;
+                    }
+                    objCommand.Parameters.Clear();
+                    System.Diagnostics.Debug.WriteLine(myds.Tables[0].Rows[0][0].ToString());
+                    mydstring = myds.Tables[0].Rows[0][0].ToString();
+                }
+                else //pizza
+                {
+                    objCommand.CommandText = "TP_QuestionThree";
+                    myds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                    if (!myds.Tables[0].Rows[0][0].ToString().Equals(txtForgotAnswer.Text))
+                    {
+                        flag = false;
+                    }
+                    objCommand.Parameters.Clear();
+                    System.Diagnostics.Debug.WriteLine(myds.Tables[0].Rows[0][0].ToString());
+                    mydstring = myds.Tables[0].Rows[0][0].ToString();
+
+                }
+
+                if (flag)
+                {
+                    objCommand.CommandText = "TP_Forgot";
+
+                    //lblError.Text = flag + " is true! " + mydstring;
+
+                    objCommand.Parameters.Add(emailParam);
+                    myds = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                    Email objEmail = new Email();
+                    String strTO = txtForgotEmail.Text;
+                    String strFROM = "homesrus@temple.edu";
+                    String strSubject = "Homes R Us - Forgot password";
+
+                    string body = "your password is: " + myds.Tables[0].Rows[0][0].ToString();
+                    lblError.Text = "Verification code has been sent. Check your Email.";
+                    objEmail.SendMail(strTO, strFROM, strSubject, body);
+                }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message;
+                lblError.Text = ex.Message + " ";
+                objCommand.Parameters.Clear();
+                txtForgotAnswer.Text = "";
+                txtForgotEmail.Text = "";
             }
+        }
+
+        static string[,] arr = { {"What is your mother's maiden name?", "1" }, { "What University did/do you attend?", "2" }, { "What is your favorite food?", "3" } };
+        static int resultInt;
+        protected void linkForgotPassword_Click(object sender, EventArgs e)
+        {
+            forgotFun.Visible = true;
+            int rnd = RandomNumber.randSmallInt();
+            string resultStr = arr[rnd, 0];
+            resultInt = int.Parse(arr[rnd, 1]);
+            lblForgot.Text = resultStr;
+
         }
     }
 }

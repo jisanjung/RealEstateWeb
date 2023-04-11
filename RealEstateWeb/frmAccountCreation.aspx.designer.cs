@@ -69,13 +69,49 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
-        /// txtForgotPassword control.
+        /// linkForgotPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtForgotPassword;
+        protected global::System.Web.UI.WebControls.LinkButton linkForgotPassword;
+
+        /// <summary>
+        /// forgotFun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl forgotFun;
+
+        /// <summary>
+        /// txtForgotEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtForgotEmail;
+
+        /// <summary>
+        /// lblForgot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblForgot;
+
+        /// <summary>
+        /// txtForgotAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtForgotAnswer;
 
         /// <summary>
         /// btnForgotPassword control.

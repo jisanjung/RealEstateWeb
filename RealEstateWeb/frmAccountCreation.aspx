@@ -12,9 +12,9 @@
         <uc:Navbar runat="server" id="navbar"/>
         <div>
             <h1>Homes R Us</h1>
-        </div>
+        </div>        
     
-    <div class="login">
+    <div class="login" style="border:solid 1px; display: inline-block">
         email
         <asp:TextBox ID="txtEmailLogin" runat="server"></asp:TextBox><br />
         password
@@ -24,14 +24,21 @@
         <br />
         <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
         <br />
-        <br />
-        <br />
-        <asp:TextBox ID="txtForgotPassword" runat="server"></asp:TextBox>
-        <br />
-        <asp:Button ID="btnForgotPassword" runat="server" OnClick="btnForgotPassword_Click" Text="Forgot Password" />
-        <br />
+        <asp:LinkButton ID="linkForgotPassword" runat="server" OnClick="linkForgotPassword_Click">Forgot Password</asp:LinkButton>
+            
+        <div class="forgotFunction" id="forgotFun" runat="server" visible="false" style="display:block; border: solid 1px; margin: 1rem;">
+            <br />
+            Enter your Email:
+            <asp:TextBox ID="txtForgotEmail" runat="server"></asp:TextBox>
+            <asp:Label ID="lblForgot" runat="server" Text="Answer Correctly and we'll send you your email"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtForgotAnswer" runat="server"></asp:TextBox>
+            <br />
+            <asp:Button ID="btnForgotPassword" runat="server" OnClick="btnForgotPassword_Click" Text="Forgot Password" />
+            <br />
+        </div>
     </div>
-    <div class="signup">
+    <div class="signup" style="border:solid 1px; margin:1rem; float:">
         email
         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
         password

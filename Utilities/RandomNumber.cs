@@ -14,6 +14,11 @@ namespace Utilities
             return _rand;
         }
 
-        
+        public static int randSmallInt()
+        {
+            Random rnd = new Random();
+            int _rand = rnd.Next(0, 3);
+            return _rand;
+        }
     }
 }
