@@ -50,6 +50,29 @@ namespace Utilities
 
             return data;
         }
+        public static string Put(string url, string jsonStr)
+        {
+            WebRequest request = WebRequest.Create(url);
+            request.Method = "PUT";
+            request.ContentLength = jsonStr.Length;
+            request.ContentType = "application/json";
+
+            // Write the JSON data to the Web Request
+            StreamWriter writer = new StreamWriter(request.GetRequestStream());
+            writer.Write(jsonStr);
+            writer.Flush();
+            writer.Close();
+
+            // Read the data from the Web Response, which requires working with streams.
+            WebResponse response = request.GetResponse();
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+
+            return data;
+        }
 
         public static string Delete(string url)
         {

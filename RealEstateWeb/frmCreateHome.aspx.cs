@@ -159,7 +159,7 @@ namespace RealEstateWeb
                 home.Img = this.fuHomeImg.FileName;
             }
             home.ImgCaption = this.txtImgCaption.Text;
-            home.Status = "sale";
+            home.Status = "Sale";
             home.Description = this.taHomeDescription.Value;
             home.CompanyName = String.IsNullOrEmpty(this.txtCompanyName.Text) ? "N/A" : this.txtCompanyName.Text;
 

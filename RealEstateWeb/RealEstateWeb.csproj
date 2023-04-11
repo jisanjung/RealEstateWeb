@@ -79,6 +79,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\FeedbackService\Feedback.disco" />
+    <Content Include="frmSellerHomes.aspx" />
     <Content Include="HomeCard.ascx" />
     <Content Include="Navbar.ascx" />
     <Content Include="Web.config" />
@@ -132,6 +133,13 @@
     </Compile>
     <Compile Include="frmSearch.aspx.designer.cs">
       <DependentUpon>frmSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSellerHomes.aspx.cs">
+      <DependentUpon>frmSellerHomes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSellerHomes.aspx.designer.cs">
+      <DependentUpon>frmSellerHomes.aspx</DependentUpon>
     </Compile>
     <Compile Include="HomeCard.ascx.cs">
       <DependentUpon>HomeCard.ascx</DependentUpon>
