@@ -48,6 +48,25 @@ namespace RealEstateWeb
             this.txtChangeStatus.Text = selectedHome.Status;
             this.taChangeDescription.Value = selectedHome.Description;
         }
+        protected void btn_ShowingRequests(object sender, CommandEventArgs e)
+        {
+            int rowClicked = int.Parse(e.CommandArgument.ToString());
+            Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
+            int homeId = int.Parse(lblHomeId.Text);
+
+            string jsonRes = RestClient.Get("http://localhost:60855/api/homeshowing/");
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonRes);
+            // List<HomeShowing> showingsForThisHome = new List<HomeShowing>();
+
+            foreach (HomeShowing hs in allHomeShowings)
+            {
+                if (hs.HomeId == homeId)
+                {
+                    Response.Write(hs.Date);
+                }
+            }
+        }
         private void displayHomes(List<Home> homeList)
         {
             this.rptSellerHomes.DataSource = homeList;

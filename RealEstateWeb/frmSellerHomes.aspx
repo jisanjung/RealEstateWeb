@@ -59,6 +59,7 @@
                                     <asp:Label ID="lblHomeStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
                                 </div>
                                 <asp:Button ID="btnEditHome" runat="server" Text="Edit" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_EditHome"/>
+                                <asp:Button ID="btnShowingRequests" runat="server" Text="View Showing Requests" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_ShowingRequests"/>
                             </td>
                         </tr>
                     </ItemTemplate>
