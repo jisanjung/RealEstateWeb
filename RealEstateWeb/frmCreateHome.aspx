@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container">
             <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
             <div>
@@ -69,43 +70,48 @@
                     </div>
                 </div>
                 <div>
-                    <p>Rooms</p>
-                    <div>
-                        <label>Bedrooms (<asp:Label ID="lblBedroomCount" runat="server" Text="0"></asp:Label>)</label>
-                        <asp:LinkButton ID="linkbtnAddBedroom" runat="server" OnClick="linkbtnAddBedroom_Click">Add a Bedroom</asp:LinkButton>
-                    </div>
-                    <asp:Label ID="lblBedrooms" runat="server" Text=""></asp:Label>
-                    <div id="divBedroomDimensions" runat="server" visible="false">
-                        <p>Bedroom Dimensions</p>
-                        <asp:TextBox ID="txtBedroomLength" runat="server" placeholder="Bedroom Length"></asp:TextBox>
-                        <span>by</span>
-                        <asp:TextBox ID="txtBedroomWidth" runat="server" placeholder="Bedroom Width"></asp:TextBox>
-                        <asp:Button ID="btnAddBedroom" runat="server" Text="Add" OnClick="btnAddBedroom_Click" />
-                    </div>
-                    <div>
-                        <label>Bathrooms (<asp:Label ID="lblBRCount" runat="server" Text="0"></asp:Label>)</label>
-                        <asp:LinkButton ID="linkbtnAddBR" runat="server" OnClick="linkbtnAddBR_Click">Add a Bathroom</asp:LinkButton>
-                    </div>
-                    <asp:Label ID="lblBathrooms" runat="server" Text=""></asp:Label>
-                    <div id="divBRDimensions" runat="server" visible="false">
-                        <p>Bathroom Dimensions</p>
-                        <asp:TextBox ID="txtBRLength" runat="server" placeholder="Bathroom Length"></asp:TextBox>
-                        <span>by</span>
-                        <asp:TextBox ID="txtBRWidth" runat="server" placeholder="Bathroom Width"></asp:TextBox>
-                        <asp:Button ID="btnAddBR" runat="server" Text="Add" OnClick="btnAddBR_Click" />
-                    </div>
-                    <div>
-                        <label>Other Rooms (<asp:Label ID="lblOtherRoomsCount" runat="server" Text="0"></asp:Label>)</label>
-                        <asp:LinkButton ID="linkbtnAddOtherRoom" runat="server" OnClick="linkbtnAddOtherRoom_Click">Add another Room</asp:LinkButton>
-                    </div>
-                    <asp:Label ID="lblOtherRooms" runat="server" Text=""></asp:Label>
-                    <div id="divOtherRoomDimensions" runat="server" visible="false">
-                        <p>Room Dimensions</p>
-                        <asp:TextBox ID="txtRoomName" runat="server" placeholder="What kind of room is this"></asp:TextBox>
-                        <asp:TextBox ID="txtOtherRoomLength" runat="server" placeholder="Room Length"></asp:TextBox>
-                        <asp:TextBox ID="txtOtherRoomWidth" runat="server" placeholder="Room Width"></asp:TextBox>
-                        <asp:Button ID="btnAddOtherRoom" runat="server" Text="Add" OnClick="btnAddOtherRoom_Click" />
-                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <p>Rooms</p>
+                                <div>
+                                    <label>Bedrooms (<asp:Label ID="lblBedroomCount" runat="server" Text="0"></asp:Label>)</label>
+                                    <asp:LinkButton ID="linkbtnAddBedroom" runat="server" OnClick="linkbtnAddBedroom_Click">Add a Bedroom</asp:LinkButton>
+                                </div>
+                                <asp:Label ID="lblBedrooms" runat="server" Text=""></asp:Label>
+                                <div id="divBedroomDimensions" runat="server" visible="false">
+                                    <p>Bedroom Dimensions</p>
+                                    <asp:TextBox ID="txtBedroomLength" runat="server" placeholder="Bedroom Length"></asp:TextBox>
+                                    <span>by</span>
+                                    <asp:TextBox ID="txtBedroomWidth" runat="server" placeholder="Bedroom Width"></asp:TextBox>
+                                    <asp:Button ID="btnAddBedroom" runat="server" Text="Add" OnClick="btnAddBedroom_Click" />
+                                </div>
+                                <div>
+                                    <label>Bathrooms (<asp:Label ID="lblBRCount" runat="server" Text="0"></asp:Label>)</label>
+                                    <asp:LinkButton ID="linkbtnAddBR" runat="server" OnClick="linkbtnAddBR_Click">Add a Bathroom</asp:LinkButton>
+                                </div>
+                                <asp:Label ID="lblBathrooms" runat="server" Text=""></asp:Label>
+                                <div id="divBRDimensions" runat="server" visible="false">
+                                    <p>Bathroom Dimensions</p>
+                                    <asp:TextBox ID="txtBRLength" runat="server" placeholder="Bathroom Length"></asp:TextBox>
+                                    <span>by</span>
+                                    <asp:TextBox ID="txtBRWidth" runat="server" placeholder="Bathroom Width"></asp:TextBox>
+                                    <asp:Button ID="btnAddBR" runat="server" Text="Add" OnClick="btnAddBR_Click" />
+                                </div>
+                                <div>
+                                    <label>Other Rooms (<asp:Label ID="lblOtherRoomsCount" runat="server" Text="0"></asp:Label>)</label>
+                                    <asp:LinkButton ID="linkbtnAddOtherRoom" runat="server" OnClick="linkbtnAddOtherRoom_Click">Add another Room</asp:LinkButton>
+                                </div>
+                                <asp:Label ID="lblOtherRooms" runat="server" Text=""></asp:Label>
+                                <div id="divOtherRoomDimensions" runat="server" visible="false">
+                                    <p>Room Dimensions</p>
+                                    <asp:TextBox ID="txtRoomName" runat="server" placeholder="What kind of room is this"></asp:TextBox>
+                                    <asp:TextBox ID="txtOtherRoomLength" runat="server" placeholder="Room Length"></asp:TextBox>
+                                    <asp:TextBox ID="txtOtherRoomWidth" runat="server" placeholder="Room Width"></asp:TextBox>
+                                    <asp:Button ID="btnAddOtherRoom" runat="server" Text="Add" OnClick="btnAddOtherRoom_Click" />
+                                </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    
                 </div>
                 <div>
                     <label>Description About the Home</label>
