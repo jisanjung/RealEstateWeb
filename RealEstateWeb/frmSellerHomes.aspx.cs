@@ -32,14 +32,17 @@ namespace RealEstateWeb
 
             this.divEditHome.Visible = true;
 
-            Home selectedHome = new Home();
-            foreach (Home h in this.staticallyGenerateHomes())
-            {
-                if (h.HomeId == homeId)
-                {
-                    selectedHome = h;
-                }
-            }
+            string jsonRes = RestClient.Get("http://localhost:60855/api/homes/" + homeId);
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Home selectedHome = js.Deserialize<Home>(jsonRes);
+
+            //foreach (Home h in this.staticallyGenerateHomes())
+            //{
+            //    if (h.HomeId == homeId)
+            //    {
+            //        selectedHome = h;
+            //    }
+            //}
             this.lblSelectedId.Text = selectedHome.HomeId.ToString();
             this.txtChangePrice.Text = selectedHome.Price.ToString();
             this.txtChangeStatus.Text = selectedHome.Status;
@@ -125,6 +128,25 @@ namespace RealEstateWeb
             string jsonRes = RestClient.Get("http://localhost:60855/api/homes/" + homeId);
             JavaScriptSerializer js = new JavaScriptSerializer();
             Home editedHome = js.Deserialize<Home>(jsonRes);
+
+            editedHome.Price = int.Parse(this.txtChangePrice.Text);
+            editedHome.Status = this.txtChangeStatus.Text;
+            editedHome.Description = this.taChangeDescription.Value;
+
+            String jsonHome = js.Serialize(editedHome);
+            int status = int.Parse(RestClient.Put("http://localhost:60855/api/homes/Edit", jsonHome));
+            
+            if (status < 1)
+            {
+                this.lblAlert.Text = "Could not save home...";
+            } else
+            {
+                this.lblAlert.Text = "Saved successfully";
+
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("jjjung13@gmail.com");
+                this.displayHomes(sellerHomes);
+                this.divEditHome.Visible = false;
+            }
         }
     }
 }

@@ -8,6 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="lblAlert" runat="server"></asp:Label>
+        </div>
         <div id="divEditHome" runat="server" visible="false">
             <div>
                 <asp:Label ID="lblSelectedId" runat="server"></asp:Label>
