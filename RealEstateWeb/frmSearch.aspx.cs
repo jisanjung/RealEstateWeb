@@ -211,13 +211,27 @@ namespace RealEstateWeb
         protected void btnFeedback_Click(object sender, EventArgs e)
         {
             this.divLeaveFeedback.Visible = true;
-            int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
-            //FeedbackService.Feedback pxy = new FeedbackService.Feedback();
         }
 
         protected void btnSubmitFeedback_Click(object sender, EventArgs e)
         {
+            int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
+            FeedbackService.Feedback pxy = new FeedbackService.Feedback();
 
+            string priceFeedback = this.ddlPriceFeedback.SelectedValue;
+            string locationFeedback = this.ddlLocationFeedback.SelectedValue;
+            string overallFeedback = this.taOverallFeedback.Value;
+            int rating = int.Parse(this.ddlRating.SelectedValue);
+
+            int status = pxy.AddFeedback(homeId, priceFeedback, locationFeedback, overallFeedback, rating);
+            
+            if (status < 1)
+            {
+                this.lblAlert.Text = "Could not submit feedback...";
+            } else
+            {
+                this.lblAlert.Text = "Thank you for your response. Your feedback matters to us";
+            }
         }
     }
 }

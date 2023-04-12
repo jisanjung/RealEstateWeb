@@ -64,7 +64,7 @@
                 </div>
                 <div>
                     <label>Please comment on anything else about this home</label>
-                    <textarea id="taOverallFeedback" cols="20" rows="5" placeholder="Overall feedback..."></textarea>
+                    <textarea id="taOverallFeedback" cols="20" rows="5" placeholder="Overall feedback..." runat="server"></textarea>
                 </div>
                 <div>
                     <label>Rate this home</label>
