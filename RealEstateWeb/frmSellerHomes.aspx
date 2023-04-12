@@ -60,6 +60,7 @@
                                 </div>
                                 <asp:Button ID="btnEditHome" runat="server" Text="Edit" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_EditHome"/>
                                 <asp:Button ID="btnShowingRequests" runat="server" Text="View Showing Requests" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_ShowingRequests"/>
+                                <asp:Button ID="btnViewFeedback" runat="server" Text="View Feedback" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_ViewFeedback"/>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -72,6 +73,12 @@
                 <!--dynamic display (building my own html)-->
                 <ul id="ulHomeShowingList" runat="server">
                 
+                </ul>
+            </div>
+            <div>
+                <!--dynamic display (building my own html)-->
+                <ul id="ulFeedback" runat="server">
+
                 </ul>
             </div>
         </div>
