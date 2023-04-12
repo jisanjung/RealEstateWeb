@@ -17,10 +17,21 @@ namespace RealEstateWeb
 {
     public partial class frmCreateHome : System.Web.UI.Page
     {
+        HttpCookie loginCookie;
         DBConnect connection = new DBConnect();
         SqlCommand objCommand = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Request.Cookies["user_cookie"] == null)
+            {
+                Response.Redirect("frmAccountCreation.aspx");
+            }
+            else
+            {
+                loginCookie = Request.Cookies["user_cookie"];
+            }
+
             if (!IsPostBack)
             {
                 List<Room> rooms = new List<Room>();

@@ -1,6 +1,7 @@
 ﻿using HomeLibrary;
 using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
 using Utilities;
@@ -10,17 +11,29 @@ namespace RealEstateWeb
     public partial class frmSearch : System.Web.UI.Page
     {
         DBConnect connection = new DBConnect();
+        HttpCookie loginCookie;
         protected void Page_Load(object sender, EventArgs e)
         {
             //string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
             //JavaScriptSerializer js = new JavaScriptSerializer();
             //List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
+            
+
             List<Home> allHomes = this.staticallyGenerateHomes();
 
             if (!IsPostBack)
             {
                 this.displayHomes(allHomes);
+            }
+
+            if (Request.Cookies["user_cookie"] == null)
+            {
+                Response.Redirect("frmAccountCreation.aspx");
+            }
+            else
+            {
+                loginCookie = Request.Cookies["user_cookie"];
             }
         }
 

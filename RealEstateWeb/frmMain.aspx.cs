@@ -9,9 +9,17 @@ namespace RealEstateWeb
 {
     public partial class frmMain : System.Web.UI.Page
     {
+        HttpCookie loginCookie;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.Cookies["user_cookie"] == null)
+            {
+                Response.Redirect("frmAccountCreation.aspx");
+            }
+            else
+            {
+                loginCookie = Request.Cookies["user_cookie"];
+            }
         }
     }
 }
