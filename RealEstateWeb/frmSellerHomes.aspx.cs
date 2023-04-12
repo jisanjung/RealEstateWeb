@@ -17,7 +17,7 @@ namespace RealEstateWeb
         {
 
             // List<Home> sellerHomes = this.staticallyGenerateHomes();
-            List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
+            List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
 
             if (!IsPostBack)
             {
@@ -47,6 +47,29 @@ namespace RealEstateWeb
             this.txtChangePrice.Text = selectedHome.Price.ToString();
             this.txtChangeStatus.Text = selectedHome.Status;
             this.taChangeDescription.Value = selectedHome.Description;
+        }
+        protected void btn_ShowingRequests(object sender, CommandEventArgs e)
+        {
+            int rowClicked = int.Parse(e.CommandArgument.ToString());
+            Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
+            int homeId = int.Parse(lblHomeId.Text);
+
+            string jsonHome = RestClient.Get("http://localhost:60855/api/homes/" + homeId);
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Home selectedHome = js.Deserialize<Home>(jsonHome);
+
+            this.lblHomeShowingsTitle.Text = $"Requests for {selectedHome.Address}";
+
+            string jsonShowings = RestClient.Get("http://localhost:60855/api/homeshowing/");
+            List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonShowings);
+
+            foreach (HomeShowing hs in allHomeShowings)
+            {
+                if (hs.HomeId == homeId && hs.SellerEmail.CompareTo("hong@gmail.com") == 0)
+                {
+                    this.ulHomeShowingList.InnerHtml += this.generateHomeShowingHTML(hs);
+                }
+            }
         }
         private void displayHomes(List<Home> homeList)
         {
@@ -150,7 +173,7 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Saved successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
@@ -168,10 +191,20 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Deleted successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
+        }
+        private string generateHomeShowingHTML(HomeShowing hs)
+        {
+            User buyer = DBOperations.GetUser(hs.BuyerEmail);
+            string htmlStr = 
+                $"<li>" +
+                $"<p>{buyer.FullName} has scheduled a home showing on {hs.Date} at {hs.Time}</p>" +
+                $"<p>Contact the buyer via email at {buyer.Email}</p>" +
+                $"</li>";
+            return htmlStr;
         }
     }
 }
