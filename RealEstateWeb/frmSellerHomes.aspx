@@ -65,10 +65,15 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
-            <!--dynamic display (building my own html)-->
-            <ul id="ulHomeShowingList" runat="server">
+            <div>
+                <h4>
+                    <asp:Label ID="lblHomeShowingsTitle" runat="server"></asp:Label>
+                </h4>
+                <!--dynamic display (building my own html)-->
+                <ul id="ulHomeShowingList" runat="server">
                 
-            </ul>
+                </ul>
+            </div>
         </div>
     </form>
 </body>

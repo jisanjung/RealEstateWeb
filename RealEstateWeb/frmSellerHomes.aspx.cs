@@ -54,9 +54,14 @@ namespace RealEstateWeb
             Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
             int homeId = int.Parse(lblHomeId.Text);
 
-            string jsonRes = RestClient.Get("http://localhost:60855/api/homeshowing/");
+            string jsonHome = RestClient.Get("http://localhost:60855/api/homes/" + homeId);
             JavaScriptSerializer js = new JavaScriptSerializer();
-            List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonRes);
+            Home selectedHome = js.Deserialize<Home>(jsonHome);
+
+            this.lblHomeShowingsTitle.Text = $"Requests for {selectedHome.Address}";
+
+            string jsonShowings = RestClient.Get("http://localhost:60855/api/homeshowing/");
+            List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonShowings);
 
             foreach (HomeShowing hs in allHomeShowings)
             {
