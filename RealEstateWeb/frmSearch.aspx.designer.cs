@@ -114,6 +114,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.Button btnRequestShowing;
 
         /// <summary>
+        /// btnFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFeedback;
+
+        /// <summary>
         /// divCreateShowing control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,51 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitShowing;
+
+        /// <summary>
+        /// divLeaveFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLeaveFeedback;
+
+        /// <summary>
+        /// ddlPriceFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPriceFeedback;
+
+        /// <summary>
+        /// ddlLocationFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocationFeedback;
+
+        /// <summary>
+        /// ddlRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRating;
+
+        /// <summary>
+        /// btnSubmitFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitFeedback;
 
         /// <summary>
         /// lblHomeProfilePropertyType control.

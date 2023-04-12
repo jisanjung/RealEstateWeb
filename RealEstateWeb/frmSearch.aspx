@@ -32,9 +32,8 @@
             <div>
                 <asp:Label ID="lblHomeProfileAddress" runat="server"></asp:Label>
             </div>
-            <div>
-                <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" OnClick="btnRequestShowing_Click" />
-            </div>
+            <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" OnClick="btnRequestShowing_Click" />
+            <asp:Button ID="btnFeedback" runat="server" Text="Leave Feedback" OnClick="btnFeedback_Click" />
             <div id="divCreateShowing" runat="server" visible="false">
                 <div>
                     <label>Home Showing Date</label>
@@ -45,6 +44,39 @@
                     <asp:TextBox ID="txtShowingTime" runat="server" placeholder="Enter desired time"></asp:TextBox>
                 </div>
                 <asp:Button ID="btnSubmitShowing" runat="server" Text="Submit Showing Request" OnClick="btnSubmitShowing_Click" />
+            </div>
+            <div id="divLeaveFeedback" runat="server" visible="false">
+                <div>
+                    <label>What are your thoughts on the price?</label>
+                    <asp:DropDownList ID="ddlPriceFeedback" runat="server">
+                        <asp:ListItem>Perfect</asp:ListItem>
+                        <asp:ListItem>Okay</asp:ListItem>
+                        <asp:ListItem>Too High</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div>
+                    <label>What are your thoughts on the location?</label>
+                    <asp:DropDownList ID="ddlLocationFeedback" runat="server">
+                        <asp:ListItem>Love it</asp:ListItem>
+                        <asp:ListItem>Not bad</asp:ListItem>
+                        <asp:ListItem>Terrible</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div>
+                    <label>Please comment on anything else about this home</label>
+                    <textarea id="taOverallFeedback" cols="20" rows="5" placeholder="Overall feedback..."></textarea>
+                </div>
+                <div>
+                    <label>Rate this home</label>
+                    <asp:DropDownList ID="ddlRating" runat="server">
+                        <asp:ListItem>5</asp:ListItem>
+                        <asp:ListItem>4</asp:ListItem>
+                        <asp:ListItem>3</asp:ListItem>
+                        <asp:ListItem>2</asp:ListItem>
+                        <asp:ListItem>1</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <asp:Button ID="btnSubmitFeedback" runat="server" Text="Submit Feedback" OnClick="btnSubmitFeedback_Click" />
             </div>
             <div>
                 <div>
