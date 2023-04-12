@@ -65,6 +65,10 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
+            <!--dynamic display (building my own html)-->
+            <ul id="ulHomeShowingList" runat="server">
+                
+            </ul>
         </div>
     </form>
 </body>

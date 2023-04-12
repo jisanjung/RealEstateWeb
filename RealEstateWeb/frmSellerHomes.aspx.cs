@@ -17,7 +17,7 @@ namespace RealEstateWeb
         {
 
             // List<Home> sellerHomes = this.staticallyGenerateHomes();
-            List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
+            List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
 
             if (!IsPostBack)
             {
@@ -57,13 +57,12 @@ namespace RealEstateWeb
             string jsonRes = RestClient.Get("http://localhost:60855/api/homeshowing/");
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonRes);
-            // List<HomeShowing> showingsForThisHome = new List<HomeShowing>();
 
             foreach (HomeShowing hs in allHomeShowings)
             {
-                if (hs.HomeId == homeId)
+                if (hs.HomeId == homeId && hs.SellerEmail.CompareTo("hong@gmail.com") == 0)
                 {
-                    Response.Write(hs.Date);
+                    this.ulHomeShowingList.InnerHtml += this.generateHomeShowingHTML(hs);
                 }
             }
         }
@@ -169,7 +168,7 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Saved successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
@@ -187,10 +186,20 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Deleted successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("kevin@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
+        }
+        private string generateHomeShowingHTML(HomeShowing hs)
+        {
+            User buyer = DBOperations.GetUser(hs.BuyerEmail);
+            string htmlStr = 
+                $"<li>" +
+                $"<p>{buyer.FullName} has scheduled a home showing on {hs.Date} at {hs.Time}</p>" +
+                $"<p>Contact the buyer via email at {buyer.Email}</p>" +
+                $"</li>";
+            return htmlStr;
         }
     }
 }
