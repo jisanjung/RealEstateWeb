@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 using HomeLibrary;
 using Utilities;
@@ -17,7 +18,7 @@ namespace RealEstateWeb
         {
 
             // List<Home> sellerHomes = this.staticallyGenerateHomes();
-            List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
+            List<Home> sellerHomes = DBOperations.GetSellerHomes("json.eth@gmail.com");
 
             if (!IsPostBack)
             {
@@ -65,10 +66,37 @@ namespace RealEstateWeb
 
             foreach (HomeShowing hs in allHomeShowings)
             {
-                if (hs.HomeId == homeId && hs.SellerEmail.CompareTo("hong@gmail.com") == 0)
+                if (hs.HomeId == homeId && hs.SellerEmail.CompareTo("json.eth@gmail.com") == 0)
                 {
                     this.ulHomeShowingList.InnerHtml += this.generateHomeShowingHTML(hs);
                 }
+            }
+        }
+        protected void btn_ViewFeedback(object sender, CommandEventArgs e)
+        {
+            int rowClicked = int.Parse(e.CommandArgument.ToString());
+            Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
+            int homeId = int.Parse(lblHomeId.Text);
+
+            FeedbackService.Feedback pxy = new FeedbackService.Feedback();
+            DataSet ds = pxy.GetAllFeedbackForHome(homeId);
+            DataTable dt = ds.Tables[0];
+
+            List<HomeFeedback> feedback = new List<HomeFeedback>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                HomeFeedback hf = new HomeFeedback();
+                hf.FeedbackId = int.Parse(dt.Rows[i]["feedback_id"].ToString());
+                hf.HomeId = int.Parse(dt.Rows[i]["home_id"].ToString());
+                hf.PriceFeedback = dt.Rows[i]["price_feedback"].ToString();
+                hf.LocationFeedback = dt.Rows[i]["location_feedback"].ToString();
+                hf.OverallFeedback = dt.Rows[i]["overall_feedback"].ToString();
+                hf.Rating = int.Parse(dt.Rows[i]["rating"].ToString());
+                feedback.Add(hf);
+            }
+            foreach (HomeFeedback hf in feedback)
+            {
+                this.ulFeedback.InnerHtml += this.generateFeedbackHTML(hf);
             }
         }
         private void displayHomes(List<Home> homeList)
@@ -191,7 +219,7 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Deleted successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
+                List<Home> sellerHomes = DBOperations.GetSellerHomes("json.eth@gmail.com");
                 this.displayHomes(sellerHomes);
                 this.divEditHome.Visible = false;
             }
@@ -203,6 +231,17 @@ namespace RealEstateWeb
                 $"<li>" +
                 $"<p>{buyer.FullName} has scheduled a home showing on {hs.Date} at {hs.Time}</p>" +
                 $"<p>Contact the buyer via email at {buyer.Email}</p>" +
+                $"</li>";
+            return htmlStr;
+        }
+        private string generateFeedbackHTML(HomeFeedback hf)
+        {
+            string htmlStr = 
+                $"<li>" +
+                $"<p><span>Rating: </span>{hf.Rating}/5</p>" +
+                $"<p><span>Feedback on price: </span>{hf.PriceFeedback}</p>" +
+                $"<p><span>Feedback on location: </span>{hf.LocationFeedback}</p>" +
+                $"<p><span>Overall feedback: </span>{hf.OverallFeedback}</p>" +
                 $"</li>";
             return htmlStr;
         }
