@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Label ID="lblAlert" runat="server"></asp:Label>
         <div>
             <h1>Offers made to your Homes</h1>
             <div id="divViewOffer" runat="server" visible="false">
@@ -32,7 +33,8 @@
                 <div>
                     <asp:Label ID="lblSellHomeFirst" runat="server"></asp:Label>
                 </div>
-                <asp:Button ID="btnAcceptAmount" runat="server" />
+                <asp:Button ID="btnAcceptAmount" runat="server" OnClick="btnAcceptAmount_Click" />
+                <asp:Button ID="btnDeclineOffer" runat="server" Text="Decline" OnClick="btnDeclineOffer_Click"/>
             </div>
             <table>
                 <tr>

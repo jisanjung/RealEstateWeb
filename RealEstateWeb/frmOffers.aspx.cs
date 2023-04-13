@@ -18,19 +18,10 @@ namespace RealEstateWeb
             string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
-            List<HomeOffer> unacceptedOffers = new List<HomeOffer>();
-
-            foreach (HomeOffer ho in allHomeOffers)
-            {
-                if (!ho.Accepted)
-                {
-                    unacceptedOffers.Add(ho);
-                }
-            }
 
             if (!IsPostBack)
             {
-                this.displayOffers(unacceptedOffers);
+                this.displayOffers(allHomeOffers);
             }
         }
         protected void btn_ViewOffer(object sender, CommandEventArgs e)
@@ -60,8 +51,60 @@ namespace RealEstateWeb
         }
         private void displayOffers(List<HomeOffer> homeOffers)
         {
-            this.rptOffers.DataSource = homeOffers;
+            List<HomeOffer> unacceptedOffers = new List<HomeOffer>();
+
+            foreach (HomeOffer ho in homeOffers)
+            {
+                if (!ho.Accepted)
+                {
+                    unacceptedOffers.Add(ho);
+                }
+            }
+            this.rptOffers.DataSource = unacceptedOffers;
             this.rptOffers.DataBind();
+        }
+
+        protected void btnAcceptAmount_Click(object sender, EventArgs e)
+        {
+            int offerId = int.Parse(this.lblViewOfferId.Text);
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            string jsonOfferRes = RestClient.Get("http://localhost:60855/api/homeoffers/" + offerId);
+            HomeOffer homeOffer = js.Deserialize<HomeOffer>(jsonOfferRes);
+            homeOffer.Accepted = true;
+
+            string jsonOfferReq = js.Serialize(homeOffer);
+            int status = int.Parse(RestClient.Put("http://localhost:60855/api/homeoffers/Accept/" + offerId, jsonOfferReq));
+
+            if (status < 1)
+            {
+                this.lblAlert.Text = "There was a problem accepting this offer...";
+            } else
+            {
+                this.lblAlert.Text = "Offer Accepted!";
+            }
+        }
+
+        protected void btnDeclineOffer_Click(object sender, EventArgs e)
+        {
+            int offerId = int.Parse(this.lblViewOfferId.Text);
+
+            int status = int.Parse(RestClient.Delete("http://localhost:60855/api/homeoffers/Remove/" + offerId));
+
+            if (status < 1)
+            {
+                this.lblAlert.Text = "There was a problem declining this offer...";
+            }
+            else
+            {
+                this.lblAlert.Text = "Declined Offer";
+
+                string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
+
+                this.displayOffers(allHomeOffers);
+            }
         }
     }
 }
