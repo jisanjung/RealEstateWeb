@@ -246,5 +246,55 @@ namespace RealEstateWeb
                 this.lblAlert.Text = "Thank you for your response. Your feedback matters to us";
             }
         }
+
+        protected void linkbtnMakeOffer_Click(object sender, EventArgs e)
+        {
+            this.divMakeOffer.Visible = true;
+        }
+
+        protected void btnSubmitOffer_Click(object sender, EventArgs e)
+        {
+            int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
+            string saleType = this.ddlSaleType.SelectedValue;
+
+            string contingencies = "";
+            foreach (ListItem item in this.cblContingencies.Items)
+            {
+                if (item.Selected)
+                {
+                    contingencies += $"{item.Value}, ";
+                }
+            }
+            contingencies = String.IsNullOrEmpty(contingencies) ? contingencies = "None" : contingencies.Substring(0, contingencies.Length - 2);
+            float offerAmount = float.Parse(this.txtOfferAmount.Text);
+            string moveinDate = this.txtMoveinDate.Text;
+            bool sellHomeFirst = this.chkSellHomeFirst.Checked;
+            string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
+            string agentEmail = this.lblHomeProfileAgentEmail.Text;
+
+            HomeOffer ho = new HomeOffer();
+            ho.HomeId = homeId;
+            ho.SaleType = saleType;
+            ho.Contingencies = contingencies;
+            ho.OfferAmount = offerAmount;
+            ho.MoveInDate = moveinDate;
+            ho.SellHomeFirst = sellHomeFirst;
+            ho.BuyerEmail = buyerEmail;
+            ho.SellerEmail = agentEmail;
+            ho.Accepted = false;
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            String jsonOffer = js.Serialize(ho);
+
+            int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeoffers/Add/", jsonOffer));
+            
+            if (status < 1)
+            {
+                this.lblAlert.Text = "Offer could not be sent...";
+            } else
+            {
+                this.lblAlert.Text = "Offer sent successfully";
+            }
+        }
     }
 }
