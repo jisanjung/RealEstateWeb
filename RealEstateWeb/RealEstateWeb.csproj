@@ -72,6 +72,8 @@
     <Content Include="frmDashboard.aspx" />
     <Content Include="frmHomeDetails.aspx" />
     <Content Include="frmMain.aspx" />
+    <Content Include="frmOffers.aspx" />
+    <Content Include="frmOffersBuyer.aspx" />
     <Content Include="frmPage.aspx" />
     <Content Include="frmSearch.aspx" />
     <None Include="Properties\Settings.settings">
@@ -119,6 +121,20 @@
     </Compile>
     <Compile Include="frmMain.aspx.designer.cs">
       <DependentUpon>frmMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmOffers.aspx.cs">
+      <DependentUpon>frmOffers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOffers.aspx.designer.cs">
+      <DependentUpon>frmOffers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmOffersBuyer.aspx.cs">
+      <DependentUpon>frmOffersBuyer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOffersBuyer.aspx.designer.cs">
+      <DependentUpon>frmOffersBuyer.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmPage.aspx.cs">
       <DependentUpon>frmPage.aspx</DependentUpon>
