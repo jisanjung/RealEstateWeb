@@ -135,6 +135,7 @@
                     <label>Offer Amount</label>
                     <asp:TextBox ID="txtOfferAmount" runat="server" placeholder="Enter your Offer Amount"></asp:TextBox>
                 </div>
+                <asp:Button ID="btnSubmitOffer" runat="server" Text="Submit Offer" OnClick="btnSubmitOffer_Click" />
             </div>
         </div>
         <%--<uc:Navbar runat="server" id="navbar"/>--%>
