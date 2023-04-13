@@ -246,5 +246,10 @@ namespace RealEstateWeb
                 this.lblAlert.Text = "Thank you for your response. Your feedback matters to us";
             }
         }
+
+        protected void linkbtnMakeOffer_Click(object sender, EventArgs e)
+        {
+            this.divMakeOffer.Visible = true;
+        }
     }
 }

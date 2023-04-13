@@ -105,6 +105,37 @@
                 <asp:Label ID="lblHomeProfileAgentEmail" runat="server"></asp:Label>
                 <asp:Label ID="lblHomeProfileAgentInfo" runat="server"></asp:Label>
             </div>
+            <asp:LinkButton ID="linkbtnMakeOffer" runat="server" OnClick="linkbtnMakeOffer_Click">Make an Offer</asp:LinkButton>
+            <div id="divMakeOffer" runat="server" visible="false">
+                <div>
+                    <label>Type of Sale</label>
+                    <asp:DropDownList ID="ddlSaleType" runat="server">
+                        <asp:ListItem>Conventional Mortgage</asp:ListItem>
+                        <asp:ListItem>Cash</asp:ListItem>
+                        <asp:ListItem>As is (No contigencies)</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div>
+                    <label>Contingencies</label>
+                    <asp:CheckBoxList ID="cblContingencies" runat="server">
+                        <asp:ListItem>Mortgage</asp:ListItem>
+                        <asp:ListItem>Title</asp:ListItem>
+                        <asp:ListItem>Home Inspection</asp:ListItem>
+                        <asp:ListItem>Insurance</asp:ListItem>
+                    </asp:CheckBoxList>
+                </div>
+                <div>
+                    <asp:CheckBox ID="chkSellHomeFirst" runat="server" Text="Do you need sell your home first?" />
+                </div>
+                <div>
+                    <label>Move-in Date</label>
+                    <asp:TextBox ID="txtMoveinDate" runat="server" placeholder="Enter when you'd like to move in"></asp:TextBox>
+                </div>
+                <div>
+                    <label>Offer Amount</label>
+                    <asp:TextBox ID="txtOfferAmount" runat="server" placeholder="Enter your Offer Amount"></asp:TextBox>
+                </div>
+            </div>
         </div>
         <%--<uc:Navbar runat="server" id="navbar"/>--%>
         <h1>Search</h1>
