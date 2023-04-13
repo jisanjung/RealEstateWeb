@@ -53,11 +53,15 @@ namespace RealEstateWeb
         {
             List<HomeOffer> unacceptedOffers = new List<HomeOffer>();
 
-            foreach (HomeOffer ho in homeOffers)
+            if (Request.Cookies["user_cookie"] != null)
             {
-                if (!ho.Accepted)
+                string sellerEmail = Request.Cookies["user_cookie"]["user_email"];
+                foreach (HomeOffer ho in homeOffers)
                 {
-                    unacceptedOffers.Add(ho);
+                    if (!ho.Accepted && ho.SellerEmail.CompareTo(sellerEmail) == 0)
+                    {
+                        unacceptedOffers.Add(ho);
+                    }
                 }
             }
             this.rptOffers.DataSource = unacceptedOffers;
