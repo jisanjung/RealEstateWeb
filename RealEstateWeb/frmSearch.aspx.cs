@@ -14,13 +14,11 @@ namespace RealEstateWeb
         HttpCookie loginCookie;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
-            //JavaScriptSerializer js = new JavaScriptSerializer();
-            //List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
+            string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
-            
-
-            List<Home> allHomes = this.staticallyGenerateHomes();
+            // List<Home> allHomes = this.staticallyGenerateHomes();
 
             if (!IsPostBack)
             {
@@ -69,11 +67,11 @@ namespace RealEstateWeb
                 }
             }
 
-            //string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
-            //JavaScriptSerializer js = new JavaScriptSerializer();
-            //List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
+            string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
-            List<Home> allHomes = this.staticallyGenerateHomes();
+            // List<Home> allHomes = this.staticallyGenerateHomes();
 
             foreach (Home h in allHomes)
             {
@@ -157,16 +155,10 @@ namespace RealEstateWeb
         }
         private void fillHomeProfileInfo(int home_id)
         {
-            // string jsonRes = RestClient.Get("http://localhost:60855/api/homes/" + home_id.ToString());
-            List<Home> allHomes = this.staticallyGenerateHomes();
-            Home selectedHome = new Home();
-            foreach (Home h in allHomes)
-            {
-                if (h.HomeId == home_id)
-                {
-                    selectedHome = h;
-                }
-            }
+            string jsonRes = RestClient.Get("http://localhost:60855/api/homes/" + home_id.ToString());
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Home selectedHome = js.Deserialize<Home>(jsonRes);
+
             this.imgHomeProfile.Src = $"~/Storage/{selectedHome.Img}";
             this.lblHomeProfileHomeId.Text = selectedHome.HomeId.ToString();
             this.lblHomeProfilePrice.Text = selectedHome.Price.ToString("c");
@@ -195,29 +187,33 @@ namespace RealEstateWeb
 
         protected void btnSubmitShowing_Click(object sender, EventArgs e)
         {
-            int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
-            string agentEmail = this.lblHomeProfileAgentEmail.Text;
-            string buyerEmail = "kevin@gmail.com";
-            string showDate = this.txtShowingDate.Text;
-            string showTime = this.txtShowingTime.Text;
-
-            HomeShowing showingRequest = new HomeShowing();
-            showingRequest.HomeId = homeId;
-            showingRequest.SellerEmail = agentEmail;
-            showingRequest.BuyerEmail = buyerEmail;
-            showingRequest.Date = showDate;
-            showingRequest.Time = showTime;
-
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            String jsonShowingRequest = js.Serialize(showingRequest);
-
-            int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeshowing/Add", jsonShowingRequest));
-            if (status < 1)
+            if (Request.Cookies["user_cookie"] != null)
             {
-                this.lblHomeShowingAlert.Text = "There was a problem submitting your request...";
-            } else
-            {
-                this.lblHomeShowingAlert.Text = "Home Showing Request Submitted!";
+                int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
+                string agentEmail = this.lblHomeProfileAgentEmail.Text;
+                string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
+                string showDate = this.txtShowingDate.Text;
+                string showTime = this.txtShowingTime.Text;
+
+                HomeShowing showingRequest = new HomeShowing();
+                showingRequest.HomeId = homeId;
+                showingRequest.SellerEmail = agentEmail;
+                showingRequest.BuyerEmail = buyerEmail;
+                showingRequest.Date = showDate;
+                showingRequest.Time = showTime;
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                String jsonShowingRequest = js.Serialize(showingRequest);
+
+                int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeshowing/Add", jsonShowingRequest));
+                if (status < 1)
+                {
+                    this.lblHomeShowingAlert.Text = "There was a problem submitting your request...";
+                }
+                else
+                {
+                    this.lblHomeShowingAlert.Text = "Home Showing Request Submitted!";
+                }
             }
         }
 
@@ -254,46 +250,50 @@ namespace RealEstateWeb
 
         protected void btnSubmitOffer_Click(object sender, EventArgs e)
         {
-            int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
-            string saleType = this.ddlSaleType.SelectedValue;
-
-            string contingencies = "";
-            foreach (ListItem item in this.cblContingencies.Items)
+            if (Request.Cookies["user_cookie"] != null)
             {
-                if (item.Selected)
+                int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
+                string saleType = this.ddlSaleType.SelectedValue;
+
+                string contingencies = "";
+                foreach (ListItem item in this.cblContingencies.Items)
                 {
-                    contingencies += $"{item.Value}, ";
+                    if (item.Selected)
+                    {
+                        contingencies += $"{item.Value}, ";
+                    }
                 }
-            }
-            contingencies = String.IsNullOrEmpty(contingencies) ? contingencies = "None" : contingencies.Substring(0, contingencies.Length - 2);
-            float offerAmount = float.Parse(this.txtOfferAmount.Text);
-            string moveinDate = this.txtMoveinDate.Text;
-            bool sellHomeFirst = this.chkSellHomeFirst.Checked;
-            string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
-            string agentEmail = this.lblHomeProfileAgentEmail.Text;
+                contingencies = String.IsNullOrEmpty(contingencies) ? "None" : contingencies.Substring(0, contingencies.Length - 2);
+                float offerAmount = float.Parse(this.txtOfferAmount.Text);
+                string moveinDate = this.txtMoveinDate.Text;
+                bool sellHomeFirst = this.chkSellHomeFirst.Checked;
+                string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
+                string agentEmail = this.lblHomeProfileAgentEmail.Text;
 
-            HomeOffer ho = new HomeOffer();
-            ho.HomeId = homeId;
-            ho.SaleType = saleType;
-            ho.Contingencies = contingencies;
-            ho.OfferAmount = offerAmount;
-            ho.MoveInDate = moveinDate;
-            ho.SellHomeFirst = sellHomeFirst;
-            ho.BuyerEmail = buyerEmail;
-            ho.SellerEmail = agentEmail;
-            ho.Accepted = false;
+                HomeOffer ho = new HomeOffer();
+                ho.HomeId = homeId;
+                ho.SaleType = saleType;
+                ho.Contingencies = contingencies;
+                ho.OfferAmount = offerAmount;
+                ho.MoveInDate = moveinDate;
+                ho.SellHomeFirst = sellHomeFirst;
+                ho.BuyerEmail = buyerEmail;
+                ho.SellerEmail = agentEmail;
+                ho.Accepted = false;
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            String jsonOffer = js.Serialize(ho);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                String jsonOffer = js.Serialize(ho);
 
-            int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeoffers/Add/", jsonOffer));
-            
-            if (status < 1)
-            {
-                this.lblOfferAlert.Text = "Offer could not be sent...";
-            } else
-            {
-                this.lblOfferAlert.Text = "Offer sent successfully";
+                int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeoffers/Add/", jsonOffer));
+
+                if (status < 1)
+                {
+                    this.lblOfferAlert.Text = "Offer could not be sent...";
+                }
+                else
+                {
+                    this.lblOfferAlert.Text = "Offer sent successfully";
+                }
             }
         }
     }
