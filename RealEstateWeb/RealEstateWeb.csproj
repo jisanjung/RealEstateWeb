@@ -70,11 +70,8 @@
     <Content Include="frmAccountCreation.aspx" />
     <Content Include="frmCreateHome.aspx" />
     <Content Include="frmDashboard.aspx" />
-    <Content Include="frmHomeDetails.aspx" />
-    <Content Include="frmMain.aspx" />
     <Content Include="frmOffers.aspx" />
     <Content Include="frmOffersBuyer.aspx" />
-    <Content Include="frmPage.aspx" />
     <Content Include="frmSearch.aspx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -82,7 +79,6 @@
     </None>
     <None Include="Web References\FeedbackService\Feedback.disco" />
     <Content Include="frmSellerHomes.aspx" />
-    <Content Include="HomeCard.ascx" />
     <Content Include="Navbar.ascx" />
     <Content Include="OffersBuyer.ascx" />
     <Content Include="Web.config" />
@@ -109,20 +105,6 @@
     <Compile Include="frmDashboard.aspx.designer.cs">
       <DependentUpon>frmDashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frmHomeDetails.aspx.cs">
-      <DependentUpon>frmHomeDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmHomeDetails.aspx.designer.cs">
-      <DependentUpon>frmHomeDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmMain.aspx.cs">
-      <DependentUpon>frmMain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmMain.aspx.designer.cs">
-      <DependentUpon>frmMain.aspx</DependentUpon>
-    </Compile>
     <Compile Include="frmOffers.aspx.cs">
       <DependentUpon>frmOffers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -137,13 +119,6 @@
     <Compile Include="frmOffersBuyer.aspx.designer.cs">
       <DependentUpon>frmOffersBuyer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frmPage.aspx.cs">
-      <DependentUpon>frmPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmPage.aspx.designer.cs">
-      <DependentUpon>frmPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="frmSearch.aspx.cs">
       <DependentUpon>frmSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,13 +132,6 @@
     </Compile>
     <Compile Include="frmSellerHomes.aspx.designer.cs">
       <DependentUpon>frmSellerHomes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HomeCard.ascx.cs">
-      <DependentUpon>HomeCard.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HomeCard.ascx.designer.cs">
-      <DependentUpon>HomeCard.ascx</DependentUpon>
     </Compile>
     <Compile Include="Navbar.ascx.cs">
       <DependentUpon>Navbar.ascx</DependentUpon>

@@ -97,6 +97,7 @@ namespace RealEstateWeb
                     myCookie.Expires = DateTime.Now.AddYears(1000);
                 }
 
+                Response.Cookies.Add(myCookie);
                 Response.Redirect("frmDashboard.aspx");
             }
         }
