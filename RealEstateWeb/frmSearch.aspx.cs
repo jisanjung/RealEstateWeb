@@ -214,10 +214,10 @@ namespace RealEstateWeb
             int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeshowing/Add", jsonShowingRequest));
             if (status < 1)
             {
-                this.lblAlert.Text = "There was a problem submitting your request...";
+                this.lblHomeShowingAlert.Text = "There was a problem submitting your request...";
             } else
             {
-                this.lblAlert.Text = "Home Showing Request Submitted!";
+                this.lblHomeShowingAlert.Text = "Home Showing Request Submitted!";
             }
         }
 
@@ -240,10 +240,10 @@ namespace RealEstateWeb
             
             if (status < 1)
             {
-                this.lblAlert.Text = "Could not submit feedback...";
+                this.lblFeedbackAlert.Text = "Could not submit feedback...";
             } else
             {
-                this.lblAlert.Text = "Thank you for your response. Your feedback matters to us";
+                this.lblFeedbackAlert.Text = "Thank you for your response. Your feedback matters to us";
             }
         }
 
@@ -290,10 +290,10 @@ namespace RealEstateWeb
             
             if (status < 1)
             {
-                this.lblAlert.Text = "Offer could not be sent...";
+                this.lblOfferAlert.Text = "Offer could not be sent...";
             } else
             {
-                this.lblAlert.Text = "Offer sent successfully";
+                this.lblOfferAlert.Text = "Offer sent successfully";
             }
         }
     }
