@@ -9,135 +9,140 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="lblAlert" runat="server"></asp:Label>
-        </div>
-        <div id="divHomeProfile" runat="server" visible="false">
-            <div>
-                <asp:Label ID="lblHomeProfileHomeId" runat="server"></asp:Label>
-            </div>
-            <div>
-                <img id="imgHomeProfile" runat="server" style="max-width: 200px;"/>
-            </div>
-            <div>
-                <asp:Label ID="lblHomeProfilePrice" runat="server"></asp:Label>
-                <div>
-                    <asp:Label ID="lblHomeProfileBeds" runat="server"></asp:Label>
-                    <span> | </span>
-                    <asp:Label ID="lblHomeProfileBaths" runat="server"></asp:Label>
-                    <span> | </span>
-                    <asp:Label ID="lblHomeProfileHomeSize" runat="server"></asp:Label>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <div id="divHomeProfile" runat="server" visible="false">
+                    <div>
+                        <asp:Label ID="lblHomeProfileHomeId" runat="server"></asp:Label>
+                    </div>
+                    <div>
+                        <img id="imgHomeProfile" runat="server" style="max-width: 200px;" />
+                    </div>
+                    <div>
+                        <asp:Label ID="lblHomeProfilePrice" runat="server"></asp:Label>
+                        <div>
+                            <asp:Label ID="lblHomeProfileBeds" runat="server"></asp:Label>
+                            <span>| </span>
+                            <asp:Label ID="lblHomeProfileBaths" runat="server"></asp:Label>
+                            <span>| </span>
+                            <asp:Label ID="lblHomeProfileHomeSize" runat="server"></asp:Label>
+                        </div>
+                    </div>
+                    <div>
+                        <asp:Label ID="lblHomeProfileAddress" runat="server"></asp:Label>
+                    </div>
+                    <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" OnClick="btnRequestShowing_Click" />
+                    <asp:Button ID="btnFeedback" runat="server" Text="Leave Feedback" OnClick="btnFeedback_Click" />
+                    <div id="divCreateShowing" runat="server" visible="false">
+                        <div>
+                            <label>Home Showing Date</label>
+                            <asp:TextBox ID="txtShowingDate" runat="server" placeholder="Enter desired date"></asp:TextBox>
+                        </div>
+                        <div>
+                            <label>Home Showing Time</label>
+                            <asp:TextBox ID="txtShowingTime" runat="server" placeholder="Enter desired time"></asp:TextBox>
+                        </div>
+                        <asp:Button ID="btnSubmitShowing" runat="server" Text="Submit Showing Request" OnClick="btnSubmitShowing_Click" />
+                        <asp:Label ID="lblHomeShowingAlert" runat="server"></asp:Label>
+                    </div>
+                    <div id="divLeaveFeedback" runat="server" visible="false">
+                        <div>
+                            <label>What are your thoughts on the price?</label>
+                            <asp:DropDownList ID="ddlPriceFeedback" runat="server">
+                                <asp:ListItem>Perfect</asp:ListItem>
+                                <asp:ListItem>Okay</asp:ListItem>
+                                <asp:ListItem>Too High</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div>
+                            <label>What are your thoughts on the location?</label>
+                            <asp:DropDownList ID="ddlLocationFeedback" runat="server">
+                                <asp:ListItem>Love it</asp:ListItem>
+                                <asp:ListItem>Not bad</asp:ListItem>
+                                <asp:ListItem>Terrible</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div>
+                            <label>Please comment on anything else about this home</label>
+                            <textarea id="taOverallFeedback" cols="20" rows="5" placeholder="Overall feedback..." runat="server"></textarea>
+                        </div>
+                        <div>
+                            <label>Rate this home</label>
+                            <asp:DropDownList ID="ddlRating" runat="server">
+                                <asp:ListItem>5</asp:ListItem>
+                                <asp:ListItem>4</asp:ListItem>
+                                <asp:ListItem>3</asp:ListItem>
+                                <asp:ListItem>2</asp:ListItem>
+                                <asp:ListItem>1</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <asp:Button ID="btnSubmitFeedback" runat="server" Text="Submit Feedback" OnClick="btnSubmitFeedback_Click" />
+                        <asp:Label ID="lblFeedbackAlert" runat="server"></asp:Label>
+                    </div>
+                    <div>
+                        <div>
+                            <asp:Label ID="lblHomeProfilePropertyType" runat="server"></asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblHomeProfileYearBuilt" runat="server"></asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblHomeProfileAmenities" runat="server"></asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblHomeProfileHVAC" runat="server"></asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblHomeProfileGarage" runat="server"></asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblHomeProfileUtilities" runat="server"></asp:Label>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblHomeProfileDescription" runat="server"></asp:Label>
+                        </div>
+                    </div>
+                    <div>
+                        <asp:Label ID="lblHomeProfileAgentEmail" runat="server"></asp:Label>
+                        <asp:Label ID="lblHomeProfileAgentInfo" runat="server"></asp:Label>
+                    </div>
+                    <asp:LinkButton ID="linkbtnMakeOffer" runat="server" OnClick="linkbtnMakeOffer_Click">Make an Offer</asp:LinkButton>
+                    <div id="divMakeOffer" runat="server" visible="false">
+                        <div>
+                            <label>Type of Sale</label>
+                            <asp:DropDownList ID="ddlSaleType" runat="server">
+                                <asp:ListItem>Conventional Mortgage</asp:ListItem>
+                                <asp:ListItem>Cash</asp:ListItem>
+                                <asp:ListItem>As is (No contigencies)</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div>
+                            <label>Contingencies</label>
+                            <asp:CheckBoxList ID="cblContingencies" runat="server">
+                                <asp:ListItem>Mortgage</asp:ListItem>
+                                <asp:ListItem>Title</asp:ListItem>
+                                <asp:ListItem>Home Inspection</asp:ListItem>
+                                <asp:ListItem>Insurance</asp:ListItem>
+                            </asp:CheckBoxList>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkSellHomeFirst" runat="server" Text="Do you need sell your home first?" />
+                        </div>
+                        <div>
+                            <label>Move-in Date</label>
+                            <asp:TextBox ID="txtMoveinDate" runat="server" placeholder="Enter when you'd like to move in"></asp:TextBox>
+                        </div>
+                        <div>
+                            <label>Offer Amount</label>
+                            <asp:TextBox ID="txtOfferAmount" runat="server" placeholder="Enter your Offer Amount"></asp:TextBox>
+                        </div>
+                        <asp:Button ID="btnSubmitOffer" runat="server" Text="Submit Offer" OnClick="btnSubmitOffer_Click" />
+                        <asp:Label ID="lblOfferAlert" runat="server"></asp:Label>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <asp:Label ID="lblHomeProfileAddress" runat="server"></asp:Label>
-            </div>
-            <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" OnClick="btnRequestShowing_Click" />
-            <asp:Button ID="btnFeedback" runat="server" Text="Leave Feedback" OnClick="btnFeedback_Click" />
-            <div id="divCreateShowing" runat="server" visible="false">
-                <div>
-                    <label>Home Showing Date</label>
-                    <asp:TextBox ID="txtShowingDate" runat="server" placeholder="Enter desired date"></asp:TextBox>
-                </div>
-                <div>
-                    <label>Home Showing Time</label>
-                    <asp:TextBox ID="txtShowingTime" runat="server" placeholder="Enter desired time"></asp:TextBox>
-                </div>
-                <asp:Button ID="btnSubmitShowing" runat="server" Text="Submit Showing Request" OnClick="btnSubmitShowing_Click" />
-            </div>
-            <div id="divLeaveFeedback" runat="server" visible="false">
-                <div>
-                    <label>What are your thoughts on the price?</label>
-                    <asp:DropDownList ID="ddlPriceFeedback" runat="server">
-                        <asp:ListItem>Perfect</asp:ListItem>
-                        <asp:ListItem>Okay</asp:ListItem>
-                        <asp:ListItem>Too High</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div>
-                    <label>What are your thoughts on the location?</label>
-                    <asp:DropDownList ID="ddlLocationFeedback" runat="server">
-                        <asp:ListItem>Love it</asp:ListItem>
-                        <asp:ListItem>Not bad</asp:ListItem>
-                        <asp:ListItem>Terrible</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div>
-                    <label>Please comment on anything else about this home</label>
-                    <textarea id="taOverallFeedback" cols="20" rows="5" placeholder="Overall feedback..." runat="server"></textarea>
-                </div>
-                <div>
-                    <label>Rate this home</label>
-                    <asp:DropDownList ID="ddlRating" runat="server">
-                        <asp:ListItem>5</asp:ListItem>
-                        <asp:ListItem>4</asp:ListItem>
-                        <asp:ListItem>3</asp:ListItem>
-                        <asp:ListItem>2</asp:ListItem>
-                        <asp:ListItem>1</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <asp:Button ID="btnSubmitFeedback" runat="server" Text="Submit Feedback" OnClick="btnSubmitFeedback_Click" />
-            </div>
-            <div>
-                <div>
-                    <asp:Label ID="lblHomeProfilePropertyType" runat="server"></asp:Label>
-                </div>
-                <div>
-                    <asp:Label ID="lblHomeProfileYearBuilt" runat="server"></asp:Label>
-                </div>
-                <div>
-                    <asp:Label ID="lblHomeProfileAmenities" runat="server"></asp:Label>
-                </div>
-                <div>
-                    <asp:Label ID="lblHomeProfileHVAC" runat="server"></asp:Label>
-                </div>
-                <div>
-                    <asp:Label ID="lblHomeProfileGarage" runat="server"></asp:Label>
-                </div>
-                <div>
-                    <asp:Label ID="lblHomeProfileUtilities" runat="server"></asp:Label>
-                </div>
-                <div>
-                    <asp:Label ID="lblHomeProfileDescription" runat="server"></asp:Label>
-                </div>
-            </div>
-            <div>
-                <asp:Label ID="lblHomeProfileAgentEmail" runat="server"></asp:Label>
-                <asp:Label ID="lblHomeProfileAgentInfo" runat="server"></asp:Label>
-            </div>
-            <asp:LinkButton ID="linkbtnMakeOffer" runat="server" OnClick="linkbtnMakeOffer_Click">Make an Offer</asp:LinkButton>
-            <div id="divMakeOffer" runat="server" visible="false">
-                <div>
-                    <label>Type of Sale</label>
-                    <asp:DropDownList ID="ddlSaleType" runat="server">
-                        <asp:ListItem>Conventional Mortgage</asp:ListItem>
-                        <asp:ListItem>Cash</asp:ListItem>
-                        <asp:ListItem>As is (No contigencies)</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div>
-                    <label>Contingencies</label>
-                    <asp:CheckBoxList ID="cblContingencies" runat="server">
-                        <asp:ListItem>Mortgage</asp:ListItem>
-                        <asp:ListItem>Title</asp:ListItem>
-                        <asp:ListItem>Home Inspection</asp:ListItem>
-                        <asp:ListItem>Insurance</asp:ListItem>
-                    </asp:CheckBoxList>
-                </div>
-                <div>
-                    <asp:CheckBox ID="chkSellHomeFirst" runat="server" Text="Do you need sell your home first?" />
-                </div>
-                <div>
-                    <label>Move-in Date</label>
-                    <asp:TextBox ID="txtMoveinDate" runat="server" placeholder="Enter when you'd like to move in"></asp:TextBox>
-                </div>
-                <div>
-                    <label>Offer Amount</label>
-                    <asp:TextBox ID="txtOfferAmount" runat="server" placeholder="Enter your Offer Amount"></asp:TextBox>
-                </div>
-                <asp:Button ID="btnSubmitOffer" runat="server" Text="Submit Offer" OnClick="btnSubmitOffer_Click" />
-            </div>
-        </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <%--<uc:Navbar runat="server" id="navbar"/>--%>
         <h1>Search</h1>
         <div id="sideFilter">

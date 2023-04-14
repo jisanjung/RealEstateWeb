@@ -24,13 +24,13 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblAlert control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlert;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
         /// divHomeProfile control.
@@ -159,6 +159,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.Button btnSubmitShowing;
 
         /// <summary>
+        /// lblHomeShowingAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHomeShowingAlert;
+
+        /// <summary>
         /// divLeaveFeedback control.
         /// </summary>
         /// <remarks>
@@ -211,6 +220,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitFeedback;
+
+        /// <summary>
+        /// lblFeedbackAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFeedbackAlert;
 
         /// <summary>
         /// lblHomeProfilePropertyType control.
@@ -364,6 +382,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitOffer;
+
+        /// <summary>
+        /// lblOfferAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOfferAlert;
 
         /// <summary>
         /// txtZipCode control.
