@@ -17,8 +17,10 @@
                 <asp:Label id="lblPassword" runat="server" Text="Your Password"></asp:Label><br/>
                 <asp:Label id="lblAddress" runat="server" Text="Your Address"></asp:Label><br/>
             </div>
-            <div id="labels" class="card-body">
-
+            <div id="inputs" class="card-body">
+                <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name"></asp:TextBox><br/>
+                <asp:TextBox ID="txtPassword" runat="server" placeholder="Password"></asp:TextBox><br/>
+                <asp:TextBox ID="txtAddress" runat="server" placeholder="Address"></asp:TextBox><br/>
             </div>
             <asp:Button ID="btnModify" runat="server" Text="Edit" OnClick="btnModify_Click" />
         </div>
