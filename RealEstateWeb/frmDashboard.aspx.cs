@@ -20,6 +20,17 @@ namespace RealEstateWeb
             {
                 loginCookie = Request.Cookies["user_cookie"];
             }
+
+            if(loginCookie.Values["user_type"].Equals("Buyer"))
+            {
+                agentSellerSpecific.Visible = false;
+                buyerSpecific.Visible = true;
+            }
+            else
+            {
+                agentSellerSpecific.Visible = true;
+                buyerSpecific.Visible = false;
+            }
         }
     }
 }

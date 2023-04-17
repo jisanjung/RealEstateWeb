@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="frmAccountCreation.aspx" />
+    <Content Include="frmBuyerScheduledVisits.aspx" />
     <Content Include="frmCreateHome.aspx" />
     <Content Include="frmDashboard.aspx" />
     <Content Include="frmOffers.aspx" />
@@ -90,6 +91,13 @@
     </Compile>
     <Compile Include="frmAccountCreation.aspx.designer.cs">
       <DependentUpon>frmAccountCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuyerScheduledVisits.aspx.cs">
+      <DependentUpon>frmBuyerScheduledVisits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBuyerScheduledVisits.aspx.designer.cs">
+      <DependentUpon>frmBuyerScheduledVisits.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmCreateHome.aspx.cs">
       <DependentUpon>frmCreateHome.aspx</DependentUpon>
