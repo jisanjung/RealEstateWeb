@@ -14,15 +14,14 @@
             <div id="labels" class="card-body">
                 <h5 class="card-title">Modify Profile</h5>
                 <asp:Label id="lblFullName" runat="server" Text="Your Name"></asp:Label><br/>
-                <asp:Label id="lblPassword" runat="server" Text="Your Password"></asp:Label><br/>
                 <asp:Label id="lblAddress" runat="server" Text="Your Address"></asp:Label><br/>
             </div>
             <div id="inputs" class="card-body">
-                <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name"></asp:TextBox><br/>
-                <asp:TextBox ID="txtPassword" runat="server" placeholder="Password"></asp:TextBox><br/>
-                <asp:TextBox ID="txtAddress" runat="server" placeholder="Address"></asp:TextBox><br/>
+                <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name" Visible="false"></asp:TextBox><br/>
+                <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" Visible="false"></asp:TextBox><br/>
             </div>
             <asp:Button ID="btnModify" runat="server" Text="Edit" OnClick="btnModify_Click" />
+            <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click"/>
         </div>
         <div id="buyerSpecific" runat="server">
             <div class="card w-50">

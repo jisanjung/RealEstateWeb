@@ -134,5 +134,25 @@ namespace HomeLibrary
             }
             return sellerHomes;
         }
+        public static int UpdateUserInfo(User user)
+        {
+            DBConnect connection = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_UpdateUser";
+
+            SqlParameter emailParam = new SqlParameter("@email", user.Email);
+            objCommand.Parameters.Add(emailParam);
+            SqlParameter fullnameParam = new SqlParameter("@name", user.FullName);
+            objCommand.Parameters.Add(fullnameParam);
+            SqlParameter homeAddressParam = new SqlParameter("@address", user.Address);
+            objCommand.Parameters.Add(homeAddressParam);
+
+
+            int status = connection.DoUpdate(objCommand);
+
+            return status;
+        }
     }
 }

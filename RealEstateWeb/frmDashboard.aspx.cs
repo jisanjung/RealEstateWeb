@@ -7,13 +7,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using HomeLibrary;
 
 namespace RealEstateWeb
 {
     public partial class frmDashboard : System.Web.UI.Page
     {
         HttpCookie loginCookie;
+        User user;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies["user_cookie"] == null)
@@ -36,36 +36,37 @@ namespace RealEstateWeb
                 buyerSpecific.Visible = false;
             }
 
-            User user = DBOperations.GetUser(Request.Cookies["user_cookie"].Values["user_email"]);
+            user = DBOperations.GetUser(Request.Cookies["user_cookie"].Values["user_email"]);
 
 
             lblAddress.Text = user.Address;
             lblFullName.Text = user.FullName;
-            lblPassword.Text = user.Password;
         }
 
         protected void btnModify_Click(object sender, EventArgs e)
         {
-            if (btnModify.Text.Equals("Edit"))
-            {
-                btnModify.Text = "Save";
+            
+                txtAddress.Visible = true;
+                txtFullName.Visible = true;
                 lblAddress.Visible = false;
                 lblFullName.Visible = false;
-                lblPassword.Visible = false;
-                txtPassword.Visible = true;
-                txtFullName.Visible = true;
-                txtAddress.Visible = true;
-            }
-            else
-            {
-                btnModify.Text = "Edit";
-                txtAddress.Visible = false;
-                txtFullName.Visible = false;
-                txtPassword.Visible = false;
-                lblAddress.Visible = true;
-                lblFullName.Visible = true;
-                lblPassword.Visible = true;
-            }
+
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            lblAddress.Visible = true;
+            lblFullName.Visible = true;
+            txtFullName.Visible = false;
+            txtAddress.Visible = false;
+
+            user.Address = txtAddress.Text;
+            user.FullName = txtFullName.Text;
+
+            DBOperations.UpdateUserInfo(user);
+
+            lblAddress.Text = user.Address;
+            lblFullName.Text= user.FullName;
         }
     }
 }
