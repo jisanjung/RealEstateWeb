@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <!--<uc:Navbar runat="server" id="navbar"/>-->
+        <uc:Navbar runat="server" id="navbar"/>
         <div id="allView" class="card w-50" style="top:500px">
             <div id="labels" class="card-body">
                 <h5 class="card-title">Modify Profile</h5>
