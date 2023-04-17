@@ -1,24 +1,60 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Navbar.ascx.cs" Inherits="RealEstateWeb.Navbar" %>
-<div style="background-color:indianred; height: 75px; z-index: 1; left: 0px; top: 0px; position: absolute; width: 100%;">
-    <asp:Button style="z-index: 1; left: 16px; top: 12px; position: absolute; height: 36px; width: 185px" Text="Homes R Us" ID="btnMain" runat="server"/>
-    <ul style="width: 250px; right:5%; z-index: 1; top: 4px; position: absolute; height: 27px;">
-        <li style="display:inline">
-            <asp:Button ID="btnCreateHome" runat="server" Text="Create Home" OnClick="btnCreateHome_Click" />
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <h1 class="navbar-brand">Homes R Us</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="agentLinks" runat="server">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="frmSearch.aspx">Search</a>
         </li>
-        <li style="display:inline">
-            <asp:Button ID="btnOffers" runat="server" Text="View Offers" OnClick="btnOffers_Click" />
+          <li class="nav-item">
+          <a class="nav-link" href="frmCreateHome.aspx">Create Home</a>
         </li>
-        <li style="display:inline">
-            <asp:Button ID="btnOffersBuyer" runat="server" Text="View Offers" OnClick="btnOffersBuyer_Click" />
+        <li class="nav-item">
+          <a class="nav-link" href="frmSellerHomes.aspx">Manage Homes</a>
         </li>
-        <li style="display:inline">
-            <asp:Button ID="btnSellerHomes" runat="server" Text="Manage Home" OnClick="btnSellerHomes_Click" />
+          <li class="nav-item">
+          <a class="nav-link" href="frmOffers.aspx">Offers</a>
         </li>
-        <li style="display:inline">
-            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
-        </li>        
-        <li style="display:inline">
-            <asp:Button ID="btnDashboard" runat="server" Text="Dashboard" OnClick="btnDashboard_Click" />
+        <li class="nav-item">
+          <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
         </li>
-    </ul>
-</div>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="sellerLinks" runat="server">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="frmSearch.aspx">Search</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="frmCreateHome.aspx">Create Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="frmSellerHomes.aspx">Manage Homes</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="frmOffers.aspx">Offers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="buyerLinks" runat="server">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="frmSearch.aspx">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Scheduled Showings</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="frmOffersBuyer.aspx">Your Offers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
+        </li>
+      </ul>
+      <button class="btn btn-outline-success">Logout</button>
+    </div>
+  </div>
+</nav>
