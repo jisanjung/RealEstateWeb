@@ -54,7 +54,7 @@
           <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
         </li>
       </ul>
-      <button class="btn btn-outline-success">Logout</button>
+      <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn btn-outline-success" OnClick="btnLogout_Click"/>
     </div>
   </div>
 </nav>
