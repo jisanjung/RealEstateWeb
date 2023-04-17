@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Security.Cryptography.X509Certificates;
 
 using Utilities;
+using HomeLibrary;
 using System.Globalization;
 using System.Data;
 using System.Data.SqlClient;
@@ -63,42 +64,41 @@ namespace RealEstateWeb
 
         protected void btnVerify_Click(object sender, EventArgs e)
         {
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_Signup";
             if (int.Parse(txtVerification.Text) == rand)
             {
+                User newUser = new User();
+                newUser.Email = txtEmail.Text;
+                newUser.FullName = txtFullName.Text;
+                newUser.Password = txtPassword.Text;
+                newUser.Type = ddlType.SelectedValue;
+                newUser.Address = txtCurrAddress.Text;
+                newUser.SecurityAnswerOne = txtSecureQuestion1.Text;
+                newUser.SecurityAnswerTwo = txtSecureQuestion2.Text;
+                newUser.SecurityAnswerThree = txtSecureQuestion3.Text;
+                newUser.IsVerified = true;
+                int status = DBOperations.AddUser(newUser);
+
+                if (status < 1)
                 {
-                    SqlParameter emailParam = ExtraUtil.CreateParamVarChar(txtEmail.Text, "tp_email", 100);
-                    SqlParameter fullnameparam = ExtraUtil.CreateParamVarChar(txtFullName.Text, "tp_fullname", 100);
-                    SqlParameter passwordparam = ExtraUtil.CreateParamVarChar(txtPassword.Text, "tp_password", 100);
-                    SqlParameter typeparam = ExtraUtil.CreateParamVarChar(ddlType.SelectedValue.ToString(), "tp_type", 100);
-                    SqlParameter addressparam = ExtraUtil.CreateParamVarChar(txtCurrAddress.Text, "tp_address", 100);
-                    SqlParameter answeroneparam = ExtraUtil.CreateParamVarChar(txtSecureQuestion1.Text, "tp_answerone", 100);
-                    SqlParameter answertwoparam = ExtraUtil.CreateParamVarChar(txtSecureQuestion2.Text, "tp_answertwo", 100);
-                    SqlParameter answerthreeparam = ExtraUtil.CreateParamVarChar(txtSecureQuestion3.Text, "tp_answerthree", 100);
+                    lblError.Text = "There was an issue creating your account";
 
-                    objCommand.Parameters.Add(emailParam);
-                    objCommand.Parameters.Add(passwordparam);
-                    objCommand.Parameters.Add(fullnameparam);
-                    objCommand.Parameters.Add(typeparam);
-                    objCommand.Parameters.Add(addressparam);
-                    objCommand.Parameters.Add(answeroneparam);
-                    objCommand.Parameters.Add(answertwoparam);
-                    objCommand.Parameters.Add(answerthreeparam);
                 }
-                DataSet myds = objDB.GetDataSetUsingCmdObj(objCommand);
-
-                HttpCookie myCookie = new HttpCookie("user_cookie");
-                myCookie.Values["user_email"] = txtEmailLogin.Text;
-                myCookie.Values["user_type"] = ddlType.SelectedValue;
-
-                if (chkRememberSignup.Checked)
+                else
                 {
-                    myCookie.Expires = DateTime.Now.AddYears(1000);
-                }
+                    lblError.Text = "Account created!";
+                    HttpCookie myCookie = new HttpCookie("user_cookie");
+                    myCookie.Values["user_email"] = txtEmailLogin.Text;
+                    myCookie.Values["user_type"] = ddlType.SelectedValue;
 
-                Response.Cookies.Add(myCookie);
-                Response.Redirect("frmDashboard.aspx");
+                    if (chkRememberSignup.Checked)
+                    {
+                        myCookie.Expires = DateTime.Now.AddYears(1000);
+                    }
+
+                    Response.Cookies.Add(myCookie);
+                    Response.Redirect("frmDashboard.aspx");
+
+                }
             }
         }
 

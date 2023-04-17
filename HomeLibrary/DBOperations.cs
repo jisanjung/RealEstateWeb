@@ -16,6 +16,7 @@ namespace HomeLibrary
     {
         public static int AddUser(User user)
         {
+
             DBConnect connection = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
 
@@ -41,7 +42,18 @@ namespace HomeLibrary
             SqlParameter isVerifiedParam = new SqlParameter("@is_verified", user.IsVerified);
             objCommand.Parameters.Add(isVerifiedParam);
 
+
             int status = connection.DoUpdate(objCommand);
+
+            if (status < 1)
+            {
+                objCommand.Parameters.Clear();
+                objCommand.CommandText = " ";
+            }
+            else
+            {
+                return status;
+            }
             return status;
         }
         public static User GetUser(string email)
