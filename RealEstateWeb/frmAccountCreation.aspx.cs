@@ -25,7 +25,10 @@ namespace RealEstateWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.Cookies["user_cookie"] != null)
+            {
+                Response.Redirect("frmDashboard.aspx");
+            }
         }
 
         protected void btnSignup_Click(object sender, EventArgs e)
