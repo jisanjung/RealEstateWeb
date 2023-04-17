@@ -17,21 +17,19 @@ namespace RealEstateWeb
         HttpCookie loginCookie;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Request.Cookies["user_cookie"] == null)
+            if (Request.Cookies["user_cookie"] != null)
             {
-                Response.Redirect("frmAccountCreation.aspx");
+                string userName = Request.Cookies["user_cookie"]["user_email"];
+
+                List<Home> sellerHomes = DBOperations.GetSellerHomes(userName);
+                if (!IsPostBack)
+                {
+                    this.displayHomes(sellerHomes);
+                }
             }
             else
             {
-                loginCookie = Request.Cookies["user_cookie"];
-            }
-            // List<Home> sellerHomes = this.staticallyGenerateHomes();
-            List<Home> sellerHomes = DBOperations.GetSellerHomes("json.eth@gmail.com");
-
-            if (!IsPostBack)
-            {
-                this.displayHomes(sellerHomes);
+                Response.Redirect("frmAccountCreation.aspx");
             }
         }
         protected void btn_EditHome(object sender, CommandEventArgs e)
@@ -46,13 +44,6 @@ namespace RealEstateWeb
             JavaScriptSerializer js = new JavaScriptSerializer();
             Home selectedHome = js.Deserialize<Home>(jsonRes);
 
-            //foreach (Home h in this.staticallyGenerateHomes())
-            //{
-            //    if (h.HomeId == homeId)
-            //    {
-            //        selectedHome = h;
-            //    }
-            //}
             this.lblSelectedId.Text = selectedHome.HomeId.ToString();
             this.txtChangePrice.Text = selectedHome.Price.ToString();
             this.txtChangeStatus.Text = selectedHome.Status;
@@ -60,24 +51,28 @@ namespace RealEstateWeb
         }
         protected void btn_ShowingRequests(object sender, CommandEventArgs e)
         {
-            int rowClicked = int.Parse(e.CommandArgument.ToString());
-            Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
-            int homeId = int.Parse(lblHomeId.Text);
-
-            string jsonHome = RestClient.Get("http://localhost:60855/api/homes/" + homeId);
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            Home selectedHome = js.Deserialize<Home>(jsonHome);
-
-            this.lblHomeShowingsTitle.Text = $"Requests for {selectedHome.Address}";
-
-            string jsonShowings = RestClient.Get("http://localhost:60855/api/homeshowing/");
-            List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonShowings);
-
-            foreach (HomeShowing hs in allHomeShowings)
+            if (Request.Cookies["user_cookie"] != null)
             {
-                if (hs.HomeId == homeId && hs.SellerEmail.CompareTo("json.eth@gmail.com") == 0)
+                int rowClicked = int.Parse(e.CommandArgument.ToString());
+                Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
+                int homeId = int.Parse(lblHomeId.Text);
+
+                string jsonHome = RestClient.Get("http://localhost:60855/api/homes/" + homeId);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                Home selectedHome = js.Deserialize<Home>(jsonHome);
+
+                this.lblHomeShowingsTitle.Text = $"Requests for {selectedHome.Address}";
+
+                string jsonShowings = RestClient.Get("http://localhost:60855/api/homeshowing/");
+                List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonShowings);
+
+                string userName = Request.Cookies["user_cookie"]["user_email"];
+                foreach (HomeShowing hs in allHomeShowings)
                 {
-                    this.ulHomeShowingList.InnerHtml += this.generateHomeShowingHTML(hs);
+                    if (hs.HomeId == homeId && hs.SellerEmail.CompareTo(userName) == 0)
+                    {
+                        this.ulHomeShowingList.InnerHtml += this.generateHomeShowingHTML(hs);
+                    }
                 }
             }
         }
@@ -202,17 +197,22 @@ namespace RealEstateWeb
 
             String jsonHome = js.Serialize(editedHome);
             int status = int.Parse(RestClient.Put("http://localhost:60855/api/homes/Edit", jsonHome));
-            
+
             if (status < 1)
             {
                 this.lblAlert.Text = "Could not save home...";
-            } else
+            }
+            else
             {
                 this.lblAlert.Text = "Saved successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("hong@gmail.com");
-                this.displayHomes(sellerHomes);
-                this.divEditHome.Visible = false;
+                if (Request.Cookies["user_cookie"] != null)
+                {
+                    string username = Request.Cookies["user_cookie"]["user_email"];
+                    List<Home> sellerHomes = DBOperations.GetSellerHomes(username);
+                    this.displayHomes(sellerHomes);
+                    this.divEditHome.Visible = false;
+                }
             }
         }
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -228,15 +228,19 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Deleted successfully";
 
-                List<Home> sellerHomes = DBOperations.GetSellerHomes("json.eth@gmail.com");
-                this.displayHomes(sellerHomes);
-                this.divEditHome.Visible = false;
+                if (Request.Cookies["user_cookie"] != null)
+                {
+                    string username = Request.Cookies["user_cookie"]["user_email"];
+                    List<Home> sellerHomes = DBOperations.GetSellerHomes(username);
+                    this.displayHomes(sellerHomes);
+                    this.divEditHome.Visible = false;
+                }
             }
         }
         private string generateHomeShowingHTML(HomeShowing hs)
         {
             User buyer = DBOperations.GetUser(hs.BuyerEmail);
-            string htmlStr = 
+            string htmlStr =
                 $"<li>" +
                 $"<p>{buyer.FullName} has scheduled a home showing on {hs.Date} at {hs.Time}</p>" +
                 $"<p>Contact the buyer via email at {buyer.Email}</p>" +
@@ -245,7 +249,7 @@ namespace RealEstateWeb
         }
         private string generateFeedbackHTML(HomeFeedback hf)
         {
-            string htmlStr = 
+            string htmlStr =
                 $"<li>" +
                 $"<p><span>Rating: </span>{hf.Rating}/5</p>" +
                 $"<p><span>Feedback on price: </span>{hf.PriceFeedback}</p>" +
