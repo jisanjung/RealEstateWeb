@@ -17,7 +17,7 @@
           <a class="nav-link" href="frmSellerHomes.aspx">Manage Homes</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="frmOffers.aspx">Offers</a>
+          <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="agentOfferCount"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
@@ -34,7 +34,7 @@
           <a class="nav-link" href="frmSellerHomes.aspx">Manage Homes</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="frmOffers.aspx">Offers</a>
+          <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="sellerOfferCount"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
@@ -48,7 +48,7 @@
           <a class="nav-link" href="#">Scheduled Showings</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="frmOffersBuyer.aspx">Your Offers</a>
+          <a class="nav-link" href="frmOffersBuyer.aspx">Your Offers <span runat="server" id="buyerOfferCount"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
