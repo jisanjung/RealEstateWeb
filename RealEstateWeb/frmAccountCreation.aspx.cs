@@ -72,7 +72,7 @@ namespace RealEstateWeb
                 User newUser = new User();
                 newUser.Email = txtEmail.Text;
                 newUser.FullName = txtFullName.Text;
-                newUser.Password = txtPassword.Text;
+                newUser.Password = Security.Encrypt(txtPassword.Text);
                 newUser.Type = ddlType.SelectedValue;
                 newUser.Address = txtCurrAddress.Text;
                 newUser.SecurityAnswerOne = txtSecureQuestion1.Text;
@@ -90,7 +90,7 @@ namespace RealEstateWeb
                 {
                     lblError.Text = "Account created!";
                     HttpCookie myCookie = new HttpCookie("user_cookie");
-                    myCookie.Values["user_email"] = txtEmailLogin.Text;
+                    myCookie.Values["user_email"] = txtEmail.Text;
                     myCookie.Values["user_type"] = ddlType.SelectedValue;
 
                     if (chkRememberSignup.Checked)
@@ -118,7 +118,7 @@ namespace RealEstateWeb
                     // account exists
                     accountExists = true;
                     string dbReturnedEmail = u.Email;
-                    string dbReturnedPassword = u.Password;
+                    string dbReturnedPassword = Security.Decrypt(u.Password);
                     string dbReturnedType = u.Type;
 
                     if (dbReturnedPassword.CompareTo(txtPasswordLogin.Text) == 0)
@@ -219,8 +219,8 @@ namespace RealEstateWeb
                     String strFROM = "homesrus@temple.edu";
                     String strSubject = "Homes R Us - Forgot password";
 
-                    string body = "your password is: " + myds.Tables[0].Rows[0][0].ToString();
-                    lblError.Text = "Verification code has been sent. Check your Email.";
+                    string body = "your password is: " + Security.Decrypt(myds.Tables[0].Rows[0][0].ToString());
+                    lblError.Text = "Password has been sent to your email. Check your Email.";
                     objEmail.SendMail(strTO, strFROM, strSubject, body);
                 }
             }
