@@ -20,11 +20,18 @@ namespace RealEstateWeb
             if (Request.Cookies["user_cookie"] != null)
             {
                 string userName = Request.Cookies["user_cookie"]["user_email"];
-
-                List<Home> sellerHomes = DBOperations.GetSellerHomes(userName);
-                if (!IsPostBack)
+                string userType = Request.Cookies["user_cookie"]["user_type"];
+                
+                if (userType.CompareTo("Buyer") == 0)
                 {
-                    this.displayHomes(sellerHomes);
+                    Response.Redirect("frmErrorPage.aspx");
+                } else
+                {
+                    List<Home> sellerHomes = DBOperations.GetSellerHomes(userName);
+                    if (!IsPostBack)
+                    {
+                        this.displayHomes(sellerHomes);
+                    }
                 }
             }
             else

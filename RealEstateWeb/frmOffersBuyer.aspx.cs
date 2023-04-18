@@ -17,27 +17,35 @@ namespace RealEstateWeb
         {
             if (Request.Cookies["user_cookie"] != null)
             {
-                string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
-
-                List<HomeOffer> acceptedOffers = new List<HomeOffer>();
-                string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
-                foreach (HomeOffer ho in allHomeOffers)
+                string userType = Request.Cookies["user_cookie"]["user_type"];
+                if (userType.CompareTo("Buyer") == 0)
                 {
-                    if (ho.Accepted && ho.BuyerEmail.CompareTo(buyerEmail) == 0)
+                    string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
+
+                    List<HomeOffer> acceptedOffers = new List<HomeOffer>();
+                    string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
+                    foreach (HomeOffer ho in allHomeOffers)
                     {
-                        acceptedOffers.Add(ho);
+                        if (ho.Accepted && ho.BuyerEmail.CompareTo(buyerEmail) == 0)
+                        {
+                            acceptedOffers.Add(ho);
+                        }
                     }
-                }
 
-                if (acceptedOffers.Count > 0)
-                {
-                    this.lblTitle.Text = "Congratulations! You are soon to be a home owner.";
+                    if (acceptedOffers.Count > 0)
+                    {
+                        this.lblTitle.Text = "Congratulations! You are soon to be a home owner.";
+                    }
+                    else
+                    {
+                        this.ucOffersBuyer.Visible = false;
+                        this.lblTitle.Text = "Looks like you currently have no offers accepted :(";
+                    }
                 } else
                 {
-                    this.ucOffersBuyer.Visible = false;
-                    this.lblTitle.Text = "Looks like you currently have no offers accepted :(";
+                    Response.Redirect("frmErrorPage.aspx");
                 }
             }
         }
