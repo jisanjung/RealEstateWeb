@@ -45,6 +45,8 @@ namespace RealEstateWeb
             }
             if (!accountAlreadyExists)
             {
+                this.divVerify.Visible = true;
+
                 // account doesn't exist yet
                 Email objEmail = new Email();
                 String strTO = txtEmail.Text;
@@ -241,6 +243,24 @@ namespace RealEstateWeb
             resultInt = int.Parse(arr[rnd, 1]);
             lblForgot.Text = resultStr;
 
+        }
+
+        protected void linkbtnCreateAccount_Click(object sender, EventArgs e)
+        {
+            this.divSignup.Visible = true;
+            this.divLogin.Visible = false;
+
+            this.divOpenSignup.Visible = false;
+            this.divOpenLogin.Visible = true;
+        }
+
+        protected void linkbtnLogin_Click(object sender, EventArgs e)
+        {
+            this.divSignup.Visible = false;
+            this.divLogin.Visible = true;
+
+            this.divOpenSignup.Visible = true;
+            this.divOpenLogin.Visible = false;
         }
     }
 }
