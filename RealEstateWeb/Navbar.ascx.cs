@@ -31,7 +31,7 @@ namespace RealEstateWeb
                     this.sellerLinks.Visible = false;
                     this.buyerLinks.Visible = false;
 
-                    this.agentOfferCount.InnerText = this.getOffersCount(userEmail, userType) == 0 ? "" : this.getOffersCount(userEmail, userType).ToString();
+                    this.agentOfferCount.InnerText = DBOperations.GetOfferCount(userEmail, userType) == 0 ? "" : DBOperations.GetOfferCount(userEmail, userType).ToString();
 
                 }
                 else if (userType.CompareTo("Seller") == 0)
@@ -41,7 +41,7 @@ namespace RealEstateWeb
                     this.agentLinks.Visible = false;
                     this.buyerLinks.Visible = false;
 
-                    this.sellerOfferCount.InnerText = this.getOffersCount(userEmail, userType) == 0 ? "" : this.getOffersCount(userEmail, userType).ToString();
+                    this.sellerOfferCount.InnerText = DBOperations.GetOfferCount(userEmail, userType) == 0 ? "" : DBOperations.GetOfferCount(userEmail, userType).ToString();
 
                 }
                 else if (userType.CompareTo("Buyer") == 0)
@@ -51,7 +51,7 @@ namespace RealEstateWeb
                     this.agentLinks.Visible = false;
                     this.sellerLinks.Visible = false;
 
-                    this.buyerOfferCount.InnerText = this.getOffersCount(userEmail, userType) == 0 ? "" : this.getOffersCount(userEmail, userType).ToString();
+                    this.buyerOfferCount.InnerText = DBOperations.GetOfferCount(userEmail, userType) == 0 ? "" : DBOperations.GetOfferCount(userEmail, userType).ToString();
                 }
             }
         }
@@ -64,31 +64,6 @@ namespace RealEstateWeb
             Response.Cookies.Add(cookie);
 
             Response.Redirect("frmAccountCreation.aspx");
-        }
-        private int getOffersCount(string userEmail, string userType)
-        {
-            int count;
-            string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
-            List<HomeOffer> filteredOffers = new List<HomeOffer>();
-
-            foreach (HomeOffer ho in allHomeOffers)
-            {
-                if (userType.CompareTo("Buyer") == 0 && ho.BuyerEmail.CompareTo(userEmail) == 0 && ho.Accepted)
-                {
-                    filteredOffers.Add(ho);
-                }
-                if (userType.CompareTo("Seller") == 0 && ho.SellerEmail.CompareTo(userEmail) == 0 && !ho.Accepted)
-                {
-                    filteredOffers.Add(ho);
-                }
-                if (userType.CompareTo("Agent") == 0 && ho.SellerEmail.CompareTo(userEmail) == 0 && !ho.Accepted)
-                {
-                    filteredOffers.Add(ho);
-                }
-            }
-            return filteredOffers.Count;
         }
     }
 }
