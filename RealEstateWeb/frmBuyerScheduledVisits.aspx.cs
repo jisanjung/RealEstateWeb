@@ -11,7 +11,14 @@ namespace RealEstateWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.Cookies["user_cookie"] != null)
+            {
+                string userType = Request.Cookies["user_cookie"]["user_type"];
+                if (userType.CompareTo("Buyer") != 0)
+                {
+                    Response.Redirect("frmErrorPage.aspx");
+                }
+            }
         }
     }
 }

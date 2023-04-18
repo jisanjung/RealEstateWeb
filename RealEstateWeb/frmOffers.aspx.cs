@@ -15,13 +15,23 @@ namespace RealEstateWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
-
-            if (!IsPostBack)
+            if (Request.Cookies["user_cookie"] != null)
             {
-                this.displayOffers(allHomeOffers);
+                string userType = Request.Cookies["user_cookie"]["user_type"];
+                if (userType.CompareTo("Buyer") == 0)
+                {
+                    Response.Redirect("frmErrorPage.aspx");
+                } else
+                {
+                    string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
+
+                    if (!IsPostBack)
+                    {
+                        this.displayOffers(allHomeOffers);
+                    }
+                }
             }
         }
         protected void btn_ViewOffer(object sender, CommandEventArgs e)

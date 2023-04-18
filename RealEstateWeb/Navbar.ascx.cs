@@ -44,5 +44,15 @@ namespace RealEstateWeb
                 }
             }
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            // how to delete cookies in asp, just set the expiration date to past date: https://stackoverflow.com/questions/6635349/how-to-delete-cookies-on-an-asp-net-website
+            HttpCookie cookie = new HttpCookie("user_cookie");
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie);
+
+            Response.Redirect("frmAccountCreation.aspx");
+        }
     }
 }

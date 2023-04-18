@@ -71,6 +71,7 @@
     <Content Include="frmBuyerScheduledVisits.aspx" />
     <Content Include="frmCreateHome.aspx" />
     <Content Include="frmDashboard.aspx" />
+    <Content Include="frmErrorPage.aspx" />
     <Content Include="frmOffers.aspx" />
     <Content Include="frmOffersBuyer.aspx" />
     <Content Include="frmSearch.aspx" />
@@ -112,6 +113,13 @@
     </Compile>
     <Compile Include="frmDashboard.aspx.designer.cs">
       <DependentUpon>frmDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmErrorPage.aspx.cs">
+      <DependentUpon>frmErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmErrorPage.aspx.designer.cs">
+      <DependentUpon>frmErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmOffers.aspx.cs">
       <DependentUpon>frmOffers.aspx</DependentUpon>

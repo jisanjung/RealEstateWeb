@@ -22,30 +22,30 @@ namespace RealEstateWeb
         SqlCommand objCommand = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Request.Cookies["user_cookie"] == null)
+            if (Request.Cookies["user_cookie"] != null)
             {
-                Response.Redirect("frmAccountCreation.aspx");
+                if (!IsPostBack)
+                {
+                    List<Room> rooms = new List<Room>();
+                    ViewState["rooms"] = rooms;
+                }
+                // display seller account creation if user type is agent
+                string userType = Request.Cookies["user_cookie"]["user_type"];
+                if (userType.CompareTo("Agent") == 0)
+                {
+                    this.divCreateSellerAcc.Visible = true;
+                    this.divAgentInfo.Visible = true;
+                }
+
+                // redirect a buyer trying to access
+                if (userType.CompareTo("Buyer") == 0)
+                {
+                    Response.Redirect("frmErrorPage.aspx");
+                }
             }
             else
             {
-                loginCookie = Request.Cookies["user_cookie"];
-            }
-
-            if (!IsPostBack)
-            {
-                List<Room> rooms = new List<Room>();
-                ViewState["rooms"] = rooms;
-            }
-
-            HttpCookie cookie = new HttpCookie("userType");
-            cookie.Value = "agent";
-            Response.Cookies.Add(cookie);
-            // display seller account creation if user type is agent
-            if (Request.Cookies["userType"] != null && Request.Cookies["userType"].Value.CompareTo("agent") == 0)
-            {
-                this.divCreateSellerAcc.Visible = true;
-                this.divAgentInfo.Visible = true;
+                Response.Redirect("frmAccountCreation.aspx");
             }
         }
 
