@@ -25,6 +25,7 @@ namespace RealEstateWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // take user straight to their dashboard if they already have a cookie stored
             if (Request.Cookies["user_cookie"] != null)
             {
                 Response.Redirect("frmDashboard.aspx");

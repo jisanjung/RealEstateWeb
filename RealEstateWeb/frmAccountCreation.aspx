@@ -14,11 +14,11 @@
             <h1>Homes R Us</h1>
         </div>        
     
-    <div class="login" style="border:solid 1px; display: inline-block">
+    <div class="login" style="border:solid 1px; display: inline-block" runat="server">
         email
-        <asp:TextBox ID="txtEmailLogin" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtEmailLogin" runat="server" required></asp:TextBox><br />
         password
-        <asp:TextBox ID="txtPasswordLogin" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtPasswordLogin" runat="server" required></asp:TextBox>
         <br />
         <asp:CheckBox ID="chkRememberLogin" runat="server" Text="Remember Me" />
         <br />
@@ -40,28 +40,27 @@
     </div>
     <div class="signup" style="border:solid 1px; margin:1rem; float:">
         email
-        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtEmail" runat="server" required></asp:TextBox><br />
         password
-        <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtPassword" runat="server" required></asp:TextBox><br />
         current address
-        <asp:TextBox ID="txtCurrAddress" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtCurrAddress" runat="server" required></asp:TextBox><br />
         Full name
-        <asp:TextBox ID="txtFullName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtFullName" runat="server" required></asp:TextBox>
         <br />
         What kind of user are you?<br />
         <asp:DropDownList ID="ddlType" runat="server">
-            <asp:ListItem></asp:ListItem>
             <asp:ListItem Value="Agent"></asp:ListItem>
             <asp:ListItem Value="Buyer"></asp:ListItem>
             <asp:ListItem Value="Seller"></asp:ListItem>
         </asp:DropDownList>
         <br />
         <h4>Security Question 1: What is your mother's maiden name?</h4>
-        <asp:TextBox ID="txtSecureQuestion1" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtSecureQuestion1" runat="server" required></asp:TextBox><br />
         <h4>Security Question 2: What University did/do you attend?</h4>
-        <asp:TextBox ID="txtSecureQuestion2" runat="server"></asp:TextBox><br />
+        <asp:TextBox ID="txtSecureQuestion2" runat="server" required></asp:TextBox><br />
         <h4>Security Question 3: What is your favorite food?</h4>
-        <asp:TextBox ID="txtSecureQuestion3" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtSecureQuestion3" runat="server" required></asp:TextBox>
         <br />
         <br />
         <asp:CheckBox ID="chkRememberSignup" runat="server" Text="Remember Me" />
