@@ -17,14 +17,14 @@
             <div>
                 <div class="form-group">
                     <p>Address</p>
-                    <asp:TextBox ID="txtStreetAddress" runat="server" placeholder="Enter Street Address"></asp:TextBox>
-                    <asp:TextBox ID="txtCity" runat="server" placeholder="Enter City"></asp:TextBox>
-                    <asp:TextBox ID="txtState" runat="server" placeholder="Enter State"></asp:TextBox>
-                    <asp:TextBox ID="txtZip" runat="server" placeholder="Enter Zip"></asp:TextBox>
+                    <asp:TextBox ID="txtStreetAddress" runat="server" placeholder="Enter Street Address" required></asp:TextBox>
+                    <asp:TextBox ID="txtCity" runat="server" placeholder="Enter City" required></asp:TextBox>
+                    <asp:TextBox ID="txtState" runat="server" placeholder="Enter State" required></asp:TextBox>
+                    <asp:TextBox ID="txtZip" runat="server" placeholder="Enter Zip" required></asp:TextBox>
                 </div>
                 <div>
                     <p>About your Property</p>
-                    <asp:TextBox ID="txtYearBuilt" runat="server" placeholder="What year was this home built?"></asp:TextBox>
+                    <asp:TextBox ID="txtYearBuilt" runat="server" placeholder="What year was this home built?" required></asp:TextBox>
                     <label>Type</label>
                     <asp:DropDownList ID="ddlPropertyType" runat="server">
                         <asp:ListItem>Single Family</asp:ListItem>
@@ -117,7 +117,7 @@
                     <label>Description About the Home</label>
                     <textarea id="taHomeDescription" cols="20" rows="5" placeholder="Comment about this home" runat="server"></textarea>
                     <label>Asking Price</label>
-                    <asp:TextBox ID="txtPrice" runat="server" placeholder="Set the Starter Price"></asp:TextBox>
+                    <asp:TextBox ID="txtPrice" runat="server" placeholder="Set the Starter Price" required></asp:TextBox>
                 </div>
                 <div>
                     <p>Upload an Image for the Home</p>
@@ -128,20 +128,20 @@
                 <div>
                     <p>About the Seller / Homeowner</p>
                     <label>Seller / Homeowner Email</label>
-                    <asp:TextBox ID="txtSellerEmail" runat="server" placeholder="Enter Seller's Email"></asp:TextBox>
+                    <asp:TextBox ID="txtSellerEmail" runat="server" placeholder="Enter Seller's Email" required></asp:TextBox>
                     <div id="divAgentInfo" runat="server" visible="false">
                         <label>Real Estate Agent Email</label>
-                        <asp:TextBox ID="txtAgentEmail" runat="server" placeholder="Enter Real Estate Agent Email"></asp:TextBox>
+                        <asp:TextBox ID="txtAgentEmail" runat="server" placeholder="Enter Real Estate Agent Email" required></asp:TextBox>
                         <label>Real Estate Company Name</label>
                         <asp:TextBox ID="txtCompanyName" runat="server" placeholder="Enter Company Name"></asp:TextBox>
                     </div>
                     <div id="divCreateSellerAcc" runat="server" visible="false">
                         <label>Password</label>
-                        <input id="sellerPassword" type="password" runat="server" placeholder="Enter a Password for the Seller"/>
+                        <input id="sellerPassword" type="password" runat="server" placeholder="Enter a Password for the Seller" required/>
                         <label>Seller's Full Name</label>
-                        <asp:TextBox ID="txtSellerName" runat="server" placeholder="Enter Seller's Full Name"></asp:TextBox>
+                        <asp:TextBox ID="txtSellerName" runat="server" placeholder="Enter Seller's Full Name" required></asp:TextBox>
                         <label>Seller's Home Address</label>
-                        <asp:TextBox ID="txtAddress" runat="server" placeholder="Enter Seller's Address"></asp:TextBox>
+                        <asp:TextBox ID="txtAddress" runat="server" placeholder="Enter Seller's Address" required></asp:TextBox>
                     </div>
                 </div>
             </div>

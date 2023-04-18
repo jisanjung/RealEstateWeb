@@ -14,7 +14,7 @@
             <h1>Homes R Us</h1>
         </div>        
     
-    <div class="login" style="border:solid 1px; display: inline-block" runat="server">
+    <div class="login" id="divLogin" style="border:solid 1px; display: inline-block" runat="server">
         email
         <asp:TextBox ID="txtEmailLogin" runat="server" required></asp:TextBox><br />
         password
@@ -38,7 +38,8 @@
             <br />
         </div>
     </div>
-    <div class="signup" style="border:solid 1px; margin:1rem;" runat="server">
+    <div id="divOpenSignup" runat="server">or <asp:LinkButton ID="linkbtnCreateAccount" runat="server" OnClick="linkbtnCreateAccount_Click">create an account</asp:LinkButton></div>
+    <div class="signup" id="divSignup" style="border:solid 1px; margin:1rem;" runat="server" visible="false">
         email
         <asp:TextBox ID="txtEmail" runat="server" required></asp:TextBox><br />
         password
@@ -67,7 +68,10 @@
         <br />
         <asp:Button ID="btnSignup" runat="server" Text="Sign up" OnClick="btnSignup_Click" />        
     </div>
-    <div class="verification">
+    <div id="divOpenLogin" runat="server" visible="false">
+        or <asp:LinkButton ID="linkbtnLogin" runat="server" OnClick="linkbtnLogin_Click">login</asp:LinkButton>
+    </div>
+    <div class="verification" id="divVerify" runat="server" visible="false">
         <br />
         <asp:TextBox ID="txtVerification" runat="server"></asp:TextBox>
         <asp:Button ID="btnVerify" runat="server" Text="Verify" OnClick="btnVerify_Click" />
