@@ -100,6 +100,9 @@ namespace RealEstateWeb
                     Response.Redirect("frmDashboard.aspx");
 
                 }
+            } else
+            {
+                this.lblError.Text = "Incorrect verification code";
             }
         }
 
