@@ -78,6 +78,36 @@ namespace HomeLibrary
 
             return user;
         }
+
+        public static List<User> GetAllUsers()
+        {
+            List<User> allUsers = new List<User>();
+            DBConnect connection = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetAllUsers";
+
+            DataSet ds = connection.GetDataSet(objCommand);
+            DataTable dt = ds.Tables[0];
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                User u = new User();
+                u.Email = dt.Rows[i]["email"].ToString();
+                u.FullName = dt.Rows[i]["fullname"].ToString();
+                u.Password = dt.Rows[i]["user_password"].ToString();
+                u.Type = dt.Rows[i]["user_type"].ToString();
+                u.Address = dt.Rows[i]["home_address"].ToString();
+                u.SecurityAnswerOne = dt.Rows[i]["security_answer1"].ToString();
+                u.SecurityAnswerTwo = dt.Rows[i]["security_answer2"].ToString();
+                u.SecurityAnswerThree = dt.Rows[i]["security_answer3"].ToString();
+                u.IsVerified = bool.Parse(dt.Rows[i]["is_verified"].ToString());
+                allUsers.Add(u);
+            }
+            return allUsers;
+        }
+
         public static List<Home> GetSellerHomes(string email)
         {
             DBConnect connection = new DBConnect();

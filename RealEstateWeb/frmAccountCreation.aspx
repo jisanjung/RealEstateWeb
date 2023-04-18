@@ -38,7 +38,7 @@
             <br />
         </div>
     </div>
-    <div class="signup" style="border:solid 1px; margin:1rem; float:">
+    <div class="signup" style="border:solid 1px; margin:1rem;" runat="server" visible="false">
         email
         <asp:TextBox ID="txtEmail" runat="server" required></asp:TextBox><br />
         password

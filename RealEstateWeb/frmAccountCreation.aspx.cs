@@ -108,28 +108,20 @@ namespace RealEstateWeb
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_Login";
-
-            if (!string.IsNullOrEmpty(txtEmailLogin.Text) && !string.IsNullOrEmpty(txtPasswordLogin.Text))
+            bool accountExists = false;
+            foreach (User u in DBOperations.GetAllUsers())
             {
-
-                SqlParameter emailParam = ExtraUtil.CreateParamVarChar(txtEmailLogin.Text, "email", 100);
-                SqlParameter passwordParam = ExtraUtil.CreateParamVarChar(txtPasswordLogin.Text, "password", 100);
-
-                objCommand.Parameters.Add(emailParam);
-                objCommand.Parameters.Add(passwordParam);
-
-                DataSet myds = objDB.GetDataSetUsingCmdObj(objCommand);
-
-                try
+                if (u.Email.CompareTo(txtEmailLogin.Text) == 0)
                 {
-                    string dbReturnedEmail = myds.Tables[0].Rows[0][1].ToString();
-                    string dbReturnedType = myds.Tables[0].Rows[0][4].ToString();
+                    // account exists
+                    accountExists = true;
+                    string dbReturnedEmail = u.Email;
+                    string dbReturnedPassword = u.Password;
+                    string dbReturnedType = u.Type;
 
-                    //no need to check the password because the SP checks already and if they do not match then null is returned
-                    if (dbReturnedEmail.Equals(txtEmailLogin.Text))
+                    if (dbReturnedPassword.CompareTo(txtPasswordLogin.Text) == 0)
                     {
+                        // account exists, password is correct
                         HttpCookie myCookie = new HttpCookie("user_cookie");
                         myCookie.Values["user_email"] = dbReturnedEmail;
                         myCookie.Values["user_type"] = dbReturnedType;
@@ -141,22 +133,17 @@ namespace RealEstateWeb
 
                         Response.Cookies.Add(myCookie);
                         Response.Redirect("frmDashboard.aspx");
-
-
                     }
-
+                    else
+                    {
+                        // account exists, password is incorrect
+                        this.lblError.Text = "Password is incorrect";
+                    }
                 }
-                catch (Exception ex)
-                {
-                    lblError.Text = "Fix username or password; account might not exist";
-                    objCommand.Parameters.Clear();
-                    objCommand.CommandText = " ";
-                }
-
             }
-            else
+            if (!accountExists)
             {
-                lblError.Text = "Account not found, please double check all your information";
+                this.lblError.Text = "Account does not exist";
             }
         }
 
