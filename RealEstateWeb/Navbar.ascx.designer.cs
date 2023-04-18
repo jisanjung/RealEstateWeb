@@ -24,6 +24,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl agentLinks;
 
         /// <summary>
+        /// agentOfferCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl agentOfferCount;
+
+        /// <summary>
         /// sellerLinks control.
         /// </summary>
         /// <remarks>
@@ -33,6 +42,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sellerLinks;
 
         /// <summary>
+        /// sellerOfferCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sellerOfferCount;
+
+        /// <summary>
         /// buyerLinks control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl buyerLinks;
+
+        /// <summary>
+        /// buyerOfferCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl buyerOfferCount;
 
         /// <summary>
         /// btnLogout control.
