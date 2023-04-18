@@ -102,22 +102,25 @@ namespace RealEstateWeb
 
         protected void btnSubmitHome_Click(object sender, EventArgs e)
         {
-            // make a home
-            Home home = this.makeHomeFromInput();
-            // serialize into json string
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            String jsonHome = js.Serialize(home);
-            // insert into db
-            int status = int.Parse(RestClient.Post("http://localhost:60855/api/homes/Add", jsonHome));
+            if (this.inputsAreValid())
+            {
+                // make a home
+                Home home = this.makeHomeFromInput();
+                // serialize into json string
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                String jsonHome = js.Serialize(home);
+                // insert into db
+                int status = int.Parse(RestClient.Post("http://localhost:60855/api/homes/Add", jsonHome));
 
-            if (status < 1)
-            {
-                this.lblAlert.Text = "There was a problem posting this home...";
-            }
-            else
-            {
-                this.lblAlert.Text = "Home posted successfully!";
-                this.createSellerAccount();
+                if (status < 1)
+                {
+                    this.lblAlert.Text = "There was a problem posting this home...";
+                }
+                else
+                {
+                    this.lblAlert.Text = "Home posted successfully!";
+                    this.createSellerAccount();
+                }
             }
         }
 
@@ -158,7 +161,7 @@ namespace RealEstateWeb
                     amenities += $"{item.Value}, ";
                 }
             }
-            amenities = amenities.Substring(0, amenities.Length - 2);
+            amenities = String.IsNullOrEmpty(amenities) ? "None" : amenities.Substring(0, amenities.Length - 2);
 
             home.OtherAmenities = amenities;
 
@@ -202,6 +205,33 @@ namespace RealEstateWeb
                     Response.Write("insert user success");
                 }
             }
+        }
+        private bool inputsAreValid()
+        {
+            bool toReturn = true;
+
+            int value;
+            string errorText = "";
+            if (!int.TryParse(this.txtZip.Text, out value))
+            {
+                toReturn = false;
+                errorText += "Zip code must be a number, ";
+            }
+            if (!int.TryParse(this.txtYearBuilt.Text, out value))
+            {
+                toReturn = false;
+                errorText += "Year built must be a number, ";
+            }
+            if (!int.TryParse(this.txtPrice.Text, out value))
+            {
+                toReturn = false;
+                errorText += "Price must be a number, ";
+            }
+
+            errorText = String.IsNullOrEmpty(errorText) ? "" : errorText.Substring(0, errorText.Length - 2);
+            this.lblAlert.Text = errorText;
+
+            return toReturn;
         }
     }
 }
