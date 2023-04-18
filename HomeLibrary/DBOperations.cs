@@ -184,5 +184,23 @@ namespace HomeLibrary
 
             return status;
         }
+
+        public static DataTable GetBuyerHomes(string email)
+        {
+            DBConnect connection = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            List<HomeShowing> sellerHomes = new List<HomeShowing>();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetBuyerHomeShowing";
+
+            SqlParameter emailParam = new SqlParameter("@email", email);
+            objCommand.Parameters.Add(emailParam);
+
+            DataSet ds = connection.GetDataSet(objCommand);
+            DataTable dt = ds.Tables[0];
+
+            return dt;
+        }
     }
 }

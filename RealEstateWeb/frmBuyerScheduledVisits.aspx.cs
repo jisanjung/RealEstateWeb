@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using HomeLibrary;
+
 namespace RealEstateWeb
 {
     public partial class frmBuyerScheduledVisits : System.Web.UI.Page
@@ -19,6 +21,8 @@ namespace RealEstateWeb
                     Response.Redirect("frmErrorPage.aspx");
                 }
             }
+            gvHomes.DataSource = DBOperations.GetBuyerHomes(Request.Cookies["user_cookie"]["user_email"]);
+            gvHomes.DataBind();
         }
     }
 }
