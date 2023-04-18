@@ -146,6 +146,7 @@
         <%--<uc:Navbar runat="server" id="navbar"/>--%>
         <h1>Search</h1>
         <div id="sideFilter">
+            <asp:Label ID="lblSearchAlert" runat="server"></asp:Label>
             <div>
                 <label>Location</label>
                 <asp:TextBox ID="txtZipCode" runat="server" placeholder="Enter Zip Code"></asp:TextBox>

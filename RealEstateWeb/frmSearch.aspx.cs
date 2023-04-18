@@ -37,8 +37,11 @@ namespace RealEstateWeb
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            List<Home> filteredHomes = this.filterHomes();
-            this.displayHomes(filteredHomes);
+            if (this.isSearchValid())
+            {
+                List<Home> filteredHomes = this.filterHomes();
+                this.displayHomes(filteredHomes);
+            }
         }
         protected void btn_ViewHome(object sender, CommandEventArgs e)
         {
@@ -252,49 +255,67 @@ namespace RealEstateWeb
         {
             if (Request.Cookies["user_cookie"] != null)
             {
-                int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
-                string saleType = this.ddlSaleType.SelectedValue;
-
-                string contingencies = "";
-                foreach (ListItem item in this.cblContingencies.Items)
+                float offerAmount;
+                if (float.TryParse(this.txtOfferAmount.Text, out offerAmount))
                 {
-                    if (item.Selected)
+                    int homeId = int.Parse(this.lblHomeProfileHomeId.Text);
+                    string saleType = this.ddlSaleType.SelectedValue;
+
+                    string contingencies = "";
+                    foreach (ListItem item in this.cblContingencies.Items)
                     {
-                        contingencies += $"{item.Value}, ";
+                        if (item.Selected)
+                        {
+                            contingencies += $"{item.Value}, ";
+                        }
                     }
-                }
-                contingencies = String.IsNullOrEmpty(contingencies) ? "None" : contingencies.Substring(0, contingencies.Length - 2);
-                float offerAmount = float.Parse(this.txtOfferAmount.Text);
-                string moveinDate = this.txtMoveinDate.Text;
-                bool sellHomeFirst = this.chkSellHomeFirst.Checked;
-                string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
-                string agentEmail = this.lblHomeProfileAgentEmail.Text;
 
-                HomeOffer ho = new HomeOffer();
-                ho.HomeId = homeId;
-                ho.SaleType = saleType;
-                ho.Contingencies = contingencies;
-                ho.OfferAmount = offerAmount;
-                ho.MoveInDate = moveinDate;
-                ho.SellHomeFirst = sellHomeFirst;
-                ho.BuyerEmail = buyerEmail;
-                ho.SellerEmail = agentEmail;
-                ho.Accepted = false;
+                    contingencies = String.IsNullOrEmpty(contingencies) ? "None" : contingencies.Substring(0, contingencies.Length - 2);
+                    string moveinDate = this.txtMoveinDate.Text;
+                    bool sellHomeFirst = this.chkSellHomeFirst.Checked;
+                    string buyerEmail = Request.Cookies["user_cookie"]["user_email"];
+                    string agentEmail = this.lblHomeProfileAgentEmail.Text;
 
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                String jsonOffer = js.Serialize(ho);
+                    HomeOffer ho = new HomeOffer();
+                    ho.HomeId = homeId;
+                    ho.SaleType = saleType;
+                    ho.Contingencies = contingencies;
+                    ho.OfferAmount = offerAmount;
+                    ho.MoveInDate = moveinDate;
+                    ho.SellHomeFirst = sellHomeFirst;
+                    ho.BuyerEmail = buyerEmail;
+                    ho.SellerEmail = agentEmail;
+                    ho.Accepted = false;
 
-                int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeoffers/Add/", jsonOffer));
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    String jsonOffer = js.Serialize(ho);
 
-                if (status < 1)
+                    int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeoffers/Add/", jsonOffer));
+
+                    if (status < 1)
+                    {
+                        this.lblOfferAlert.Text = "Offer could not be sent...";
+                    }
+                    else
+                    {
+                        this.lblOfferAlert.Text = "Offer sent successfully";
+                    }
+                } else
                 {
-                    this.lblOfferAlert.Text = "Offer could not be sent...";
-                }
-                else
-                {
-                    this.lblOfferAlert.Text = "Offer sent successfully";
+                    this.lblOfferAlert.Text = "Offer must be a number";
                 }
             }
+        }
+
+        private bool isSearchValid()
+        {
+            bool toReturn = true;
+            int value;
+            if (!int.TryParse(this.txtZipCode.Text, out value) && !int.TryParse(this.txtPriceRange.Text, out value) && !int.TryParse(this.txtHomeSize.Text, out value) && !int.TryParse(this.txtMinBedrooms.Text, out value) && !int.TryParse(this.txtMinBathrooms.Text, out value))
+            {
+                this.lblSearchAlert.Text = "Inputs must be numbers";
+            }
+            return toReturn;
         }
     }
 }
