@@ -34,21 +34,22 @@ namespace RealEstateWeb
 
         protected void btnSignup_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtEmail.Text)
-                && !string.IsNullOrEmpty(txtPassword.Text)
-                && !string.IsNullOrEmpty(txtFullName.Text)
-                && !string.IsNullOrEmpty(txtCurrAddress.Text)
-                && !string.IsNullOrEmpty(txtSecureQuestion1.Text)
-                && !string.IsNullOrEmpty(txtSecureQuestion2.Text)
-                && !string.IsNullOrEmpty(txtSecureQuestion3.Text)
-                && !string.IsNullOrEmpty(ddlType.SelectedValue.ToString())
-                )
+            bool accountAlreadyExists = false;
+            foreach (User u in DBOperations.GetAllUsers())
             {
+                if (u.Email.CompareTo(txtEmail.Text) == 0)
+                {
+                    accountAlreadyExists = true;
+                    this.lblError.Text = "Account already exists";
+                }
+            }
+            if (!accountAlreadyExists)
+            {
+                // account doesn't exist yet
                 Email objEmail = new Email();
                 String strTO = txtEmail.Text;
                 String strFROM = "homesrus@temple.edu";
                 String strSubject = "Verify Account";
-
                 try
                 {
                     rand = RandomNumber.randInt();
@@ -59,10 +60,6 @@ namespace RealEstateWeb
                 {
                     lblError.Text = ex.Message;
                 }
-            }
-            else
-            {
-                lblError.Text = "Email already exists or there are some missing requirements";
             }
         }
 

@@ -29,16 +29,16 @@
         <div class="forgotFunction" id="forgotFun" runat="server" visible="false" style="display:block; border: solid 1px; margin: 1rem;">
             <br />
             Enter your Email:
-            <asp:TextBox ID="txtForgotEmail" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtForgotEmail" runat="server" required></asp:TextBox>
             <asp:Label ID="lblForgot" runat="server" Text="Answer Correctly and we'll send you your email"></asp:Label>
             <br />
-            <asp:TextBox ID="txtForgotAnswer" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtForgotAnswer" runat="server" required></asp:TextBox>
             <br />
             <asp:Button ID="btnForgotPassword" runat="server" OnClick="btnForgotPassword_Click" Text="Forgot Password" />
             <br />
         </div>
     </div>
-    <div class="signup" style="border:solid 1px; margin:1rem;" runat="server" visible="false">
+    <div class="signup" style="border:solid 1px; margin:1rem;" runat="server">
         email
         <asp:TextBox ID="txtEmail" runat="server" required></asp:TextBox><br />
         password
