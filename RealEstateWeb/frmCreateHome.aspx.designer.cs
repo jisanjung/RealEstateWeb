@@ -42,6 +42,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.Label lblAlert;
 
         /// <summary>
+        /// lblCreateSellerAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCreateSellerAlert;
+
+        /// <summary>
         /// txtStreetAddress control.
         /// </summary>
         /// <remarks>
@@ -384,15 +393,6 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.TextBox txtImgCaption;
 
         /// <summary>
-        /// txtSellerEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSellerEmail;
-
-        /// <summary>
         /// divAgentInfo control.
         /// </summary>
         /// <remarks>
@@ -418,6 +418,24 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCompanyName;
+
+        /// <summary>
+        /// pCreateSeller control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pCreateSeller;
+
+        /// <summary>
+        /// txtSellerEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSellerEmail;
 
         /// <summary>
         /// divCreateSellerAcc control.

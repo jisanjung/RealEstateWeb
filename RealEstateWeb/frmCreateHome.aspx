@@ -11,6 +11,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container">
             <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblCreateSellerAlert" runat="server" Text=""></asp:Label>
             <div>
                 <h1>Post a Home For Sale</h1>
             </div>
@@ -83,7 +84,7 @@
                                     <asp:TextBox ID="txtBedroomLength" runat="server" placeholder="Bedroom Length"></asp:TextBox>
                                     <span>by</span>
                                     <asp:TextBox ID="txtBedroomWidth" runat="server" placeholder="Bedroom Width"></asp:TextBox>
-                                    <asp:Button ID="btnAddBedroom" runat="server" Text="Add" OnClick="btnAddBedroom_Click" />
+                                    <asp:Button ID="btnAddBedroom" runat="server" Text="Add" OnClick="btnAddBedroom_Click" formnovalidate="formnovalidate"/>
                                 </div>
                                 <div>
                                     <label>Bathrooms (<asp:Label ID="lblBRCount" runat="server" Text="0"></asp:Label>)</label>
@@ -95,7 +96,7 @@
                                     <asp:TextBox ID="txtBRLength" runat="server" placeholder="Bathroom Length"></asp:TextBox>
                                     <span>by</span>
                                     <asp:TextBox ID="txtBRWidth" runat="server" placeholder="Bathroom Width"></asp:TextBox>
-                                    <asp:Button ID="btnAddBR" runat="server" Text="Add" OnClick="btnAddBR_Click" />
+                                    <asp:Button ID="btnAddBR" runat="server" Text="Add" OnClick="btnAddBR_Click" formnovalidate="formnovalidate"/>
                                 </div>
                                 <div>
                                     <label>Other Rooms (<asp:Label ID="lblOtherRoomsCount" runat="server" Text="0"></asp:Label>)</label>
@@ -107,7 +108,7 @@
                                     <asp:TextBox ID="txtRoomName" runat="server" placeholder="What kind of room is this"></asp:TextBox>
                                     <asp:TextBox ID="txtOtherRoomLength" runat="server" placeholder="Room Length"></asp:TextBox>
                                     <asp:TextBox ID="txtOtherRoomWidth" runat="server" placeholder="Room Width"></asp:TextBox>
-                                    <asp:Button ID="btnAddOtherRoom" runat="server" Text="Add" OnClick="btnAddOtherRoom_Click" />
+                                    <asp:Button ID="btnAddOtherRoom" runat="server" Text="Add" OnClick="btnAddOtherRoom_Click" formnovalidate="formnovalidate"/>
                                 </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -127,21 +128,24 @@
                 </div>
                 <div>
                     <p>About the Seller / Homeowner</p>
-                    <label>Seller / Homeowner Email</label>
-                    <asp:TextBox ID="txtSellerEmail" runat="server" placeholder="Enter Seller's Email" required></asp:TextBox>
                     <div id="divAgentInfo" runat="server" visible="false">
                         <label>Real Estate Agent Email</label>
                         <asp:TextBox ID="txtAgentEmail" runat="server" placeholder="Enter Real Estate Agent Email" required></asp:TextBox>
                         <label>Real Estate Company Name</label>
                         <asp:TextBox ID="txtCompanyName" runat="server" placeholder="Enter Company Name"></asp:TextBox>
                     </div>
-                    <div id="divCreateSellerAcc" runat="server" visible="false">
-                        <label>Password</label>
-                        <input id="sellerPassword" type="password" runat="server" placeholder="Enter a Password for the Seller" required/>
-                        <label>Seller's Full Name</label>
-                        <asp:TextBox ID="txtSellerName" runat="server" placeholder="Enter Seller's Full Name" required></asp:TextBox>
-                        <label>Seller's Home Address</label>
-                        <asp:TextBox ID="txtAddress" runat="server" placeholder="Enter Seller's Address" required></asp:TextBox>
+                    <div>
+                        <p id="pCreateSeller" runat="server" visible="false">Create an account for the seller</p>
+                        <label>Seller / Homeowner Email</label>
+                        <asp:TextBox ID="txtSellerEmail" runat="server" placeholder="Enter Seller's Email" required></asp:TextBox>
+                        <div id="divCreateSellerAcc" runat="server" visible="false">
+                            <label>Seller Password</label>
+                            <input id="sellerPassword" type="password" runat="server" placeholder="Enter a Password for the Seller" required/>
+                            <label>Seller's Full Name</label>
+                            <asp:TextBox ID="txtSellerName" runat="server" placeholder="Enter Seller's Full Name" required></asp:TextBox>
+                            <label>Seller's Home Address</label>
+                            <asp:TextBox ID="txtAddress" runat="server" placeholder="Enter Seller's Address" required></asp:TextBox>
+                        </div>
                     </div>
                 </div>
             </div>

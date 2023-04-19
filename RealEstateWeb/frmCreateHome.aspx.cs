@@ -31,10 +31,20 @@ namespace RealEstateWeb
                 }
                 // display seller account creation if user type is agent
                 string userType = Request.Cookies["user_cookie"]["user_type"];
+                string userEmail = Request.Cookies["user_cookie"]["user_email"];
                 if (userType.CompareTo("Agent") == 0)
                 {
+                    this.txtAgentEmail.Text = userEmail;
                     this.divCreateSellerAcc.Visible = true;
                     this.divAgentInfo.Visible = true;
+                    this.pCreateSeller.Visible = true;
+                } else
+                {
+                    this.txtAgentEmail.Text = userEmail;
+                    this.txtSellerEmail.Text = userEmail;
+                    this.divCreateSellerAcc.Visible = false;
+                    this.divAgentInfo.Visible = false;
+                    this.pCreateSeller.Visible = false;
                 }
 
                 // redirect a buyer trying to access
@@ -181,14 +191,14 @@ namespace RealEstateWeb
             return home;
         }
         private void createSellerAccount() {
-            if (Request.Cookies["userType"] != null && Request.Cookies["userType"].Value.CompareTo("agent") == 0)
+            if (Request.Cookies["user_cookie"] != null && Request.Cookies["user_cookie"]["user_type"].CompareTo("Agent") == 0)
             {
                 User seller = new User();
                 seller.Email = this.txtSellerEmail.Text;
-                seller.Password = this.sellerPassword.Value;
+                seller.Password = Security.Encrypt(this.sellerPassword.Value);
                 seller.FullName = this.txtSellerName.Text;
                 seller.Address = this.txtAddress.Text;
-                seller.Type = "seller";
+                seller.Type = "Seller";
                 seller.SecurityAnswerOne = "N/A";
                 seller.SecurityAnswerTwo = "N/A";
                 seller.SecurityAnswerThree = "N/A";
@@ -198,11 +208,11 @@ namespace RealEstateWeb
 
                 if (insertSellerStatus < 1)
                 {
-                    Response.Write("error inserting user");
+                    this.lblCreateSellerAlert.Text = "Error creating a seller";
                 }
                 else
                 {
-                    Response.Write("insert user success");
+                    this.lblCreateSellerAlert.Text = "Created seller account successfully";
                 }
             }
         }
