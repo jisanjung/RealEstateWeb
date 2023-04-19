@@ -102,6 +102,9 @@
                         <div>
                             <asp:Label ID="lblHomeProfileDescription" runat="server"></asp:Label>
                         </div>
+                        <div>
+                            <asp:Label ID="lblHomeProfileRoomDimensions" runat="server"></asp:Label>
+                        </div>
                     </div>
                     <div>
                         <asp:Label ID="lblHomeProfileAgentEmail" runat="server"></asp:Label>

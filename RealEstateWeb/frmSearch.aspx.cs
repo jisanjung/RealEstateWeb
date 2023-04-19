@@ -177,6 +177,14 @@ namespace RealEstateWeb
             this.lblHomeProfileUtilities.Text = $"{selectedHome.Utilities}";
             this.lblHomeProfileDescription.Text = $"{selectedHome.Description}";
 
+            // room dimensions
+            string roomDimensionText = "";
+            foreach (Room r in selectedHome.Rooms)
+            {
+                roomDimensionText += $"{r.RoomType}: {r.Length}ft x {r.Width}ft </br>";
+            }
+            this.lblHomeProfileRoomDimensions.Text = roomDimensionText;
+
             User seller = DBOperations.GetUser(selectedHome.AgentEmail);
 
             this.lblHomeProfileAgentEmail.Text = seller.Email;
