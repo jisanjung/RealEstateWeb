@@ -177,7 +177,7 @@ namespace RealEstateWeb
             this.lblHomeProfileUtilities.Text = $"{selectedHome.Utilities}";
             this.lblHomeProfileDescription.Text = $"{selectedHome.Description}";
 
-            User seller = DBOperations.GetUser(selectedHome.SellerEmail);
+            User seller = DBOperations.GetUser(selectedHome.AgentEmail);
 
             this.lblHomeProfileAgentEmail.Text = seller.Email;
             this.lblHomeProfileAgentInfo.Text = $" ({seller.FullName})</br>{seller.Address}<div><span>Real Estate Company: </span>{selectedHome.CompanyName}</div>";
