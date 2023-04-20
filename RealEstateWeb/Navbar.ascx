@@ -20,7 +20,7 @@
           <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="agentOfferCount"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
+          <a class="nav-link" href="frmDashboard.aspx">Dashboard</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="sellerLinks" runat="server">
@@ -37,7 +37,7 @@
           <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="sellerOfferCount"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
+          <a class="nav-link" href="frmDashboard.aspx">Dashboard</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="buyerLinks" runat="server">
@@ -51,10 +51,10 @@
           <a class="nav-link" href="frmOffersBuyer.aspx">Your Offers <span runat="server" id="buyerOfferCount"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="frmDashboard.aspx">Dashboard</a>
+          <a class="nav-link" href="frmDashboard.aspx">Dashboard</a>
         </li>
       </ul>
-      <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn btn-outline-success" OnClick="btnLogout_Click"/>
+      <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn btn-outline-primary" OnClick="btnLogout_Click"/>
     </div>
   </div>
 </nav>
