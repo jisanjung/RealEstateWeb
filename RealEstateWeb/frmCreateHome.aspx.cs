@@ -125,11 +125,13 @@ namespace RealEstateWeb
                 if (status < 1)
                 {
                     this.lblAlert.Text = "There was a problem posting this home...";
+                    this.lblAlert.CssClass = "alert alert-danger d-inline-block";
                 }
                 else
                 {
                     this.lblAlert.Text = "Home posted successfully!";
                     this.createSellerAccount();
+                    Response.Redirect("frmSellerHomes.aspx");
                 }
             }
         }
@@ -209,6 +211,7 @@ namespace RealEstateWeb
                 if (insertSellerStatus < 1)
                 {
                     this.lblCreateSellerAlert.Text = "Error creating a seller";
+                    this.lblAlert.CssClass = "alert alert-danger d-inline-block";
                 }
                 else
                 {
@@ -240,6 +243,7 @@ namespace RealEstateWeb
 
             errorText = String.IsNullOrEmpty(errorText) ? "" : errorText.Substring(0, errorText.Length - 2);
             this.lblAlert.Text = errorText;
+            this.lblAlert.CssClass = "alert alert-danger d-inline-block";
 
             return toReturn;
         }

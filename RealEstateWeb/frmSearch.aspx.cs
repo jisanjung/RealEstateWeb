@@ -220,10 +220,12 @@ namespace RealEstateWeb
                 if (status < 1)
                 {
                     this.lblHomeShowingAlert.Text = "There was a problem submitting your request...";
+                    this.lblHomeShowingAlert.CssClass = "alert alert-danger d-inline-block";
                 }
                 else
                 {
                     this.lblHomeShowingAlert.Text = "Home Showing Request Submitted!";
+                    this.lblHomeShowingAlert.CssClass = "alert alert-success d-inline-block";
                 }
             }
         }
@@ -248,9 +250,11 @@ namespace RealEstateWeb
             if (status < 1)
             {
                 this.lblFeedbackAlert.Text = "Could not submit feedback...";
+                this.lblFeedbackAlert.CssClass = "alert alert-danger d-inline-block";
             } else
             {
                 this.lblFeedbackAlert.Text = "Thank you for your response. Your feedback matters to us";
+                this.lblFeedbackAlert.CssClass = "alert alert-success d-inline-block";
             }
         }
 
@@ -303,14 +307,17 @@ namespace RealEstateWeb
                     if (status < 1)
                     {
                         this.lblOfferAlert.Text = "Offer could not be sent...";
+                        this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block";
                     }
                     else
                     {
                         this.lblOfferAlert.Text = "Offer sent successfully";
+                        this.lblOfferAlert.CssClass = "alert alert-success d-inline-block";
                     }
                 } else
                 {
                     this.lblOfferAlert.Text = "Offer must be a number";
+                    this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block";
                 }
             }
         }
@@ -322,6 +329,7 @@ namespace RealEstateWeb
             if (!int.TryParse(this.txtZipCode.Text, out value) && !int.TryParse(this.txtPriceRange.Text, out value) && !int.TryParse(this.txtHomeSize.Text, out value) && !int.TryParse(this.txtMinBedrooms.Text, out value) && !int.TryParse(this.txtMinBathrooms.Text, out value))
             {
                 this.lblSearchAlert.Text = "Inputs must be numbers";
+                this.lblSearchAlert.CssClass = "alert alert-danger d-inline-block";
             }
             return toReturn;
         }

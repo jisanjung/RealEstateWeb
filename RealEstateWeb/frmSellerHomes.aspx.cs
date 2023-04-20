@@ -208,10 +208,12 @@ namespace RealEstateWeb
             if (status < 1)
             {
                 this.lblAlert.Text = "Could not save home...";
+                this.lblAlert.CssClass = "alert alert-danger d-inline-block";
             }
             else
             {
                 this.lblAlert.Text = "Saved successfully";
+                this.lblAlert.CssClass = "alert alert-success d-inline-block";
 
                 if (Request.Cookies["user_cookie"] != null)
                 {
@@ -230,10 +232,12 @@ namespace RealEstateWeb
             if (status < 1)
             {
                 this.lblAlert.Text = "Could not delete home...";
+                this.lblAlert.CssClass = "alert alert-danger d-inline-block";
             }
             else
             {
                 this.lblAlert.Text = "Deleted successfully";
+                this.lblAlert.CssClass = "alert alert-success d-inline-block";
 
                 if (Request.Cookies["user_cookie"] != null)
                 {

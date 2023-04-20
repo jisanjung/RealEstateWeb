@@ -17,11 +17,11 @@
     <form id="form1" runat="server">
         <uc:Navbar runat="server" id="navbar"/>
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <div class="container mb-5" style="width: 700px;">
+        <div class="container my-5" style="width: 700px;">
             <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
             <asp:Label ID="lblCreateSellerAlert" runat="server" Text=""></asp:Label>
             <div>
-                <h1 class="display-6 mt-5 mb-4">Post a Home For Sale</h1>
+                <h1 class="display-6 mb-4">Post a Home For Sale</h1>
             </div>
             <div>
                 <div class="form-group mb-4">

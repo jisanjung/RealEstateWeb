@@ -41,6 +41,7 @@ namespace RealEstateWeb
                 {
                     accountAlreadyExists = true;
                     this.lblError.Text = "Account already exists";
+                    this.lblError.CssClass = "alert alert-danger d-inline-block";
                 }
             }
             if (!accountAlreadyExists)
@@ -56,11 +57,13 @@ namespace RealEstateWeb
                 {
                     rand = RandomNumber.randInt();
                     lblError.Text = "Verification code has been sent. Check your Email.";
+                    this.lblError.CssClass = "alert alert-primary d-inline-block";
                     objEmail.SendMail(strTO, strFROM, strSubject, rand.ToString());
                 }
                 catch (Exception ex)
                 {
                     lblError.Text = ex.Message;
+                    this.lblError.CssClass = "alert alert-danger d-inline-block";
                 }
             }
         }
@@ -84,6 +87,7 @@ namespace RealEstateWeb
                 if (status < 1)
                 {
                     lblError.Text = "There was an issue creating your account";
+                    this.lblError.CssClass = "alert alert-danger d-inline-block";
 
                 }
                 else
@@ -105,6 +109,7 @@ namespace RealEstateWeb
             } else
             {
                 this.lblError.Text = "Incorrect verification code";
+                this.lblError.CssClass = "alert alert-danger d-inline-block";
             }
         }
 
@@ -140,12 +145,14 @@ namespace RealEstateWeb
                     {
                         // account exists, password is incorrect
                         this.lblError.Text = "Password is incorrect";
+                        this.lblError.CssClass = "alert alert-danger d-inline-block";
                     }
                 }
             }
             if (!accountExists)
             {
                 this.lblError.Text = "Account does not exist";
+                this.lblError.CssClass = "alert alert-danger d-inline-block";
             }
         }
 
@@ -221,6 +228,7 @@ namespace RealEstateWeb
 
                     string body = "your password is: " + Security.Decrypt(myds.Tables[0].Rows[0][0].ToString());
                     lblError.Text = "Password has been sent to your email. Check your Email.";
+                    this.lblError.CssClass = "alert alert-primary d-inline-block";
                     objEmail.SendMail(strTO, strFROM, strSubject, body);
                 }
             }
