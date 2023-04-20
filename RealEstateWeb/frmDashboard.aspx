@@ -11,37 +11,52 @@
 <body>
     <form id="form1" runat="server">
         <uc:Navbar runat="server" id="navbar"/>
-        <div id="allView" class="card w-50" style="top:500px">
-            <div id="labels" class="card-body">
-                <h5 class="card-title">Modify Profile</h5>
-                <asp:Label id="lblFullName" runat="server" Text="Your Name"></asp:Label><br/>
-                <asp:Label id="lblAddress" runat="server" Text="Your Address"></asp:Label><br/>
-            </div>
-            <div id="inputs" class="card-body">
-                <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name" Visible="false"></asp:TextBox><br/>
-                <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" Visible="false"></asp:TextBox><br/>
-            </div>
-            <asp:Button ID="btnModify" runat="server" Text="Edit" OnClick="btnModify_Click" />
-            <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click"/>
-        </div>
-        <div id="buyerSpecific" runat="server">
-            <div class="card w-50">
-              <div class="card-body">
-                <h5 class="card-title">View Scheduled Visits</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="./frmBuyerScheduledVisits.aspx" class="btn btn-primary">Proceed</a>
-              </div>
-            </div>
-        </div>
-
-
-        <div id="agentSellerSpecific" runat="server">
-            <div class="card w-50">
-              <div class="card-body">
-                <h5 class="card-title">Manage Homes</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="./frmSellerHomes.aspx" class="btn btn-primary">Proceed</a>
-              </div>
+        <div class="d-flex justify-content-center">
+            <div style="width: 600px;">
+                <h1 class="mt-5 display-5">
+                    <asp:Label ID="lblWelcomeText" runat="server"></asp:Label>
+                </h1>
+                <div id="buyerSpecific" runat="server" class="mt-5">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">View Scheduled Visits</h5>
+                        <p class="card-text text-secondary">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="./frmBuyerScheduledVisits.aspx" class="btn btn-primary">View Scheduled Visits</a>
+                      </div>
+                    </div>
+                </div>
+                <div id="agentSellerSpecific" runat="server" class="mt-5">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title fw-bold">Manage Homes</h5>
+                        <p class="card-text text-secondary">View, edit or delete all homes you have listed. View home showings as well as feedback for each home</p>
+                        <a href="./frmSellerHomes.aspx" class="btn btn-primary">View your homes</a>
+                      </div>
+                    </div>
+                </div>
+                <div id="allView" class="card mt-5">
+                    <div id="labels" class="card-body">
+                        <h5 class="card-title fw-bold">Modify Profile</h5>
+                        <ul class="list-group list-group-flush" id="ulUserInfo" runat="server">
+                            <li class="list-group-item">
+                                <span class="fw-bold">Name: </span>
+                                <asp:Label id="lblFullName" runat="server" Text="Your Name"></asp:Label>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="fw-bold">Address: </span>
+                                <asp:Label id="lblAddress" runat="server" Text="Your Address"></asp:Label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="divModifyInputs" class="card-body form-group" runat="server" visible="false">
+                        <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name" CssClass="form-control mb-2"></asp:TextBox>
+                        <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="p-3">
+                        <asp:Button ID="btnModify" runat="server" Text="Edit" OnClick="btnModify_Click" CssClass="btn btn-primary"/>
+                        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" Visible="false" CssClass="btn btn-primary"/>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
