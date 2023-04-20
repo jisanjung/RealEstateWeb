@@ -24,6 +24,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// navbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::RealEstateWeb.Navbar navbar;
+
+        /// <summary>
         /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
@@ -132,15 +141,6 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.DropDownList ddlSewage;
 
         /// <summary>
-        /// cblAmenities control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cblAmenities;
-
-        /// <summary>
         /// ddlGarage control.
         /// </summary>
         /// <remarks>
@@ -148,6 +148,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlGarage;
+
+        /// <summary>
+        /// cblAmenities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblAmenities;
 
         /// <summary>
         /// UpdatePanel1 control.
