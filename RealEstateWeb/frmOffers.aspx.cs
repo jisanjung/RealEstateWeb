@@ -93,9 +93,11 @@ namespace RealEstateWeb
             if (status < 1)
             {
                 this.lblAlert.Text = "There was a problem accepting this offer...";
+                this.lblAlert.CssClass = "alert alert-danger d-inline-block";
             } else
             {
                 this.lblAlert.Text = "Offer Accepted!";
+                this.lblAlert.CssClass = "alert alert-success d-inline-block";
             }
         }
 
@@ -108,10 +110,12 @@ namespace RealEstateWeb
             if (status < 1)
             {
                 this.lblAlert.Text = "There was a problem declining this offer...";
+                this.lblAlert.CssClass = "alert alert-danger d-inline-block";
             }
             else
             {
                 this.lblAlert.Text = "Declined Offer";
+                this.lblAlert.CssClass = "alert alert-success d-inline-block";
 
                 string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
                 JavaScriptSerializer js = new JavaScriptSerializer();

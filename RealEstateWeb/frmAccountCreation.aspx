@@ -105,7 +105,7 @@
                         <span>Already have an account? </span>
                         <asp:LinkButton ID="linkbtnLogin" runat="server" OnClick="linkbtnLogin_Click">Login</asp:LinkButton>
                     </div>
-                    <div class="verification" id="divVerify" runat="server">
+                    <div class="verification" id="divVerify" runat="server" visible="false">
                         <h3 class="mb-4 mt-5">Verify your Identity</h3>
                         <div class="d-flex align-items-center">
                             <asp:TextBox ID="txtVerification" runat="server" CssClass="form-control my-2" placeholder="Verification Code" style="margin-right: 0.5rem;"></asp:TextBox>
