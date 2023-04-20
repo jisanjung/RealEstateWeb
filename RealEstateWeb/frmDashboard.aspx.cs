@@ -23,9 +23,13 @@ namespace RealEstateWeb
             else
             {
                 loginCookie = Request.Cookies["user_cookie"];
+                string userEmail = Request.Cookies["user_cookie"]["user_email"];
+                User user = DBOperations.GetUser(userEmail);
+
+                this.lblWelcomeText.Text = $"Welcome, {user.FullName}";
             }
 
-            if(loginCookie.Values["user_type"].Equals("Buyer"))
+            if (loginCookie.Values["user_type"].Equals("Buyer"))
             {
                 agentSellerSpecific.Visible = false;
                 buyerSpecific.Visible = true;
@@ -45,21 +49,19 @@ namespace RealEstateWeb
 
         protected void btnModify_Click(object sender, EventArgs e)
         {
-            
-                txtAddress.Visible = true;
-                txtFullName.Visible = true;
-                lblAddress.Visible = false;
-                lblFullName.Visible = false;
+            this.txtFullName.Text = user.FullName;
+            this.txtAddress.Text = user.Address;
+
+            this.ulUserInfo.Visible = false;
+            this.divModifyInputs.Visible = true;
+
+            this.btnModify.Visible = false;
+            this.btnSave.Visible = true;
 
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            lblAddress.Visible = true;
-            lblFullName.Visible = true;
-            txtFullName.Visible = false;
-            txtAddress.Visible = false;
-
             user.Address = txtAddress.Text;
             user.FullName = txtFullName.Text;
 
@@ -67,6 +69,12 @@ namespace RealEstateWeb
 
             lblAddress.Text = user.Address;
             lblFullName.Text= user.FullName;
+
+            this.ulUserInfo.Visible = true;
+            this.divModifyInputs.Visible = false;
+
+            this.btnModify.Visible = true;
+            this.btnSave.Visible = false;
         }
     }
 }
