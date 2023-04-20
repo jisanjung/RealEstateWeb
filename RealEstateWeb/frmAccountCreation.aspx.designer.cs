@@ -24,6 +24,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
         /// divLogin control.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.TextBox txtPasswordLogin;
 
         /// <summary>
+        /// linkForgotPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkForgotPassword;
+
+        /// <summary>
         /// chkRememberLogin control.
         /// </summary>
         /// <remarks>
@@ -69,13 +87,22 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
-        /// linkForgotPassword control.
+        /// divOpenSignup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkForgotPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOpenSignup;
+
+        /// <summary>
+        /// linkbtnCreateAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkbtnCreateAccount;
 
         /// <summary>
         /// forgotFun control.
@@ -121,24 +148,6 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnForgotPassword;
-
-        /// <summary>
-        /// divOpenSignup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOpenSignup;
-
-        /// <summary>
-        /// linkbtnCreateAccount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkbtnCreateAccount;
 
         /// <summary>
         /// divSignup control.
@@ -283,14 +292,5 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnVerify;
-
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }
