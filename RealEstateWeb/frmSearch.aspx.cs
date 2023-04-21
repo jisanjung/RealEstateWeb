@@ -14,7 +14,7 @@ namespace RealEstateWeb
         HttpCookie loginCookie;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes");
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
@@ -23,6 +23,7 @@ namespace RealEstateWeb
             if (!IsPostBack)
             {
                 this.displayHomes(allHomes);
+                this.h3Results.InnerText = $"Results ({allHomes.Count})";
             }
 
             if (Request.Cookies["user_cookie"] == null)
@@ -37,11 +38,9 @@ namespace RealEstateWeb
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            if (this.isSearchValid())
-            {
-                List<Home> filteredHomes = this.filterHomes();
-                this.displayHomes(filteredHomes);
-            }
+            List<Home> filteredHomes = this.filterHomes();
+            this.displayHomes(filteredHomes);
+            this.h3Results.InnerText = $"Results ({filteredHomes.Count})";
         }
         protected void btn_ViewHome(object sender, CommandEventArgs e)
         {
@@ -70,7 +69,7 @@ namespace RealEstateWeb
                 }
             }
 
-            string jsonRes = RestClient.Get("http://localhost:60855/api/homes");
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes");
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
@@ -92,79 +91,15 @@ namespace RealEstateWeb
             }
             return toReturn;
         }
-        private List<Home> staticallyGenerateHomes()
-        {
-            List<Home> allHomes = new List<Home>();
-            Home h1 = new Home();
-            h1.Address = "522 lansdale ave";
-            h1.Price = 23000;
-            h1.NumberBed = 2;
-            h1.NumberBath = 1;
-            h1.ZipCode = 19446;
-            h1.Img = "2023-02-13 20.44.09.jpg";
-            h1.HomeId = 7;
-            h1.PropertyType = "Single-Family";
-            h1.HouseSize = 657;
-            h1.OtherAmenities = "Garden";
-            h1.HVAC = "Oil";
-            h1.YearBuilt = 1950;
-            h1.Garage = "None";
-            h1.Utilities = "Public Water";
-            h1.Description = "this is a comfy home";
-            h1.SellerEmail = "json.jung@temple.edu";
-            h1.CompanyName = "N/A";
-            Home h2 = new Home();
-            h2.Address = "805 freedom cir";
-            h2.Price = 81000;
-            h2.NumberBed = 4;
-            h2.NumberBath = 2;
-            h2.ZipCode = 19454;
-            h2.Img = "2023-02-13 20.44.09.jpg";
-            h2.HomeId = 8;
-            h2.PropertyType = "Multi-Family";
-            h2.HouseSize = 1498;
-            h2.OtherAmenities = "Fireplace";
-            h2.HVAC = "Electric";
-            h2.YearBuilt = 2001;
-            h2.Garage = "2 Car";
-            h2.Utilities = "Well Water";
-            h2.Description = "this is an aight home";
-            h2.SellerEmail = "hong@gmail.com";
-            h2.CompanyName = "N/A";
-            Home h3 = new Home();
-            h3.Address = "901 shelby dr";
-            h3.Price = 1000000;
-            h3.NumberBed = 6;
-            h3.NumberBath = 3;
-            h3.ZipCode = 90210;
-            h3.Img = "2023-02-13 20.44.09.jpg";
-            h3.HomeId = 9;
-            h3.PropertyType = "Condo";
-            h3.HouseSize = 3894;
-            h3.OtherAmenities = "Fireplace, Hot Tub";
-            h3.HVAC = "Electric";
-            h3.YearBuilt = 2007;
-            h3.Garage = "4 Car";
-            h3.Utilities = "Well Water";
-            h3.Description = "this is a great home";
-            h3.SellerEmail = "bob@gmail.com";
-            h3.CompanyName = "Brother Technologies";
-
-            allHomes.Add(h1);
-            allHomes.Add(h2);
-            allHomes.Add(h3);
-
-            return allHomes;
-        }
         private void fillHomeProfileInfo(int home_id)
         {
-            string jsonRes = RestClient.Get("http://localhost:60855/api/homes/" + home_id.ToString());
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + home_id.ToString());
             JavaScriptSerializer js = new JavaScriptSerializer();
             Home selectedHome = js.Deserialize<Home>(jsonRes);
 
             this.imgHomeProfile.Src = $"~/Storage/{selectedHome.Img}";
             this.lblHomeProfileHomeId.Text = selectedHome.HomeId.ToString();
-            this.lblHomeProfilePrice.Text = selectedHome.Price.ToString("c");
+            this.lblHomeProfilePrice.Text = selectedHome.Price.ToString("C");
             this.lblHomeProfileBeds.Text = $"{selectedHome.NumberBed} beds";
             this.lblHomeProfileBaths.Text = $"{selectedHome.NumberBath} bathrooms";
             this.lblHomeProfileHomeSize.Text = $"{selectedHome.HouseSize} sqft";
@@ -178,12 +113,12 @@ namespace RealEstateWeb
             this.lblHomeProfileDescription.Text = $"{selectedHome.Description}";
 
             // room dimensions
-            string roomDimensionText = "";
+            string roomDimensionText = "<ul class='list-group'>";
             foreach (Room r in selectedHome.Rooms)
             {
-                roomDimensionText += $"{r.RoomType}: {r.Length}ft x {r.Width}ft </br>";
+                roomDimensionText += $"<li class='list-group-item'><span class='fw-bold'>{r.RoomType}:</span> {r.Length}ft x {r.Width}ft</li>";
             }
-            this.lblHomeProfileRoomDimensions.Text = roomDimensionText;
+            this.lblHomeProfileRoomDimensions.Text = roomDimensionText + "</ul>";
 
             User seller = DBOperations.GetUser(selectedHome.AgentEmail);
 
@@ -220,12 +155,12 @@ namespace RealEstateWeb
                 if (status < 1)
                 {
                     this.lblHomeShowingAlert.Text = "There was a problem submitting your request...";
-                    this.lblHomeShowingAlert.CssClass = "alert alert-danger d-inline-block";
+                    this.lblHomeShowingAlert.CssClass = "alert alert-danger d-inline-block mt-2";
                 }
                 else
                 {
                     this.lblHomeShowingAlert.Text = "Home Showing Request Submitted!";
-                    this.lblHomeShowingAlert.CssClass = "alert alert-success d-inline-block";
+                    this.lblHomeShowingAlert.CssClass = "alert alert-success d-inline-block mt-2";
                 }
             }
         }
@@ -250,11 +185,11 @@ namespace RealEstateWeb
             if (status < 1)
             {
                 this.lblFeedbackAlert.Text = "Could not submit feedback...";
-                this.lblFeedbackAlert.CssClass = "alert alert-danger d-inline-block";
+                this.lblFeedbackAlert.CssClass = "alert alert-danger d-inline-block mt-2";
             } else
             {
                 this.lblFeedbackAlert.Text = "Thank you for your response. Your feedback matters to us";
-                this.lblFeedbackAlert.CssClass = "alert alert-success d-inline-block";
+                this.lblFeedbackAlert.CssClass = "alert alert-success d-inline-block mt-2";
             }
         }
 
@@ -307,31 +242,24 @@ namespace RealEstateWeb
                     if (status < 1)
                     {
                         this.lblOfferAlert.Text = "Offer could not be sent...";
-                        this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block";
+                        this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block mt-2";
                     }
                     else
                     {
                         this.lblOfferAlert.Text = "Offer sent successfully";
-                        this.lblOfferAlert.CssClass = "alert alert-success d-inline-block";
+                        this.lblOfferAlert.CssClass = "alert alert-success d-inline-block mt-2";
                     }
                 } else
                 {
                     this.lblOfferAlert.Text = "Offer must be a number";
-                    this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block";
+                    this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block mt-2";
                 }
             }
         }
 
-        private bool isSearchValid()
+        protected void linkbtnClose_Click(object sender, EventArgs e)
         {
-            bool toReturn = true;
-            int value;
-            if (!int.TryParse(this.txtZipCode.Text, out value) && !int.TryParse(this.txtPriceRange.Text, out value) && !int.TryParse(this.txtHomeSize.Text, out value) && !int.TryParse(this.txtMinBedrooms.Text, out value) && !int.TryParse(this.txtMinBathrooms.Text, out value))
-            {
-                this.lblSearchAlert.Text = "Inputs must be numbers";
-                this.lblSearchAlert.CssClass = "alert alert-danger d-inline-block";
-            }
-            return toReturn;
+            this.divHomeProfile.Visible = false;
         }
     }
 }
