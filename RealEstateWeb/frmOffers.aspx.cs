@@ -23,7 +23,7 @@ namespace RealEstateWeb
                     Response.Redirect("frmErrorPage.aspx");
                 } else
                 {
-                    string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
+                    string jsonOffers = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeoffers");
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
 
@@ -43,11 +43,11 @@ namespace RealEstateWeb
             int offerId = int.Parse(lblOfferId.Text);
 
             JavaScriptSerializer js = new JavaScriptSerializer();
-            string jsonOffer = RestClient.Get("http://localhost:60855/api/homeoffers/" + offerId);
+            string jsonOffer = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeoffers/" + offerId);
             HomeOffer homeOffer = js.Deserialize<HomeOffer>(jsonOffer);
 
 
-            string jsonHome = RestClient.Get("http://localhost:60855/api/homes/" + homeOffer.HomeId);
+            string jsonHome = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + homeOffer.HomeId);
             Home home = js.Deserialize<Home>(jsonHome);
 
             this.lblViewOfferId.Text = homeOffer.HomeOfferId.ToString();
@@ -83,21 +83,21 @@ namespace RealEstateWeb
             int offerId = int.Parse(this.lblViewOfferId.Text);
 
             JavaScriptSerializer js = new JavaScriptSerializer();
-            string jsonOfferRes = RestClient.Get("http://localhost:60855/api/homeoffers/" + offerId);
+            string jsonOfferRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeoffers/" + offerId);
             HomeOffer homeOffer = js.Deserialize<HomeOffer>(jsonOfferRes);
             homeOffer.Accepted = true;
 
             string jsonOfferReq = js.Serialize(homeOffer);
-            int status = int.Parse(RestClient.Put("http://localhost:60855/api/homeoffers/Accept/" + offerId, jsonOfferReq));
+            int status = int.Parse(RestClient.Put("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeoffers/Accept/" + offerId, jsonOfferReq));
 
             if (status < 1)
             {
                 this.lblAlert.Text = "There was a problem accepting this offer...";
-                this.lblAlert.CssClass = "alert alert-danger d-inline-block";
+                this.lblAlert.CssClass = "alert alert-danger d-inline-block mt-3";
             } else
             {
                 this.lblAlert.Text = "Offer Accepted!";
-                this.lblAlert.CssClass = "alert alert-success d-inline-block";
+                this.lblAlert.CssClass = "alert alert-success d-inline-block mt-3";
             }
         }
 
@@ -105,24 +105,29 @@ namespace RealEstateWeb
         {
             int offerId = int.Parse(this.lblViewOfferId.Text);
 
-            int status = int.Parse(RestClient.Delete("http://localhost:60855/api/homeoffers/Remove/" + offerId));
+            int status = int.Parse(RestClient.Delete("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeoffers/Remove/" + offerId));
 
             if (status < 1)
             {
                 this.lblAlert.Text = "There was a problem declining this offer...";
-                this.lblAlert.CssClass = "alert alert-danger d-inline-block";
+                this.lblAlert.CssClass = "alert alert-danger d-inline-block mt-3";
             }
             else
             {
                 this.lblAlert.Text = "Declined Offer";
-                this.lblAlert.CssClass = "alert alert-success d-inline-block";
+                this.lblAlert.CssClass = "alert alert-success d-inline-block mt-3";
 
-                string jsonOffers = RestClient.Get("http://localhost:60855/api/homeoffers");
+                string jsonOffers = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeoffers");
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
 
                 this.displayOffers(allHomeOffers);
             }
+        }
+
+        protected void linkbtnClose_Click(object sender, EventArgs e)
+        {
+            this.divViewOffer.Visible = false;
         }
     }
 }

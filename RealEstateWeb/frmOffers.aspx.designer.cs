@@ -24,13 +24,13 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblAlert control.
+        /// navbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlert;
+        protected global::RealEstateWeb.Navbar navbar;
 
         /// <summary>
         /// divViewOffer control.
@@ -40,6 +40,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divViewOffer;
+
+        /// <summary>
+        /// linkbtnClose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkbtnClose;
 
         /// <summary>
         /// lblViewOfferId control.
@@ -121,6 +130,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDeclineOffer;
+
+        /// <summary>
+        /// lblAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlert;
 
         /// <summary>
         /// rptOffers control.
