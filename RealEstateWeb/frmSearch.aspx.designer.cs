@@ -33,6 +33,15 @@ namespace RealEstateWeb
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// navbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::RealEstateWeb.Navbar navbar;
+
+        /// <summary>
         /// divHomeProfile control.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,13 @@ namespace RealEstateWeb
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHomeProfile;
 
         /// <summary>
-        /// lblHomeProfileHomeId control.
+        /// linkbtnClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHomeProfileHomeId;
+        protected global::System.Web.UI.WebControls.LinkButton linkbtnClose;
 
         /// <summary>
         /// imgHomeProfile control.
@@ -58,6 +67,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage imgHomeProfile;
+
+        /// <summary>
+        /// lblHomeProfileHomeId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHomeProfileHomeId;
 
         /// <summary>
         /// lblHomeProfilePrice control.
@@ -285,15 +303,6 @@ namespace RealEstateWeb
         protected global::System.Web.UI.WebControls.Label lblHomeProfileUtilities;
 
         /// <summary>
-        /// lblHomeProfileDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHomeProfileDescription;
-
-        /// <summary>
         /// lblHomeProfileRoomDimensions control.
         /// </summary>
         /// <remarks>
@@ -301,6 +310,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblHomeProfileRoomDimensions;
+
+        /// <summary>
+        /// lblHomeProfileDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHomeProfileDescription;
 
         /// <summary>
         /// lblHomeProfileAgentEmail control.
@@ -481,6 +499,15 @@ namespace RealEstateWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
+        /// h3Results control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h3Results;
 
         /// <summary>
         /// rptHomeResults control.
