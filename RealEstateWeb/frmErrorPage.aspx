@@ -11,9 +11,12 @@
 <body>
     <form id="form1" runat="server">
         <uc:Navbar runat="server" id="navbar"/>
-        <div>
-            <h1>404: You do not have access to this page</h1>
-            <a href="frmDashboard.aspx">Go to dashboard</a>
+        <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+            <div class="text-center jumbotron">
+                <h1 class="display-4">404</h1>
+                <p class="lead">You do not have access to this page</p>
+                <a href="frmDashboard.aspx" class="btn btn-primary mt-2">Go to dashboard</a>
+            </div>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
