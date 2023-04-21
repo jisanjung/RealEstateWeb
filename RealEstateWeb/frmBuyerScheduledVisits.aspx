@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmBuyerScheduledVisits.aspx.cs" Inherits="RealEstateWeb.frmBuyerScheduledVisits" %>
+<%@ Register Src="~/Navbar.ascx" TagPrefix="uc" TagName="Navbar" %>
 
 <!DOCTYPE html>
 
@@ -9,8 +10,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:GridView ID="gvHomes" runat="server"></asp:GridView>
+        <uc:Navbar runat="server" id="navbar"/>
+        <div class="container my-5">
+            <h1 class="display-6 mb-5">Your Scheduled Home Showings</h1>
+            <asp:GridView ID="gvHomes" runat="server" CssClass="table table-striped"></asp:GridView>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
