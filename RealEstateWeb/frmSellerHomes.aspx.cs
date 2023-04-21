@@ -76,13 +76,16 @@ namespace RealEstateWeb
                 List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonShowings);
 
                 string userName = Request.Cookies["user_cookie"]["user_email"];
+
+                string homeShowingHTML = "";
                 foreach (HomeShowing hs in allHomeShowings)
                 {
                     if (hs.HomeId == homeId && hs.SellerEmail.CompareTo(userName) == 0)
                     {
-                        this.ulHomeShowingList.InnerHtml += this.generateHomeShowingHTML(hs);
+                        homeShowingHTML += this.generateHomeShowingHTML(hs);
                     }
                 }
+                this.ulHomeShowingList.InnerHtml = homeShowingHTML;
             }
         }
         protected void btn_ViewFeedback(object sender, CommandEventArgs e)
@@ -91,7 +94,12 @@ namespace RealEstateWeb
             Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
             int homeId = int.Parse(lblHomeId.Text);
 
+            string jsonHome = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + homeId);
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Home selectedHome = js.Deserialize<Home>(jsonHome);
+
             this.divFeedbackResults.Visible = true;
+            this.lblFeedbackTitle.Text = $"Feedback for {selectedHome.Address}";
 
             FeedbackService.Feedback pxy = new FeedbackService.Feedback();
             DataSet ds = pxy.GetAllFeedbackForHome(homeId);
@@ -109,10 +117,12 @@ namespace RealEstateWeb
                 hf.Rating = int.Parse(dt.Rows[i]["rating"].ToString());
                 feedback.Add(hf);
             }
+            string feedbackHTML = "";
             foreach (HomeFeedback hf in feedback)
             {
-                this.ulFeedback.InnerHtml += this.generateFeedbackHTML(hf);
+                feedbackHTML += this.generateFeedbackHTML(hf);
             }
+            this.ulFeedback.InnerHtml = feedbackHTML;
         }
         private void displayHomes(List<Home> homeList)
         {
@@ -191,18 +201,28 @@ namespace RealEstateWeb
             string htmlStr =
                 $"<li class='list-group-item'>" +
                 $"<div>{buyer.FullName} has scheduled a home showing on <span class='fw-bold'>{hs.Date}</span> at <span class='fw-bold'>{hs.Time}</span></div>" +
-                $"<div>Contact the buyer via email at <a href='mailto:{buyer.Email}>{buyer.Email}</a></div>" +
+                $"<div>Contact the buyer via email at <a href='mailto:{buyer.Email}'>{buyer.Email}</a></div>" +
                 $"</li>";
             return htmlStr;
         }
         private string generateFeedbackHTML(HomeFeedback hf)
         {
+            string actualRating = "";
+            string totalRating = "";
+            for (int i = 0; i < hf.Rating; i++)
+            {
+                actualRating += "<i class='bi-star-fill'></i>";
+            }
+            for (int i = 0; i < 5 - hf.Rating; i++)
+            {
+                totalRating += "<i class='bi-star'></i>";
+            }
             string htmlStr =
                 $"<li class='list-group-item'>" +
-                $"<div><span class='fw-bold'>Rating: </span>{hf.Rating}</div>" +
-                $"<div><span class='fw-bold'>Feedback on price: </span>{hf.PriceFeedback}</div>" +
-                $"<div><span class='fw-bold'>Feedback on location: </span>{hf.LocationFeedback}</div>" +
-                $"<div><span class='fw-bold'>Overall feedback: </span>{hf.OverallFeedback}</div>" +
+                $"<div>{actualRating + totalRating}</div>" +
+                $"<div>Feedback on price: <span class='text-secondary'>{hf.PriceFeedback}</span></div>" +
+                $"<div>Feedback on location: <span class='text-secondary'>{hf.LocationFeedback}</span></div>" +
+                $"<div>Overall feedback: <span class='text-secondary'>{hf.OverallFeedback}</span></div>" +
                 $"</li>";
             return htmlStr;
         }

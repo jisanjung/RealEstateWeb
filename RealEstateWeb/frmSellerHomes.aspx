@@ -7,6 +7,7 @@
 <head runat="server">
     <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
     <style>
         .tint {
             background: rgba(0, 0, 0, 0.5);
@@ -57,8 +58,8 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h1>Manage Your Homes</h1>
+        <div class="container my-5">
+            <h1 class="mb-5 display-6">Manage Your Homes</h1>
             <div id="sellerHomesResults">
                 <asp:Repeater ID="rptSellerHomes" runat="server">
                     <ItemTemplate>
@@ -87,7 +88,7 @@
                                                 <asp:Button ID="btnEditHome" runat="server" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_EditHome" Text="Edit this Home" CssClass="btn btn-primary mt-2"/>
                                             </div>
                                         </div>
-                                        <div class="d-flex flex-column justify-content-start p-4">
+                                        <div class="d-flex flex-column justify-content-center p-4">
                                             <asp:Button ID="btnShowingRequests" runat="server" Text="View Showing Requests" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_ShowingRequests" CssClass="btn btn-primary mb-2"/>
                                             <asp:Button ID="btnViewFeedback" runat="server" Text="View Feedback" CommandArgument='<%# Container.ItemIndex %>' OnCommand="btn_ViewFeedback" CssClass="btn btn-outline-primary"/>
                                         </div>
@@ -122,10 +123,13 @@
                             <asp:LinkButton ID="linkbtnCloseFeedback" runat="server" OnClick="linkbtnCloseFeedback_Click" CssClass="text-white mb-1">Close</asp:LinkButton>
                         </div>
                         <div class="card p-4">
+                            <h5 class="fw-bold mb-4">
+                                <asp:Label ID="lblFeedbackTitle" runat="server"></asp:Label>
+                            </h5>
                             <!--dynamic display (building my own html)-->
-                            <ol id="ulFeedback" runat="server" class="list-group list-group-numbered">
+                            <ul id="ulFeedback" runat="server" class="list-group">
 
-                            </ol>
+                            </ul>
                         </div>
                     </div>
                 </div>
