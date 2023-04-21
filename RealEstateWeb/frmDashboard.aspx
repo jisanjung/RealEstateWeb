@@ -20,7 +20,7 @@
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title fw-bold">View Scheduled Visits</h5>
-                        <p class="card-text text-secondary">With supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text text-secondary">Take a look at all of the scheduled home showings you have booked.</p>
                         <a href="./frmBuyerScheduledVisits.aspx" class="btn btn-primary">View Scheduled Visits</a>
                       </div>
                     </div>

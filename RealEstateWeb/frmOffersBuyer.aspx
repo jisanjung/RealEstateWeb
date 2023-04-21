@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmOffersBuyer.aspx.cs" Inherits="RealEstateWeb.frmOffersBuyer" %>
 <%@ Register Src="~/OffersBuyer.ascx" TagPrefix="uc" TagName="OffersBuyer" %>
+<%@ Register Src="~/Navbar.ascx" TagPrefix="uc" TagName="Navbar" %>
 
 <!DOCTYPE html>
 
@@ -10,8 +11,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <h1>
+        <uc:Navbar runat="server" id="navbar"/>
+        <div class="container my-5">
+            <h1 class="display-6 mb-5">
                 <asp:Label ID="lblTitle" runat="server"></asp:Label>
             </h1>
             <uc:OffersBuyer runat="server" id="ucOffersBuyer"/>
