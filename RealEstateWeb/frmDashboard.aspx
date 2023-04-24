@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <uc:Navbar runat="server" id="navbar"/>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mb-5">
             <div style="width: 600px;">
                 <h1 class="mt-5 display-5">
                     <asp:Label ID="lblWelcomeText" runat="server"></asp:Label>
