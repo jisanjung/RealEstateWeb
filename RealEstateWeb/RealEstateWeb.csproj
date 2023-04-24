@@ -80,10 +80,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\FeedbackService\Feedback.disco" />
     <Content Include="frmSellerHomes.aspx" />
     <Content Include="Navbar.ascx" />
     <Content Include="OffersBuyer.ascx" />
+    <None Include="Web References\FeedbackService\Feedback.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -214,10 +214,13 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:51514/Feedback.asmx">
+    <Folder Include="Storage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/Project4/Feedback.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\FeedbackService\</RelPath>
-      <UpdateFromURL>http://localhost:51514/Feedback.asmx</UpdateFromURL>
+      <UpdateFromURL>https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/Project4/Feedback.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -225,9 +228,6 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RealEstateWeb_FeedbackService_Feedback</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Storage\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
