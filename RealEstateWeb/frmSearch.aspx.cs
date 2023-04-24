@@ -14,7 +14,7 @@ namespace RealEstateWeb
         HttpCookie loginCookie;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes");
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes");
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
@@ -69,7 +69,7 @@ namespace RealEstateWeb
                 }
             }
 
-            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes");
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes");
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
 
@@ -93,7 +93,7 @@ namespace RealEstateWeb
         }
         private void fillHomeProfileInfo(int home_id)
         {
-            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + home_id.ToString());
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/" + home_id.ToString());
             JavaScriptSerializer js = new JavaScriptSerializer();
             Home selectedHome = js.Deserialize<Home>(jsonRes);
 
@@ -151,7 +151,7 @@ namespace RealEstateWeb
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 String jsonShowingRequest = js.Serialize(showingRequest);
 
-                int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeshowing/Add", jsonShowingRequest));
+                int status = int.Parse(RestClient.Post("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homeshowing/Add", jsonShowingRequest));
                 if (status < 1)
                 {
                     this.lblHomeShowingAlert.Text = "There was a problem submitting your request...";
@@ -237,7 +237,7 @@ namespace RealEstateWeb
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     String jsonOffer = js.Serialize(ho);
 
-                    int status = int.Parse(RestClient.Post("http://localhost:60855/api/homeoffers/Add/", jsonOffer));
+                    int status = int.Parse(RestClient.Post("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homeoffers/Add/", jsonOffer));
 
                     if (status < 1)
                     {

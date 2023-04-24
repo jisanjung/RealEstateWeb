@@ -15,7 +15,7 @@ namespace RealEstateWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string jsonOffers = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeoffers");
+            string jsonOffers = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homeoffers");
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
 
