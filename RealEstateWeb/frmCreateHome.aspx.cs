@@ -120,7 +120,7 @@ namespace RealEstateWeb
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 String jsonHome = js.Serialize(home);
                 // insert into db
-                int status = int.Parse(RestClient.Post("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/Add", jsonHome));
+                int status = int.Parse(RestClient.Post("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/Add", jsonHome));
 
                 if (status < 1)
                 {

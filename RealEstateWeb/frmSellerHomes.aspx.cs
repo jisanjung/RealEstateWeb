@@ -47,7 +47,7 @@ namespace RealEstateWeb
 
             this.divEditHome.Visible = true;
 
-            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + homeId);
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/" + homeId);
             JavaScriptSerializer js = new JavaScriptSerializer();
             Home selectedHome = js.Deserialize<Home>(jsonRes);
 
@@ -64,7 +64,7 @@ namespace RealEstateWeb
                 Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
                 int homeId = int.Parse(lblHomeId.Text);
 
-                string jsonHome = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + homeId);
+                string jsonHome = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/" + homeId);
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 Home selectedHome = js.Deserialize<Home>(jsonHome);
 
@@ -72,7 +72,7 @@ namespace RealEstateWeb
 
                 this.lblHomeShowingsTitle.Text = $"Requests for {selectedHome.Address}";
 
-                string jsonShowings = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homeshowing/");
+                string jsonShowings = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homeshowing/");
                 List<HomeShowing> allHomeShowings = js.Deserialize<List<HomeShowing>>(jsonShowings);
 
                 string userName = Request.Cookies["user_cookie"]["user_email"];
@@ -94,7 +94,7 @@ namespace RealEstateWeb
             Label lblHomeId = (Label)rptSellerHomes.Items[rowClicked].FindControl("lblHomeId");
             int homeId = int.Parse(lblHomeId.Text);
 
-            string jsonHome = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + homeId);
+            string jsonHome = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/" + homeId);
             JavaScriptSerializer js = new JavaScriptSerializer();
             Home selectedHome = js.Deserialize<Home>(jsonHome);
 
@@ -134,7 +134,7 @@ namespace RealEstateWeb
         {
             int homeId = int.Parse(this.lblSelectedId.Text);
 
-            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/" + homeId);
+            string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/" + homeId);
             JavaScriptSerializer js = new JavaScriptSerializer();
             Home editedHome = js.Deserialize<Home>(jsonRes);
 
@@ -150,7 +150,7 @@ namespace RealEstateWeb
             }
 
             String jsonHome = js.Serialize(editedHome);
-            int status = int.Parse(RestClient.Put("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/Edit", jsonHome));
+            int status = int.Parse(RestClient.Put("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/Edit", jsonHome));
 
             if (status < 1)
             {
@@ -174,7 +174,7 @@ namespace RealEstateWeb
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             int homeId = int.Parse(this.lblSelectedId.Text);
-            int status = int.Parse(RestClient.Delete("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebsAPITest/api/homes/Remove/" + homeId));
+            int status = int.Parse(RestClient.Delete("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes/Remove/" + homeId));
 
             if (status < 1)
             {
