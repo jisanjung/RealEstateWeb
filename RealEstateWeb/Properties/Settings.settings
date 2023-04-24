@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="RealEstateWeb_FeedbackService_Feedback" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:51514/Feedback.asmx</Value>
+      <Value Profile="(Default)">https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/Project4/Feedback.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

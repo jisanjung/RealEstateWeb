@@ -26,7 +26,7 @@ namespace RealEstateWeb.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:51514/Feedback.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/Project4/Feedback.asmx")]
         public string RealEstateWeb_FeedbackService_Feedback {
             get {
                 return ((string)(this["RealEstateWeb_FeedbackService_Feedback"]));
