@@ -12,55 +12,73 @@ namespace Utilities
     {
         private static byte[] key = { 160, 28, 137, 36, 168, 148, 209, 130, 32, 109, 206, 118, 251, 134, 186, 82 };
         private static byte[] vector = { 89, 121, 16, 123, 36, 175, 245, 244, 100, 127, 64, 240, 64, 54, 133, 136 };
+
+        // how to encrypt using AES: https://www.c-sharpcorner.com/article/encryption-and-decryption-using-a-symmetric-key-in-c-sharp/
         public static string Encrypt(string password)
         {
-            UTF8Encoding encoder = new UTF8Encoding();      // used to convert bytes to characters, and back
+            byte[] strToByte; // a byte array for turn the password string into later
 
-            // Convert a string to a byte array, which will be used in the encryption process.
-            byte[] strToBytes = encoder.GetBytes(password);
+            // AES class allows for creating an encryptor and storing a key and vector
+            using (Aes aes = Aes.Create())
+            {
+                // store the generated key and vector
+                aes.Key = key;
+                aes.IV = vector;
 
-            RijndaelManaged rm = new RijndaelManaged(); // Create an instances of the encryption algorithm (Rinjdael AES) for the encryption to perform,
-            MemoryStream ms = new MemoryStream(); // a memory stream used to store the encrypted data temporarily, and
-            CryptoStream cs = new CryptoStream(ms, rm.CreateEncryptor(key, vector), CryptoStreamMode.Write); // a crypto stream that performs the encryption algorithm.
+                // create an encryptor using the AES class in a CryptoTransformer interface
+                ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
 
-            // Use the crypto stream to perform the encryption on the plain text byte array.
-            cs.Write(strToBytes, 0, strToBytes.Length);
-            cs.FlushFinalBlock();
+                // create a stream
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    // create a crypto stream
+                    using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write))
+                    {
+                        // write the crypto stream to a streamwriter
+                        using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))
+                        {
+                            streamWriter.Write(password);
+                        }
 
-            // Retrieve the encrypted data from the memory stream, and write it to a separate byte array.
-            ms.Position = 0;
-            Byte[] encryptedBytes = new Byte[ms.Length];
-            ms.Read(encryptedBytes, 0, encryptedBytes.Length);
-
-            // Close all the streams.
-            cs.Close();
-            ms.Close();
-
-            string encryptedPassword = Convert.ToBase64String(encryptedBytes);
-            return encryptedPassword;
+                        // turn the memory stream into a byte array
+                        strToByte = memoryStream.ToArray();
+                    }
+                }
+            }
+            // return as a encrypted base 64 string
+            return Convert.ToBase64String(strToByte);
         }
 
+        // how to decrypt using AES: https://www.c-sharpcorner.com/article/encryption-and-decryption-using-a-symmetric-key-in-c-sharp/
         public static string Decrypt(string encryptedPassword)
         {
-            byte[] strToBytes = Convert.FromBase64String(encryptedPassword);
-            UTF8Encoding encoder = new UTF8Encoding();
+            // convert an ecrypted string into a bute array
+            byte[] byteToStr = Convert.FromBase64String(encryptedPassword);
 
-            RijndaelManaged rm = new RijndaelManaged();
-            MemoryStream ms = new MemoryStream();
-            CryptoStream cs = new CryptoStream(ms, rm.CreateDecryptor(key, vector), CryptoStreamMode.Write);
+            // use the AES class
+            using (Aes aes = Aes.Create())
+            {
+                // store the key and vector
+                aes.Key = key;
+                aes.IV = vector;
 
-            cs.Write(strToBytes, 0, strToBytes.Length);
-            cs.FlushFinalBlock();
+                // decrpyt using the AES Create Decryptor method
+                ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
 
-            ms.Position = 0;
-            byte[] decryptedBytes = new byte[ms.Length];
-            ms.Read(decryptedBytes, 0, decryptedBytes.Length);
-
-            cs.Close();
-            ms.Close();
-
-            string decryptedPassword = encoder.GetString(decryptedBytes);
-            return decryptedPassword;
+                // create a memory stream
+                using (MemoryStream memoryStream = new MemoryStream(byteToStr))
+                {
+                    // create a crypto stream
+                    using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        // read the string to the end and return the decrypted password
+                        using (StreamReader streamReader = new StreamReader((Stream)cryptoStream))
+                        {
+                            return streamReader.ReadToEnd();
+                        }
+                    }
+                }
+            }
         }
 
         public static string SecureURL(string unsafeURL)
