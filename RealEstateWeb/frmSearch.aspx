@@ -12,7 +12,7 @@
             width: 300px;
             bottom: 0;
             top: 0;
-            padding-top: 58px !important;
+            padding-top: 70px !important;
             overflow-y: scroll;
         }
         #homeResults {

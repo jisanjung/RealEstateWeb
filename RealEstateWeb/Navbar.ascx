@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Navbar.ascx.cs" Inherits="RealEstateWeb.Navbar" %>
-<nav class="navbar navbar-expand-lg navbar-light bg-light position-relative z-1">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative z-1">
   <div class="container-fluid">
     <h1 class="navbar-brand">Homes "R" Us</h1>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
           <a class="nav-link" href="frmSellerHomes.aspx">Manage Homes</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="agentOfferCount"></span></a>
+          <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="agentOfferCount" class="badge text-bg-danger"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="frmDashboard.aspx">Dashboard</a>
@@ -34,7 +34,7 @@
           <a class="nav-link" href="frmSellerHomes.aspx">Manage Homes</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="sellerOfferCount"></span></a>
+          <a class="nav-link" href="frmOffers.aspx">Offers <span runat="server" id="sellerOfferCount" class="badge text-bg-danger"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="frmDashboard.aspx">Dashboard</a>
@@ -48,13 +48,13 @@
           <a class="nav-link" href="frmBuyerScheduledVisits">Scheduled Showings</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="frmOffersBuyer.aspx">Your Offers <span runat="server" id="buyerOfferCount"></span></a>
+          <a class="nav-link" href="frmOffersBuyer.aspx">Your Offers <span runat="server" id="buyerOfferCount" class="badge text-bg-danger"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="frmDashboard.aspx">Dashboard</a>
         </li>
       </ul>
-      <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn btn-outline-primary" OnClick="btnLogout_Click"/>
+      <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn btn-outline-light" OnClick="btnLogout_Click"/>
     </div>
   </div>
 </nav>
