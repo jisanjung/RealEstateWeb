@@ -12,9 +12,8 @@
             width: 300px;
             bottom: 0;
             top: 0;
-        }
-        #sideFilter h3 {
-            padding-top: 58px;
+            padding-top: 58px !important;
+            overflow-y: scroll;
         }
         #homeResults {
             left: 300px;
@@ -208,7 +207,7 @@
             </div>
         </div>
         <div id="sideFilter" class="position-fixed p-4 bg-light border-end">
-            <h3 class="display-6 mb-4">Filter by</h3>
+            <%--<h3 class="display-6 mb-4">Filter by</h3>--%>
             <asp:Label ID="lblSearchAlert" runat="server"></asp:Label>
             <div class="form-group mb-3">
                 <label class="fw-bold">Location</label>
@@ -234,13 +233,15 @@
                 <asp:TextBox ID="txtHomeSize" runat="server" placeholder="Enter house size" CssClass="form-control"></asp:TextBox>
                 <span>sqft (and under)</span>
             </div>
-            <div class="form-group mb-3">
-                <label class="fw-bold">Bedrooms</label>
-                <asp:TextBox ID="txtMinBedrooms" runat="server" placeholder="Minimum Bedrooms" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group mb-3">
-                <label class="fw-bold">Bathrooms</label>
-                <asp:TextBox ID="txtMinBathrooms" runat="server" placeholder="Mininum Bathrooms" CssClass="form-control"></asp:TextBox>
+            <div class="d-flex justify-content-between">
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Bedrooms</label>
+                    <asp:TextBox ID="txtMinBedrooms" runat="server" placeholder="Minimum Bedrooms" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Bathrooms</label>
+                    <asp:TextBox ID="txtMinBathrooms" runat="server" placeholder="Mininum Bathrooms" CssClass="form-control"></asp:TextBox>
+                </div>
             </div>
             <div class="form-group mb-3">
                 <label class="fw-bold">Amenities</label>
