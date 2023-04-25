@@ -98,6 +98,11 @@ namespace RealEstateWeb
             {
                 this.lblAlert.Text = "Offer Accepted!";
                 this.lblAlert.CssClass = "alert alert-success d-inline-block mt-3";
+
+                string jsonOffers = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homeoffers");
+                List<HomeOffer> allHomeOffers = js.Deserialize<List<HomeOffer>>(jsonOffers);
+
+                this.displayOffers(allHomeOffers);
             }
         }
 
