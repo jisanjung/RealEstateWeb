@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="w-50 d-flex justify-content-center align-items-center">
-                <div>
+                <div class="px-5">
                     <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
                     <div class="form-group" id="divLogin" runat="server">
                         <h3 class="mb-4">Login</h3>
