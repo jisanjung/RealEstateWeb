@@ -54,7 +54,7 @@
           <a class="nav-link" href="frmDashboard.aspx">Dashboard</a>
         </li>
       </ul>
-      <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn btn-outline-light" OnClick="btnLogout_Click"/>
+      <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn btn-outline-light" OnClick="btnLogout_Click" formnovalidate="formnovalidate"/>
     </div>
   </div>
 </nav>
