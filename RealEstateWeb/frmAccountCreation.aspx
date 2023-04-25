@@ -64,8 +64,9 @@
                             <asp:Label ID="lblForgot" runat="server" Text="Answer Correctly and we'll send you your email"></asp:Label>
                             <asp:TextBox ID="txtForgotAnswer" runat="server" required CssClass="form-control" placeholder="Security Answer"></asp:TextBox>
                             <div class="d-grid">
-                                <asp:Button ID="btnForgotPassword" runat="server" OnClick="btnForgotPassword_Click" Text="Send Password via Email" CssClass="btn btn-outline-primary my-3" />
+                                <asp:Button ID="btnForgotPassword" runat="server" OnClick="btnForgotPassword_Click" Text="Send Password via Email" CssClass="btn btn-outline-primary my-3" formnovalidate="formnovalidate"/>
                             </div>
+                            <asp:Label ID="lblForgotPassAlert" runat="server"></asp:Label>
                         </div>
                     </div>
                     <div class="signup" id="divSignup" runat="server" visible="false">
