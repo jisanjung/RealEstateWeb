@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Navbar.ascx.cs" Inherits="RealEstateWeb.Navbar" %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative z-1">
   <div class="container-fluid">
-    <h1 class="navbar-brand">Homes "R" Us</h1>
+    <a href="#" class="navbar-brand">Homes "R" Us</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
