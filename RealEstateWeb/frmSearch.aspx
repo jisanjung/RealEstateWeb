@@ -53,6 +53,7 @@
                                     <img id="imgHomeProfile" runat="server" class="w-100 h-100 object-fit-cover"/>
                                 </div>
                                 <div class="overflow-y-scroll w-50 p-4">
+                                    <asp:Label ID="lblAlerts" runat="server"></asp:Label>
                                     <div class="d-none">
                                         <asp:Label ID="lblHomeProfileHomeId" runat="server"></asp:Label>
                                     </div>
