@@ -27,10 +27,14 @@ namespace RealEstateWeb
                     Response.Redirect("frmErrorPage.aspx");
                 } else
                 {
-                    List<Home> sellerHomes = DBOperations.GetSellerHomes(userName);
+                    //List<Home> sellerHomes = DBOperations.GetSellerHomes(userName);
+                    string jsonRes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes");
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    List<Home> allHomes = js.Deserialize<List<Home>>(jsonRes);
+
                     if (!IsPostBack)
                     {
-                        this.displayHomes(sellerHomes);
+                        this.displayHomes(allHomes);
                     }
                 }
             }
@@ -126,7 +130,23 @@ namespace RealEstateWeb
         }
         private void displayHomes(List<Home> homeList)
         {
-            this.rptSellerHomes.DataSource = homeList;
+            List<Home> filteredHomes = new List<Home>();
+            if (Request.Cookies["user_cookie"] != null)
+            {
+                string userEmail = Request.Cookies["user_cookie"]["user_email"];
+                string userType = Request.Cookies["user_cookie"]["user_type"];
+                foreach (Home h in homeList)
+                {
+                    if (userType.CompareTo("Agent") == 0 && h.AgentEmail.CompareTo(userEmail) == 0) // agent
+                    {
+                        filteredHomes.Add(h);
+                    } else if (userType.CompareTo("Seller") == 0 && h.SellerEmail.CompareTo(userEmail) == 0 && h.AgentEmail.CompareTo(userEmail) == 0) // seller
+                    {
+                        filteredHomes.Add(h);
+                    }
+                }
+            }
+            this.rptSellerHomes.DataSource = filteredHomes;
             this.rptSellerHomes.DataBind();
         }
 
