@@ -60,9 +60,9 @@
                         <div class="forgotFunction form-group" id="forgotFun" runat="server" visible="false">
                             <h3 class="mt-5 mb-4">Retrieve your Password</h3>
                             <label>Your Email:</label>
-                            <asp:TextBox ID="txtForgotEmail" runat="server" required CssClass="form-control mb-2" placeholder="Enter Email"></asp:TextBox>
+                            <asp:TextBox ID="txtForgotEmail" runat="server" CssClass="form-control mb-2" placeholder="Enter Email"></asp:TextBox>
                             <asp:Label ID="lblForgot" runat="server" Text="Answer Correctly and we'll send you your email"></asp:Label>
-                            <asp:TextBox ID="txtForgotAnswer" runat="server" required CssClass="form-control" placeholder="Security Answer"></asp:TextBox>
+                            <asp:TextBox ID="txtForgotAnswer" runat="server" CssClass="form-control" placeholder="Security Answer"></asp:TextBox>
                             <div class="d-grid">
                                 <asp:Button ID="btnForgotPassword" runat="server" OnClick="btnForgotPassword_Click" Text="Send Password via Email" CssClass="btn btn-outline-primary my-3" formnovalidate="formnovalidate"/>
                             </div>
