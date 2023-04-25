@@ -45,7 +45,7 @@
           <a class="nav-link active" aria-current="page" href="frmSearch.aspx">Search</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="frmBuyerScheduledVisits">Scheduled Showings</a>
+          <a class="nav-link" href="frmBuyerScheduledVisits.aspx">Scheduled Showings</a>
         </li>
           <li class="nav-item">
           <a class="nav-link" href="frmOffersBuyer.aspx">Your Offers <span runat="server" id="buyerOfferCount" class="badge text-bg-danger"></span></a>
