@@ -8,7 +8,11 @@
 <head runat="server">
     <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"/>
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet"/>
     <style>
+        html, body {
+            font-family: 'Poppins', sans-serif;
+        }
         #sideFilter {
             width: 300px;
             bottom: 0;
@@ -67,9 +71,9 @@
                                     <div>
                                         <asp:Label ID="lblHomeProfileAddress" runat="server"></asp:Label>
                                     </div>
-                                    <div class="py-3">
-                                        <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" OnClick="btnRequestShowing_Click" CssClass="btn btn-primary"/>
-                                        <asp:Button ID="btnFeedback" runat="server" Text="Leave Feedback" OnClick="btnFeedback_Click" CssClass="btn btn-outline-primary"/>
+                                    <div class="d-flex py-3">
+                                        <asp:Button ID="btnRequestShowing" runat="server" Text="Request a Showing" OnClick="btnRequestShowing_Click" CssClass="btn btn-primary me-1"/>
+                                        <asp:Button ID="btnFeedback" runat="server" Text="Leave Feedback" OnClick="btnFeedback_Click" CssClass="btn btn-outline-primary ms-1"/>
                                     </div>
                                     <div id="divCreateShowing" runat="server" visible="false" class="card p-3 mb-3">
                                         <div>
