@@ -154,13 +154,13 @@ namespace RealEstateWeb
                 int status = int.Parse(RestClient.Post("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homeshowing/Add", jsonShowingRequest));
                 if (status < 1)
                 {
-                    this.lblHomeShowingAlert.Text = "There was a problem submitting your request...";
-                    this.lblHomeShowingAlert.CssClass = "alert alert-danger d-inline-block mt-2";
+                    this.lblAlerts.Text = "There was a problem submitting your request...";
+                    this.lblAlerts.CssClass = "alert alert-danger d-inline-block mt-2";
                 }
                 else
                 {
-                    this.lblHomeShowingAlert.Text = "Home Showing Request Submitted!";
-                    this.lblHomeShowingAlert.CssClass = "alert alert-success d-inline-block mt-2";
+                    this.lblAlerts.Text = "Home Showing Request Submitted!";
+                    this.lblAlerts.CssClass = "alert alert-success d-inline-block mt-2";
                 }
             }
         }
@@ -184,12 +184,12 @@ namespace RealEstateWeb
             
             if (status < 1)
             {
-                this.lblFeedbackAlert.Text = "Could not submit feedback...";
-                this.lblFeedbackAlert.CssClass = "alert alert-danger d-inline-block mt-2";
+                this.lblAlerts.Text = "Could not submit feedback...";
+                this.lblAlerts.CssClass = "alert alert-danger d-inline-block mt-2";
             } else
             {
-                this.lblFeedbackAlert.Text = "Thank you for your response. Your feedback matters to us";
-                this.lblFeedbackAlert.CssClass = "alert alert-success d-inline-block mt-2";
+                this.lblAlerts.Text = "Thank you for your response. Your feedback matters to us";
+                this.lblAlerts.CssClass = "alert alert-success d-inline-block mt-2";
             }
         }
 
@@ -241,18 +241,18 @@ namespace RealEstateWeb
 
                     if (status < 1)
                     {
-                        this.lblOfferAlert.Text = "Offer could not be sent...";
-                        this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block mt-2";
+                        this.lblAlerts.Text = "Offer could not be sent...";
+                        this.lblAlerts.CssClass = "alert alert-danger d-inline-block mt-2";
                     }
                     else
                     {
-                        this.lblOfferAlert.Text = "Offer sent successfully";
-                        this.lblOfferAlert.CssClass = "alert alert-success d-inline-block mt-2";
+                        this.lblAlerts.Text = "Offer sent successfully";
+                        this.lblAlerts.CssClass = "alert alert-success d-inline-block mt-2";
                     }
                 } else
                 {
-                    this.lblOfferAlert.Text = "Offer must be a number";
-                    this.lblOfferAlert.CssClass = "alert alert-danger d-inline-block mt-2";
+                    this.lblAlerts.Text = "Offer must be a number";
+                    this.lblAlerts.CssClass = "alert alert-danger d-inline-block mt-2";
                 }
             }
         }
