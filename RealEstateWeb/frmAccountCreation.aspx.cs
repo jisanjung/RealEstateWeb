@@ -227,14 +227,15 @@ namespace RealEstateWeb
                     String strSubject = "Homes R Us - Forgot password";
 
                     string body = "your password is: " + Security.Decrypt(myds.Tables[0].Rows[0][0].ToString());
-                    lblError.Text = "Password has been sent to your email. Check your Email.";
-                    this.lblError.CssClass = "alert alert-primary d-inline-block";
+                    lblForgotPassAlert.Text = "Password has been sent to your email. Check your Email.";
+                    this.lblForgotPassAlert.CssClass = "alert alert-primary d-inline-block";
                     objEmail.SendMail(strTO, strFROM, strSubject, body);
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message + " ";
+                lblForgotPassAlert.Text = "Incorrect Answer.";
+                this.lblForgotPassAlert.CssClass = "alert alert-danger d-inline-block";
                 objCommand.Parameters.Clear();
                 txtForgotAnswer.Text = "";
                 txtForgotEmail.Text = "";
