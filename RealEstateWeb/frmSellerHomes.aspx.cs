@@ -184,9 +184,10 @@ namespace RealEstateWeb
 
                 if (Request.Cookies["user_cookie"] != null)
                 {
-                    string username = Request.Cookies["user_cookie"]["user_email"];
-                    List<Home> sellerHomes = DBOperations.GetSellerHomes(username);
-                    this.displayHomes(sellerHomes);
+                    string jsonAllHomes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes");
+                    List<Home> allHomes = js.Deserialize<List<Home>>(jsonAllHomes);
+
+                    this.displayHomes(allHomes);
                     this.divEditHome.Visible = false;
                 }
             }
@@ -208,9 +209,11 @@ namespace RealEstateWeb
 
                 if (Request.Cookies["user_cookie"] != null)
                 {
-                    string username = Request.Cookies["user_cookie"]["user_email"];
-                    List<Home> sellerHomes = DBOperations.GetSellerHomes(username);
-                    this.displayHomes(sellerHomes);
+                    string jsonAllHomes = RestClient.Get("https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/WebAPI/api/homes");
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    List<Home> allHomes = js.Deserialize<List<Home>>(jsonAllHomes);
+
+                    this.displayHomes(allHomes);
                     this.divEditHome.Visible = false;
                 }
             }
