@@ -35,7 +35,7 @@
 
 ## About The Project
 
-[![app_screenshot][https://raw.githubusercontent.com/jisanjung/RealEstateWeb/master/screenshot.PNG]](https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/TermProject/frmAccountCreation.aspx)
+![alt text](https://raw.githubusercontent.com/jisanjung/RealEstateWeb/master/screenshot.PNG)
 
 This application was built for the final project for CIS 3342, a server-side web app development course at Temple University.
 
