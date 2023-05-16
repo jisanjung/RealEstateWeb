@@ -1,16 +1,13 @@
 <a id="readme-top"></a>
 
 <div align="center">
-  <a href="https://github.com/jisanjung/RealEstateWeb">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
   <h3 align="center">Homes "R" Us</h3>
 
   <p align="center">
     A Full Stack Real Estate Application built with C# (ASP.NET)
     <br />
-    <a href="https://github.com/jisanjung/RealEstateWeb/README.md"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/jisanjung/RealEstateWeb/blob/master/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/TermProject/frmAccountCreation.aspx">View Demo</a>
@@ -38,7 +35,7 @@
 
 ## About The Project
 
-[![app_screenshot][./screenshot.PNG]](https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/TermProject/frmAccountCreation.aspx)
+[![app_screenshot][https://raw.githubusercontent.com/jisanjung/RealEstateWeb/master/screenshot.PNG]](https://cis-iis2.temple.edu/Spring2023/CIS3342_tun22982/TermProject/frmAccountCreation.aspx)
 
 This application was built for the final project for CIS 3342, a server-side web app development course at Temple University.
 
